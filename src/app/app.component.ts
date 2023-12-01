@@ -9,6 +9,8 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
-  title = 'DMRS';
+  lat: number = 29.4;
+  lng: number = 30.57;
 }
