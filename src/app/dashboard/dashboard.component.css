@@ -7,6 +7,13 @@
   color: #fff;
 }
 
+.logo a {
+  cursor: pointer;
+  background-color: #00755d;
+  color: #fff;
+  border: none;
+}
+
 .logo {
   font-weight: bold;
   font-size: 20px;

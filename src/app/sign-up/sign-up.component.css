@@ -1,6 +1,9 @@
 body {
   background: #f2f2f2;
 }
+h1 {
+  margin-top: 72px;
+}
 .animate {
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
@@ -42,7 +45,7 @@ a:focus {
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
 }
-.text-primary {
+.primary-text {
   color: #00A885;
 }
 input:-webkit-autofill {
@@ -65,6 +68,9 @@ button {
   font-size: 20px;
   -webkit-transition: 0.3s linear;
   transition: 0.3s linear;
+}
+button:hover {
+  background-color: #00755d;
 }
 span.validate-tooltip {
   background: #D91717;
@@ -138,16 +144,39 @@ span.validate-tooltip {
 .wrapper {
   width: 420px;
   background: #fff;
-  margin: 20px auto;
+  margin: 36px auto;
   min-height: 200px;
   border: 1px solid #f3f3f3;
+}
+.wrapper .signup {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: -48px;
+}
+.wrapper .signup a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #00A885;
+  margin-left: 12px;
+  text-decoration: none;
+}
+.wrapper .signup a:hover {
+  text-decoration: underline;
+  color: #00755d;
+}
+.wrapper .signup p {
+  margin-top: 16px;
 }
 .wrapper .inner-warpper {
   padding: 50px 30px 60px;
   box-shadow: 1px 1.732px 10px 0px rgba(0, 0, 0, 0.063);
 }
 .wrapper .title {
-  margin-top: 0;
+  margin-top: -12px;
+  margin-bottom: 36px;
 }
 .wrapper .supporter {
   margin-top: 10px;

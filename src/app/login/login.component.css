@@ -1,5 +1,8 @@
-body {
-  background: #f2f2f2;
+h1 {
+  margin-top: 72px;
+}
+.logo h1 {
+  color: #00A885;
 }
 .animate {
   -webkit-transition: all 0.3s linear ;
@@ -42,15 +45,8 @@ a:focus {
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
 }
-.text-primary {
-  color: #00A885;
-}
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px white inset !important;
-}
-.logo h1 {
-  color: #00A885;
-  margin-bottom: -12px;
 }
 input[type="checkbox"] {
   width: auto;
@@ -151,7 +147,8 @@ span.validate-tooltip {
   box-shadow: 1px 1.732px 10px 0px rgba(0, 0, 0, 0.063);
 }
 .wrapper .title {
-  margin-top: 0;
+  margin-top: -12px;
+  margin-bottom: 36px;
 }
 .wrapper .supporter {
   margin-top: 10px;
@@ -165,23 +162,34 @@ span.validate-tooltip {
 .wrapper input[type="checkbox"] {
   float: left;
   margin-right: 5px;
-  margin-top: 2px;
+  margin-top: 4px;
   cursor: pointer;
 }
 .wrapper label[for="rememberMe"] {
   cursor: pointer;
 }
 .wrapper .signup-wrapper {
-  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   font-size: 14px;
   background: #EBEAEA;
 }
 .wrapper .signup-wrapper a {
+  cursor: pointer;
   text-decoration: none;
-  color: #7F7F7F;
+  color: #00A885;
+  margin-left: 12px;
+}
+.wrapper .signup-wrapper p {
+  margin-top: 16px;
+}
+.text-primary {
+  color: #00A885;
 }
 .wrapper .signup-wrapper a:hover {
-  text-decoration: underline;
+  color: #00755d;
 }
 @-webkit-keyframes tooltipanimation {
   from {
