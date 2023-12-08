@@ -1,0 +1,77 @@
+.header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  background-color: #00755d;
+  color: #fff;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.header .user {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* side nav section */
+.nav-items {
+  padding-top: 40px;
+}
+
+.nav-items .nav-item {
+  padding: 25px 50px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1300px) {
+  .nav-items .nav-item {
+    padding: 25px 40px;
+  }
+}
+
+.nav-items .nav-item:hover {
+  background-color: #00755d;
+}
+
+/* .nav-items .nav-item fa-icon {
+  margin-right: 20px;
+  font-size: 22px;
+} */
+
+.nav-items .nav-item span {
+  display: inline;
+}
+
+@media only screen and (max-width: 1300px) {
+  .nav-items .nav-item span {
+    display: none;
+  }
+}
+
+/* Main section */
+
+.main-container {
+  display: flex;
+}
+
+.main-container .side-nav {
+  width: "100%";
+  min-width: 230px;
+  min-height: calc(100vh - 70px);
+  background-color: #00A885;
+  color: #fff;
+
+  @media only screen and (max-width: 1300px) {
+    width: 100px;
+    min-width: 100px;
+  }
+}
+
+.main-container .main {
+  padding: 30px;
+}
