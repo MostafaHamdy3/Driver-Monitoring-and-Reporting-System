@@ -11,6 +11,5 @@ import { RouterOutlet } from '@angular/router';
 })
 
 export class AppComponent {
-  lat: number = 29.4;
-  lng: number = 30.57;
+
 }
