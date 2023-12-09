@@ -1,3 +1,29 @@
+// import { Component, OnInit } from '@angular/core';
+// import { CommonModule } from '@angular/com mon';
+// import { Router } from '@angular/router';
+
+// @Component({
+//   selector: 'app-dashboard',
+//   standalone: true,
+//   imports: [CommonModule],
+//   templateUrl: './dashboard.component.html',
+//   styleUrl: './dashboard.component.css'
+// })
+// export class DashboardComponent implements OnInit {
+//   selectedNavItem: string | null = null;
+//   constructor(private router: Router) { }
+
+//   ngOnInit() {}
+
+//   onNavItemClicked(item: string) {
+//     this.selectedNavItem = item;
+//     // Handle navigation or other logic if needed
+//   }
+//   onLogout() {
+//     this.router.navigate(["/signUp"]);
+//   }
+// }
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
@@ -7,16 +33,23 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
   standalone: true,
   imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrls: ['./dashboard.component.css']
 })
 
 export class DashboardComponent implements OnInit {
+  selectedNavItem: string | null = null;
+
   constructor(private router: Router) { }
 
   ngOnInit() {}
 
+  onNavItemClicked(item: string) {
+    this.selectedNavItem = item;
+    // Handle navigation or other logic if needed
+  }
+
   onLogout() {
-    this.router.navigate(["/signUp"]);
+    this.router.navigate(['/signUp']);
   }
 
   profileHandler() {

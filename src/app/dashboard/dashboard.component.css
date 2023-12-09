@@ -87,3 +87,7 @@
   width: 70%;
   margin-left: 5%;
 }
+.nav-items .nav-item.selected {
+  background-color: #00755d;
+  color: #fff;
+}
