@@ -194,7 +194,7 @@ span.validate-tooltip {
 .wrapper .signup-wrapper a:hover {
   color: #00755d;
 }
-@-webkit-keyframes tooltipanimation {
+/* @-webkit-keyframes tooltipanimation {
   from {
     margin-top: -28px;
   }
@@ -226,7 +226,7 @@ span.validate-tooltip {
   .direction {
     position: static;
   }
-}
+} */
 ::placeholder{
   font-style: italic;
   font-size: 1em;
