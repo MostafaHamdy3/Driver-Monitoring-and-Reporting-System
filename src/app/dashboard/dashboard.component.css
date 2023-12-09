@@ -82,3 +82,7 @@
 .main-container .main {
   padding: 30px;
 }
+.nav-items .nav-item.selected {
+  background-color: #00755d;
+  color: #fff;
+}
