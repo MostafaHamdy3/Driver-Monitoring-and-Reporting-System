@@ -11,6 +11,9 @@ h1 {
 .text-center {
   text-align: center;
 }
+.primary-text {
+  color: #00A885;
+}
 .pull-left {
   float: left;
 }
