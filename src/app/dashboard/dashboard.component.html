@@ -4,28 +4,28 @@
       <a (click)="onLogout()">Logo</a>
     </div>
     <div class="user">
-      <div class="user-name">Mostafa</div>
+      <div class="user-name">Mohamed Ibrahim </div>
     </div>
   </div>
   <div class="main-container">
     <div class="side-nav">
       <div class="nav-items">
-        <div class="nav-item">
+        <div class="nav-item" [class.selected]="selectedNavItem === 'Dashboard'" (click)="onNavItemClicked('Dashboard')">
           <span>Dashboard</span>
         </div>
-        <div class="nav-item" routerLink="/dashboard/eventLog">
+        <div class="nav-item" [class.selected]="selectedNavItem === 'Event Log'" (click)="onNavItemClicked('Event Log') routerLink="/dashboard/eventLog">
           <span>Event Log</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" [class.selected]="selectedNavItem === 'Event Detail'" (click)="onNavItemClicked('Event Detail')">
           <span> Event Detail</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" [class.selected]="selectedNavItem === 'Aggressive Driving analysis'" (click)="onNavItemClicked('Aggressive Driving analysis')">
           <span>Aggressive Driving analysis</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" [class.selected]="selectedNavItem === 'Map'" (click)="onNavItemClicked('Map')">
           <span>Map</span>
         </div>
-        <div class="nav-item" routerLink="/dashboard/profileSetting">
+        <div class="nav-item" [class.selected]="selectedNavItem === 'Profile Settings'" (click)="onNavItemClicked('Profile Settings') routerLink="/dashboard/profileSetting">
           <span>Profile Settings</span>
         </div>
       </div>
