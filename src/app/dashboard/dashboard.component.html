@@ -13,7 +13,7 @@
         <div class="nav-item" [class.selected]="selectedNavItem === 'Dashboard'" (click)="onNavItemClicked('Dashboard')">
           <span>Dashboard</span>
         </div>
-        <div class="nav-item" [class.selected]="selectedNavItem === 'Event Log'" (click)="onNavItemClicked('Event Log')">
+        <div class="nav-item" [class.selected]="selectedNavItem === 'Event Log'" (click)="onNavItemClicked('Event Log') routerLink="/dashboard/eventLog">
           <span>Event Log</span>
         </div>
         <div class="nav-item" [class.selected]="selectedNavItem === 'Event Detail'" (click)="onNavItemClicked('Event Detail')">
@@ -25,13 +25,13 @@
         <div class="nav-item" [class.selected]="selectedNavItem === 'Map'" (click)="onNavItemClicked('Map')">
           <span>Map</span>
         </div>
-        <div class="nav-item" [class.selected]="selectedNavItem === 'Profile Settings'" (click)="onNavItemClicked('Profile Settings')">
+        <div class="nav-item" [class.selected]="selectedNavItem === 'Profile Settings'" (click)="onNavItemClicked('Profile Settings') routerLink="/dashboard/profileSetting">
           <span>Profile Settings</span>
         </div>
       </div>
     </div>
     <div class="main">
-      <!-- <app-main></app-main> -->
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

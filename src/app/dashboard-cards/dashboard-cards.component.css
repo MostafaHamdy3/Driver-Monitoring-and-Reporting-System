@@ -1,0 +1,77 @@
+.event_log_div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.34);
+    box-shadow: 0 0 5px #ccc;
+}
+/* display: flex;
+width: 1096px;
+height: 548px;
+padding: 18px 18px 10px 18px;
+flex-direction: column;
+align-items: flex-start;
+gap: 10px;
+flex-shrink: 0; */
+
+.inner_Container{
+    display: flex;
+width: 1058px;
+height: 513px;
+flex-direction: column;
+align-items: flex-start;
+flex-shrink: 0;
+}
+.filter_container{
+    display: flex;
+width: 1055px;
+height: 62px;
+justify-content: flex-end;
+align-items: center;
+gap: 20px;
+flex-shrink: 0;
+}
+.table_container{
+overflow-y: scroll;
+overflow-x: hidden;
+display: flex;
+width: 1058px;
+height: 427px;
+flex-direction: row;
+align-items:safe;
+gap: 8px;
+flex-shrink: 0;
+border-spacing: 10px;
+/* padding: 8px; */
+
+table {
+    width: 100%;
+    border-spacing: 0px; /* Adjust the spacing value as needed */
+}
+th, td {
+    /* border:  1px solid #ddd; Optional: Add borders for better visualization */
+    /* padding: 8px; */
+    text-align: center;
+}
+th {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd; /* Add a bottom border to all table headers */
+}
+}
+
+#event_status {
+  display: inline-flex;
+  width: 160px;
+  height: 42px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
+}

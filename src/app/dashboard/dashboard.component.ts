@@ -26,13 +26,16 @@
 
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit {
   selectedNavItem: string | null = null;
 
@@ -47,5 +50,9 @@ export class DashboardComponent implements OnInit {
 
   onLogout() {
     this.router.navigate(['/signUp']);
+  }
+
+  profileHandler() {
+    this.router.navigate(["/dashboard/profileSetting"]);
   }
 }
