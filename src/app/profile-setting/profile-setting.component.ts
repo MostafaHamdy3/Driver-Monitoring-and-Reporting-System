@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-setting',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './profile-setting.component.html',
   styleUrl: './profile-setting.component.css'
 })
@@ -19,11 +20,13 @@ export class ProfileSettingComponent implements OnInit {
     job: string,
     email: string
   };
+
   vehicleInfo: {
     vehicle: string,
     model: string,
     license: string,
-    creation: number
+    creation: number,
+    serial: number,
   };
 
   firstName = "Mostafa";
@@ -31,10 +34,11 @@ export class ProfileSettingComponent implements OnInit {
   job = "Software Engineer";
   email = "mostafa@gmail.com";
 
-  vehicle = "";
-  model = "";
-  license = "";
-  creation = 2016;
+  vehicle = "BlueSky Cruiser";
+  model = "EcoGlide Deluxe";
+  license = "ABC 1234";
+  creation = 2021;
+  serial= 0;
 
   ngOnInit(): void {
 

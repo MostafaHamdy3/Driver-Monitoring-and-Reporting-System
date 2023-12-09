@@ -2,42 +2,45 @@
   <h2 class="title">About you</h2>
   <form action="" id="formvalidate">
     <div class="person-details">
-      <!-- first name -->
-      <!-- [(ngModel)]="firstName" -->
-      <input
-        type="text"
-        id="firstName"
-        name="firstName"
-        class="form-control"
-        placeholder="First name"
-      />
-      <!-- last name -->
-      <input
-        class="form-control"
-        name="lastName"
-        id="lastName"
-        type="text"
-        placeholder="Last name"
-      />
+      <div class="label-input">
+        <label for="firstName">First Name:</label>
+        <input
+          [(ngModel)]="firstName"
+          type="text"
+          id="firstName"
+          name="firstName"
+          class="form-control"
+        />
+      </div>
+      <div class="label-input">
+        <label for="lastName">Last Name:</label>
+        <input
+          class="form-control"
+          name="lastName"
+          id="lastName"
+          type="text"
+          [(ngModel)]="lastName"
+        />
+      </div>
     </div>
-    <!-- job -->
     <div class="input-group">
+      <label for="job">Job:</label>
       <input
         class="form-control"
         name="Job"
         id="Job"
         type="text"
-        placeholder="Job title"
+        [(ngModel)]="job"
       />
     </div>
-    <!-- email -->
     <div class="input-group">
+      <label for="userEmail">Email:</label>
       <input
         class="form-control"
         name="email"
         id="userEmail"
         type="email"
-        placeholder="Email"
+        [(ngModel)]="email"
       />
     </div>
     <button class="btn" type="submit" id="Signup">Save</button>
@@ -46,44 +49,71 @@
   <h2 class="title">About your vehicle</h2>
   <form action="" id="formvalidate">
     <div class="person-details">
-      <input
-        class="form-control"
-        name="name"
-        id="name"
-        type="text"
-        placeholder="Vehicle name"
-      />
-      <input
-        class="form-control"
-        name="name"
-        id="name"
-        type="text"
-        placeholder="Vehicle model"
-      />
+      <div class="label-input">
+        <label for="vehicle">Vehicle name:</label>
+        <input
+          class="form-control"
+          name="vehicle"
+          id="vehicle"
+          type="text"
+          [(ngModel)]="vehicle"
+        />
+      </div>
+      <div class="label-input">
+        <label for="model">Model:</label>
+        <input
+          class="form-control"
+          name="model"
+          id="model"
+          type="text"
+          [(ngModel)]="model"
+        />
+      </div>
     </div>
     <div class="person-details">
-      <input
-      class="form-control"
-      name="name"
-      id="name"
-      type="text"
-      placeholder="license plate"
-      />
-      <input
-      class="form-control"
-      name="name"
-      id="name"
-      type="text"
-      placeholder="creation year"
-      />
+      <div class="label-input">
+        <label for="license">License:</label>
+        <input
+          class="form-control"
+          name="license"
+          id="license"
+          type="text"
+          [(ngModel)]="license"
+        />
+      </div>
+      <div class="label-input">
+        <label for="creation">Creation:</label>
+        <input
+          class="form-control"
+          name="creation"
+          id="creation"
+          type="text"
+          [(ngModel)]="creation"
+        />
+      </div>
     </div>
-    <input
-      class="form-control"
-      name="serial"
-      id="serial"
-      type="text"
-      placeholder="serial number"
-    />
+    <div class="person-details">
+      <div class="label-input">
+        <label for="serial" class="text-label">Serial:</label>
+        <input
+          class="form-control"
+          name="serial"
+          id="serial"
+          type="text"
+          [(ngModel)]="serial"
+        />
+      </div>
+      <div class="label-input">
+        <label for="serial" class="text-label">X:</label>
+        <input
+          class="form-control"
+          name="serial"
+          id="serial"
+          type="text"
+          [(ngModel)]="serial"
+        />
+      </div>
+    </div>
     <button class="btn vehicle-btn" type="submit" id="Signup">Save</button>
   </form>
 </div>

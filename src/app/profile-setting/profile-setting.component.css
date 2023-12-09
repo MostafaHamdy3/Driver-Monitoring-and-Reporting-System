@@ -18,33 +18,28 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 12px;
+}
+
+.label-input {
+  width: 47%;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 16px;
+  color: #000;
+  font-weight: normal;
+  padding: 2px 5px;
+  z-index: 5;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
 }
 
 .input-group {
   position: relative;
   margin-bottom: 16px;
 }
-
-::placeholder{
-  font-style: italic;
-  font-size: 1em;
-  color: rgb(147, 150, 149);
-}
-
-/* .input-group label {
-  position: absolute;
-  top: 9px;
-  left: 10px;
-  font-size: 16px;
-  color: #cdcdcd;
-  font-weight: normal;
-  padding: 2px 5px;
-  z-index: 5;
-  -webkit-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-} */
 
 .input-group input {
   outline: none;
