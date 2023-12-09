@@ -10,6 +10,7 @@ export const routes: Routes = [
   { path: "", component: LoginComponent },
   { path: "signUp", component: SignUpComponent },
   { path: "dashboard", component: DashboardComponent, children: [
+    { path: "eventLog", component: DashboardCardsComponent },
     { path: "profileSetting", component: ProfileSettingComponent },
   ] },
 ];
