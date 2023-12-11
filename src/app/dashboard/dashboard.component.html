@@ -1,20 +1,18 @@
 <div>
-  <div class="header">
-    <div class="logo">
-      <a (click)="onLogout()">Logo</a>
-    </div>
-    <div class="user">
-      <div class="user-name">Mohamed Ibrahim </div>
-    </div>
-  </div>
   <div class="main-container">
     <div class="side-nav">
       <div class="nav-items">
         <div
           class="nav-item"
-          [class.selected]="selectedNavItem === 'Dashboard'"
-          (click)="onNavItemClicked('Dashboard')"
+          [class.selected]="selectedNavItem === 'dashboard'"
+          (click)="onNavItemClicked('dashboard')"
+          routerLink="/dashboard"
         >
+        <img
+          src="../../assets/dashboard-icon.png"
+          alt="event details"
+          style="margin-right: 16px;"
+        />
           <span>Dashboard</span>
         </div>
         <div
@@ -23,27 +21,36 @@
           (click)="onNavItemClicked('Event Log')"
           routerLink="/dashboard/eventLog"
         >
+          <img
+            src="../../assets/event-icon.png"
+            alt="event details"
+            style="margin-right: 16px;"
+          />
           <span>Event Log</span>
-        </div>
-        <div
-          class="nav-item"
-          [class.selected]="selectedNavItem === 'Event Detail'"
-          (click)="onNavItemClicked('Event Detail')"
-        >
-          <span> Event Detail</span>
         </div>
         <div
           class="nav-item"
           [class.selected]="selectedNavItem === 'Aggressive Driving analysis'"
           (click)="onNavItemClicked('Aggressive Driving analysis')"
         >
+          <img
+            src="../../assets/road-icon.png"
+            alt="event details"
+            style="margin-right: 16px;"
+          />
           <span>Aggressive Driving analysis</span>
         </div>
         <div
           class="nav-item"
           [class.selected]="selectedNavItem === 'Map'"
           (click)="onNavItemClicked('Map')"
+          routerLink="/map"
         >
+          <img
+            src="../../assets/map-icon.png"
+            alt="event details"
+            style="margin-right: 16px;"
+          />
           <span>Map</span>
         </div>
         <div
@@ -52,12 +59,82 @@
           (click)="onNavItemClicked('Profile Settings')"
           routerLink="/dashboard/profileSetting"
         >
+          <img
+            src="../../assets/person-icon.png"
+            alt="event details"
+            style="margin-right: 16px;"
+          />
           <span>Profile Settings</span>
+        </div>
+        <div
+          class="nav-item"
+          [class.selected]="selectedNavItem === 'logOut'"
+          (click)="onNavItemClicked('logOut')"
+          routerLink="/"
+        >
+        <img
+            src="../../assets/logout-icon.png"
+            alt="event details"
+            style="margin-right: 16px; transform: rotate(180deg);"
+          />
+          <span>Log out</span>
         </div>
       </div>
     </div>
     <div class="main">
-      <router-outlet></router-outlet>
+      <div
+        class="event-log"
+        *ngIf="openDashboard; else changeContent"
+        [class.selected]="selectedNavItem === 'Event Log'"
+        (click)="onNavItemClicked('Event Log')"
+        routerLink="/dashboard/eventLog"
+      >
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Trip Time</th>
+                <th>Date</th>
+                <th>Distance</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let trip of getTripData()" >
+                <td>{{ trip[0] }}</td>
+                <td>{{ trip[1] }}</td>
+                <td>{{ trip[2] }}</td>
+                <td >
+                  <div
+                    id="event_status"
+                    [ngStyle]="{
+                      'background-color': trip[3] === 'Safe'
+                        ? 'rgba(26, 147, 46, 0.18)'
+                        : trip[3] === 'Aggressive'
+                        ? 'rgba(226, 177, 51, 0.18)'
+                        : trip[3] === 'Very Aggressive'
+                        ? 'rgba(238, 32, 28, 0.18)'
+                        : '',
+                      'color': trip[3] === 'Safe'
+                        ? '#1A932E'
+                        : trip[3] === 'Aggressive'
+                        ? '#DFA510'
+                        : trip[3] === 'Very Aggressive'
+                        ? '#EE201C'
+                        : ''
+                    }"
+                  >
+                    {{ trip[3] }}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <ng-template #changeContent>
+        <router-outlet></router-outlet>
+      </ng-template>
     </div>
   </div>
 </div>

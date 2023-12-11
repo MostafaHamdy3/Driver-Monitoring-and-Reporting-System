@@ -12,5 +12,6 @@ export const routes: Routes = [
   { path: "dashboard", component: DashboardComponent, children: [
     { path: "eventLog", component: DashboardCardsComponent },
     { path: "profileSetting", component: ProfileSettingComponent },
+    { path: "map", component: MapComponent },
   ] },
 ];
