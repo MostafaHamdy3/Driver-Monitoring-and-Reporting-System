@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-dashboard-cards',
+  selector: 'app-trips-table',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './dashboard-cards.component.html',
-  styleUrls: ['./dashboard-cards.component.css']
+  templateUrl: './trips-table.component.html',
+  styleUrls: ['./trips-table.component.css']
 })
-export class DashboardCardsComponent {
+export class TripsTableComponent {
 
   constructor() { }
 

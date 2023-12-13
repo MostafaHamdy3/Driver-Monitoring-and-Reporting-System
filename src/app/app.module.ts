@@ -10,7 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
-import { DashboardCardsComponent } from './dashboard-cards/dashboard-cards.component';
+import { TripsTableComponent } from './trips-table/trips-table.component';
+import { RouterModule } from '@angular/router'; 
 
 @NgModule({
   declarations: [
@@ -18,14 +19,14 @@ import { DashboardCardsComponent } from './dashboard-cards/dashboard-cards.compo
     SignUpComponent,
     LoginComponent,
     DashboardComponent,
-    DashboardCardsComponent,
+    TripsTableComponent,
     ProfileSettingComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     MatIconModule,
-    routes,
+    RouterModule, 
     AgmCoreModule.forRoot({
       apiKey: ""
     })
