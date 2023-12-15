@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     console.log(this.user) ; 
     this.userService.userLogin(this.user).subscribe(data=>{
       alert("login successfully") ;
+      this.router.navigate(["/dashboard"]);
     } 
     , error=>alert(" Please enter correct email and password")) ;
 
