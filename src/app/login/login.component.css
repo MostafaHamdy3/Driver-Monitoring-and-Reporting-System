@@ -48,9 +48,11 @@ a:focus {
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
 }
+
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px white inset !important;
 }
+
 input[type="checkbox"] {
   width: auto;
 }
@@ -194,39 +196,8 @@ span.validate-tooltip {
 .wrapper .signup-wrapper a:hover {
   color: #00755d;
 }
-/* @-webkit-keyframes tooltipanimation {
-  from {
-    margin-top: -28px;
-  }
-  to {
-    margin-top: 0;
-  }
-}
-@keyframes tooltipanimation {
-  from {
-    margin-top: -28px;
-  }
-  to {
-    margin-top: 0;
-  }
-}
-.direction {
-  width: 200px;
-  position: fixed;
-  top: 150px;
-  left: 20px;
-  font-size: 14px;
-  line-height: 1.2;
-  text-align: center;
-  background: #9365B8;
-  padding: 10px;
-  color: #fff;
-}
-@media (max-width: 480px) {
-  .direction {
-    position: static;
-  }
-} */
+
+
 ::placeholder{
   font-style: italic;
   font-size: 1em;
