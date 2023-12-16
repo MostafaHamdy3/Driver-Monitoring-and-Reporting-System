@@ -10,8 +10,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
+import { HttpClientModule } from '@angular/common/http';
+import {UserLoginService} from './user-login.service' ;
 import { TripsTableComponent } from './trips-table/trips-table.component';
 import { RouterModule } from '@angular/router'; 
+
 
 @NgModule({
   declarations: [
@@ -25,6 +28,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     MatIconModule,
     RouterModule, 
     AgmCoreModule.forRoot({
@@ -32,7 +36,7 @@ import { RouterModule } from '@angular/router';
     })
   ],
 
-  providers: [],
+  providers: [UserLoginService , HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
