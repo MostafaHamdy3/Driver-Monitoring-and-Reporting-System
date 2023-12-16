@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 import { HttpClientModule } from '@angular/common/http';
 import {UserLoginService} from './user-login.service' ;
+import { TripsTableComponent } from './trips-table/trips-table.component';
+import { RouterModule } from '@angular/router'; 
 
 
 @NgModule({
@@ -20,6 +22,7 @@ import {UserLoginService} from './user-login.service' ;
     SignUpComponent,
     LoginComponent,
     DashboardComponent,
+    TripsTableComponent,
     ProfileSettingComponent
   ],
   imports: [
@@ -27,7 +30,7 @@ import {UserLoginService} from './user-login.service' ;
     FormsModule,
     HttpClientModule,
     MatIconModule,
-    routes,
+    RouterModule, 
     AgmCoreModule.forRoot({
       apiKey: ""
     })

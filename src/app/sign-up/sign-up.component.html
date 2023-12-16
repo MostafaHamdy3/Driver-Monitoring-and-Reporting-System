@@ -5,7 +5,6 @@
   <div class="inner-warpper text-center">
     <h2 class="title">Create new account</h2>
     <form action="" id="formvalidate">
-
       <!-- email -->
       <div class="input-group">
         <input class="form-control" name="email" id="userEmail" type="email" placeholder="Email" required/>
@@ -20,14 +19,11 @@
       </div>
       <!-- password -->
       <div class="input-group">
-        <!-- <label class="palceholder" for="userPassword">Password</label> -->
-        <input name="userPassword" id="userPassword" type="password" placeholder="Password" required/>
+        <input class="form-control" name="userPassword" id="userPassword" type="password" placeholder="Password" required/>
       </div>
       <!-- password repeat-->
       <div class="input-group">
-        <!-- <label class="palceholder" for="userPassword">Password</label> -->
-        <input name="userPasswordConfirm" id="userPasswordConfirm" type="password" placeholder="Confirm Password" required/>
-        <!-- <span class="lighting"></span> -->
+        <input class="form-control" name="userPasswordConfirm" id="userPasswordConfirm" type="password" placeholder="Confirm Password" required/>
       </div>
       <button type="submit" id="Signup" (click)="signUpHandler()">Sign up</button>
     </form>
