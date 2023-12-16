@@ -18,6 +18,7 @@ templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
   user: User = new User(); 
+  isLoginFailed: boolean = false ;
   constructor(private router: Router , private userService : UserLoginService) { }
 
   ngOnInit() {}
@@ -27,7 +28,9 @@ export class LoginComponent implements OnInit {
     this.userService.userLogin(this.user).subscribe(data=>{
       this.router.navigate(["/dashboard"]);
     } 
-    , error=>alert(" Please enter correct email and password")) ;
+    , error=>this.isLoginFailed = true )
+    console.log(this.isLoginFailed) ; 
+
 
   }
 

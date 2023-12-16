@@ -27,7 +27,9 @@
           required
         />
       </div>
-
+      <div *ngIf="isLoginFailed" class="is-invalid"> 
+        <p> Please enter a correct email or password</p>
+      </div>
       <button (click)="onLogin()" class="form-control" type="submit" id="login">Login</button>
       <div class="clearfix supporter">
         <div class="pull-left remember-me">
