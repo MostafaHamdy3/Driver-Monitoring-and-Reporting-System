@@ -203,3 +203,7 @@ span.validate-tooltip {
   font-size: 1em;
   color: rgb(192, 193, 193);
 }
+.is-invalid{
+  color :#D91717 ;
+  align-items: flex-start;
+}
