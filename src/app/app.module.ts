@@ -32,7 +32,7 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     RouterModule, 
     AgmCoreModule.forRoot({
-      apiKey: ""
+      apiKey: "AIzaSyBFjh1plfxYmtD0OfyaQo0IAdGuaLf71vY"
     })
   ],
 
