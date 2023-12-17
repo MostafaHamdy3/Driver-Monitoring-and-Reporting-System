@@ -84,8 +84,8 @@
   overflow-y: hidden;
   overflow-x: hidden;
   display: flex;
-  width: 460px;
-  height: 200px;
+  width: 420px;
+  height: 160px;
   flex-direction: row;
 
   table {
