@@ -45,7 +45,7 @@
   width: 20%;
   min-width: 120px;
   min-height: calc(100vh);
-  background-color: #00A885;
+  background-color: #00a885;
   color: #fff;
 
   @media only screen and (max-width: 1300px) {
@@ -60,8 +60,9 @@
 
 .main {
   width: 70%;
-  margin-left: 5%;
+  margin-left: 3%;
 }
+
 .nav-items .nav-item.selected {
   background-color: #00755d;
   color: #fff;
@@ -69,12 +70,11 @@
 
 .event-log {
   display: flex;
-  width: 40%;
-  height: 25%;
+  width: 540px;
+  height: 280px;
   border: 1px solid #ccc;
   justify-content: center;
   align-items: center;
-  margin-top: 4rem;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.34);
   box-shadow: 0 0 5px #ccc;
@@ -84,15 +84,16 @@
   overflow-y: hidden;
   overflow-x: hidden;
   display: flex;
-  width: 420px;
-  height: 160px;
+  width: 460px;
+  height: 200px;
   flex-direction: row;
 
   table {
     width: 100%;
     border-spacing: 0px;
   }
-  th, td {
+  th,
+  td {
     text-align: center;
   }
   th {
@@ -109,4 +110,78 @@
   align-items: center;
   text-align: center;
   border-radius: 20px;
+}
+
+.first-dashboard-part {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+#chart {
+  width: 640px;
+}
+
+.chart-outside {
+  width: 700px;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0px 0px 4px #ccc;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.cards-outside {
+  width: 700px;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0px 0px 4px #ccc;
+  padding: 32px;
+  border-radius: 12px;
+  margin-top: 32px;
+}
+
+.total-event {
+  font-size: 18px;
+  font-weight: 700;
+  color: #061a16;
+}
+
+.cards {
+  width: 640px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  gap: 24px;
+}
+
+.card {
+  width: 200px;
+  height: 180px;
+  padding: 12px;
+  background-color: #f1faf8;
+  box-shadow: 0px 0px 4px #ccc;
+}
+
+.card-img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+}
+
+.card-num,
+.card-description {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.card-num {
+  margin-bottom: 6px;
+}
+
+.card-description {
+  line-height: 20px;
 }

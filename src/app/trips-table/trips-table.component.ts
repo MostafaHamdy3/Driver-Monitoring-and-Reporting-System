@@ -9,7 +9,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./trips-table.component.css']
 })
 export class TripsTableComponent {
-
+  suddenBrake: number = 0;
+  aggressiveLeft: number = 0;
+  aggressiveRight: number = 0;
+  aggressiveSwerve: number = 0;
   constructor() { }
 
   getTripData(): Array<[string, string, number, string]> {

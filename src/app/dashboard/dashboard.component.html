@@ -8,11 +8,11 @@
           (click)="onNavItemClicked('dashboard')"
           routerLink="/dashboard"
         >
-        <img
-          src="../../assets/dashboard-icon.png"
-          alt="event details"
-          style="margin-right: 16px;"
-        />
+          <img
+            src="../../assets/dashboard-icon.png"
+            alt="event details"
+            style="margin-right: 16px"
+          />
           <span>Dashboard</span>
         </div>
         <div
@@ -24,19 +24,20 @@
           <img
             src="../../assets/event-icon.png"
             alt="event details"
-            style="margin-right: 16px;"
+            style="margin-right: 16px"
           />
           <span>Event Log</span>
         </div>
         <div
           class="nav-item"
-          [class.selected]="selectedNavItem === 'Aggressive Driving analysis'"
-          (click)="onNavItemClicked('Aggressive Driving analysis')"
+          [class.selected]="selectedNavItem === 'aggressive'"
+          (click)="onNavItemClicked('aggressive')"
+          routerLink="/dashboard/aggressive"
         >
           <img
             src="../../assets/road-icon.png"
             alt="event details"
-            style="margin-right: 16px;"
+            style="margin-right: 16px"
           />
           <span>Aggressive Driving analysis</span>
         </div>
@@ -44,12 +45,12 @@
           class="nav-item"
           [class.selected]="selectedNavItem === 'Map'"
           (click)="onNavItemClicked('Map')"
-          routerLink="/map"
+          routerLink="/dashboard/map"
         >
           <img
             src="../../assets/map-icon.png"
             alt="event details"
-            style="margin-right: 16px;"
+            style="margin-right: 16px"
           />
           <span>Map</span>
         </div>
@@ -62,7 +63,7 @@
           <img
             src="../../assets/person-icon.png"
             alt="event details"
-            style="margin-right: 16px;"
+            style="margin-right: 16px"
           />
           <span>Profile Settings</span>
         </div>
@@ -72,64 +73,149 @@
           (click)="onNavItemClicked('logOut')"
           routerLink="/"
         >
-        <img
+          <img
             src="../../assets/logout-icon.png"
             alt="event details"
-            style="margin-right: 16px; transform: rotate(180deg);"
+            style="margin-right: 16px; transform: rotate(180deg)"
           />
           <span>Log out</span>
         </div>
       </div>
     </div>
     <div class="main">
-      <div
-        class="event-log"
-        *ngIf="openDashboard; else changeContent"
-        [class.selected]="selectedNavItem === 'Event Log'"
-        (click)="onNavItemClicked('Event Log')"
-        routerLink="/dashboard/eventLog"
-      >
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Trip Time</th>
-                <th>Date</th>
-                <th>Distance</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let trip of getTripData()" >
-                <td>{{ trip[0] }}</td>
-                <td>{{ trip[1] }}</td>
-                <td>{{ trip[2] }}</td>
-                <td >
-                  <div
-                    id="event_status"
-                    [ngStyle]="{
-                      'background-color': trip[3] === 'Safe'
-                        ? 'rgba(26, 147, 46, 0.18)'
-                        : trip[3] === 'Aggressive'
-                        ? 'rgba(226, 177, 51, 0.18)'
-                        : trip[3] === 'Very Aggressive'
-                        ? 'rgba(238, 32, 28, 0.18)'
-                        : '',
-                      'color': trip[3] === 'Safe'
-                        ? '#1A932E'
-                        : trip[3] === 'Aggressive'
-                        ? '#DFA510'
-                        : trip[3] === 'Very Aggressive'
-                        ? '#EE201C'
-                        : ''
-                    }"
-                  >
-                    {{ trip[3] }}
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+      <div *ngIf="openDashboard; else changeContent">
+        <div class="first-dashboard-part">
+          <div
+            class="event-log"
+            [class.selected]="selectedNavItem === 'Event Log'"
+            (click)="onNavItemClicked('Event Log')"
+            routerLink="/dashboard/eventLog"
+          >
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Trip Time</th>
+                    <th>Date</th>
+                    <th>Distance</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let trip of getTripData()">
+                    <td>{{ trip[0] }}</td>
+                    <td>{{ trip[1] }}</td>
+                    <td>{{ trip[2] }}</td>
+                    <td>
+                      <div
+                        id="event_status"
+                        [ngStyle]="{
+                          'background-color':
+                            trip[3] === 'Safe'
+                              ? 'rgba(26, 147, 46, 0.18)'
+                              : trip[3] === 'Aggressive'
+                              ? 'rgba(226, 177, 51, 0.18)'
+                              : trip[3] === 'Very Aggressive'
+                              ? 'rgba(238, 32, 28, 0.18)'
+                              : '',
+                          color:
+                            trip[3] === 'Safe'
+                              ? '#1A932E'
+                              : trip[3] === 'Aggressive'
+                              ? '#DFA510'
+                              : trip[3] === 'Very Aggressive'
+                              ? '#EE201C'
+                              : ''
+                        }"
+                      >
+                        {{ trip[3] }}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div
+            class="chart-outside"
+            [class.selected]="selectedNavItem === 'aggressive'"
+            (click)="onNavItemClicked('aggressive')"
+            routerLink="/dashboard/aggressive"
+          >
+            <div id="chart">
+              <apx-chart
+                [series]="chartOptions.series"
+                [chart]="chartOptions.chart"
+                [dataLabels]="chartOptions.dataLabels"
+                [plotOptions]="chartOptions.plotOptions"
+                [yaxis]="chartOptions.yaxis"
+                [legend]="chartOptions.legend"
+                [fill]="chartOptions.fill"
+                [stroke]="chartOptions.stroke"
+                [tooltip]="chartOptions.tooltip"
+                [xaxis]="chartOptions.xaxis"
+              ></apx-chart>
+            </div>
+          </div>
+        </div>
+        <div class="cards-outside">
+          <p class="total-event">Your Total Events</p>
+          <div class="cards">
+            <div class="card">
+              <img
+                src="../../assets/aggressive-icon.png"
+                alt="aggressive"
+                class="card-img"
+              />
+              <p class="card-num">{{ totalSuddenBrake }}</p>
+              <p class="card-description">Total sudden brake</p>
+            </div>
+            <div class="card">
+              <img
+                src="../../assets/aggressive-left-turn.png"
+                alt="aggressive-left-turn"
+                class="card-img"
+              />
+              <p class="card-num">{{ totalAggressiveLeft }}</p>
+              <p class="card-description">Total aggressive left</p>
+            </div>
+            <div class="card">
+              <img
+                src="../../assets/aggressive-right-turn.png"
+                alt="aggressive-right-turn"
+                class="card-img"
+              />
+              <p class="card-num">{{ totalAggressiveRight }}</p>
+              <p class="card-description">Total aggressive right</p>
+            </div>
+            <div class="card">
+              <img
+                src="../../assets/swerve.png"
+                alt="swerve"
+                class="card-img"
+              />
+              <p class="card-num">{{ totalAggressiveSwerve }}</p>
+              <p class="card-description">Total aggressive swerve</p>
+            </div>
+            <div class="card">
+              <img
+                src="../../assets/speed.png"
+                alt="speed"
+                class="card-img"
+              />
+              <p class="card-num">{{ avgSpeed }}</p>
+              <p class="card-description">Average your speed</p>
+            </div>
+            <div class="card">
+              <img
+                src="../../assets/road-sign.png"
+                alt="road-sign"
+                class="card-img"
+              />
+              <p class="card-num">{{ totalOtherSign }}/{{respondedOtherSign}}</p>
+              <p class="card-description">Other traffic sign</p>
+            </div>
+          </div>
         </div>
       </div>
       <ng-template #changeContent>

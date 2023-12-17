@@ -1,0 +1,35 @@
+<div id="chart-container"></div>
+<!-- <div id="chart">
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [dataLabels]="chartOptions.dataLabels"
+    [plotOptions]="chartOptions.plotOptions"
+    [xaxis]="chartOptions.xaxis"
+    [stroke]="chartOptions.stroke"
+  ></apx-chart>
+</div> -->
+
+<div id="chart">
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [dataLabels]="chartOptions.dataLabels"
+    [plotOptions]="chartOptions.plotOptions"
+    [yaxis]="chartOptions.yaxis"
+    [legend]="chartOptions.legend"
+    [fill]="chartOptions.fill"
+    [stroke]="chartOptions.stroke"
+    [tooltip]="chartOptions.tooltip"
+    [xaxis]="chartOptions.xaxis"
+  ></apx-chart>
+</div>
+
+<div id="pie-chart">
+  <apx-chart
+    [series]="pieChartOptions.series"
+    [chart]="pieChartOptions.chart"
+    [labels]="pieChartOptions.labels"
+    [responsive]="pieChartOptions.responsive"
+  ></apx-chart>
+</div>

@@ -1,30 +1,135 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import {
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
+
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ChartComponent,
+  ApexDataLabels,
+  ApexXAxis,
+  ApexPlotOptions,
+  ApexStroke,
+  ApexYAxis,
+  ApexLegend,
+  ApexFill,
+  ApexTooltip,
+  ApexNonAxisChartSeries,
+  ApexResponsive,
+  NgApexchartsModule,
+} from "ng-apexcharts";
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  xaxis: ApexXAxis;
+  stroke: ApexStroke;
+  yaxis: ApexYAxis;
+  fill: ApexFill;
+  tooltip: ApexTooltip;
+  legend: ApexLegend;
+};
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive
-  ],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, NgApexchartsModule],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
-
 export class DashboardComponent implements OnInit {
-  selectedNavItem: string | null = "dashboard";
+  selectedNavItem: string | null = 'dashboard';
   openDashboard = true;
+  totalSuddenBrake: number = 0;
+  totalAggressiveLeft: number = 0;
+  totalAggressiveRight: number = 0;
+  totalAggressiveSwerve: number = 0;
+  avgSpeed: number = 0;
+  totalOtherSign: number = 0;
+  respondedOtherSign: number = 0;
 
-  constructor(private router: Router) { }
+  @ViewChild("chart") chart: ChartComponent;
+  public chartOptions: Partial<ChartOptions>;
+
+  constructor() {
+    this.chartOptions = {
+      series: [
+        {
+          name: "Net Profit",
+          data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+        },
+        {
+          name: "Revenue",
+          data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+        },
+        {
+          name: "Free Cash Flow",
+          data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+        }
+      ],
+      chart: {
+        type: "bar",
+        height: 350
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "55%",
+          // endingShape: "rounded"
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"]
+      },
+      xaxis: {
+        categories: [
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct"
+        ]
+      },
+      yaxis: {
+        title: {
+          text: "$ (thousands)"
+        }
+      },
+      fill: {
+        opacity: 1
+      },
+      tooltip: {
+        y: {
+          formatter: function(val) {
+            return "$ " + val + " thousands";
+          }
+        }
+      }
+    };
+  }
 
   ngOnInit() {}
 
   onNavItemClicked(item: string) {
-    item === "dashboard" ? this.openDashboard = true : this.openDashboard = false;
+    item === 'dashboard'
+      ? (this.openDashboard = true)
+      : (this.openDashboard = false);
     this.selectedNavItem = item;
   }
 

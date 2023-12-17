@@ -1,30 +1,29 @@
 .event_log_div{
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  flex-shrink: 0;
+  gap: 12px;
   border: 1px solid #ccc;
-  padding: 1rem;
   justify-content: center;
   align-items: center;
-  margin-top: 4rem;
+  margin-top: 3rem;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.34);
-  box-shadow: 0 0 5px #ccc;
+  box-shadow: 0 0 3px #ccc;
 }
 
 .inner_Container{
   display: flex;
-  width: 1058px;
-  height: 513px;
+  width: "100%";
+  height: "50%";
   flex-direction: column;
   align-items: flex-start;
-  flex-shrink: 0;
+  padding-top: 42px;
+  padding-bottom: 24px;
 }
 .filter_container{
   display: flex;
-  width: 1055px;
-  height: 62px;
+  width: "94%";
+  height: "100%";
   justify-content: flex-end;
   align-items: center;
   gap: 20px;
@@ -34,14 +33,13 @@
   overflow-y: scroll;
   overflow-x: hidden;
   display: flex;
-  width: 1058px;
+  width: 1258px;
   height: 427px;
   flex-direction: row;
   align-items:safe;
   gap: 8px;
   flex-shrink: 0;
   border-spacing: 10px;
-/* padding: 8px; */
 
   table {
     width: 100%;
@@ -66,4 +64,42 @@
   align-items: center;
   text-align: center;
   border-radius: 20px;
+}
+
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 42px;
+}
+
+.card {
+  width: 200px;
+  height: 180px;
+  padding: 12px;
+  background-color: #f1faf8;
+  box-shadow: 0px 0px 4px #ccc;
+}
+
+.card-img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+}
+
+.card-num,
+.card-description {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.card-num {
+  margin-bottom: 6px;
+}
+
+.card-description {
+  line-height: 20px;
 }
