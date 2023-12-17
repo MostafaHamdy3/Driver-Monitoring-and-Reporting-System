@@ -70,6 +70,7 @@ button {
 }
 button:hover{
   background-color: #00755d;
+  color: #fff;
 }
 span.validate-tooltip {
   background: #D91717;
@@ -196,7 +197,6 @@ span.validate-tooltip {
 .wrapper .signup-wrapper a:hover {
   color: #00755d;
 }
-
 
 ::placeholder{
   font-style: italic;
