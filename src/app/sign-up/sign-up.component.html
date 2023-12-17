@@ -4,32 +4,49 @@
 <div class="wrapper">
   <div class="inner-warpper text-center">
     <h2 class="title">Create new account</h2>
-    <form action="" id="formvalidate">
+    <form (ngSubmit)="signUpHandler()" action="" id="formvalidate">
       <!-- email -->
       <div class="input-group">
-        <input class="form-control" name="email" id="userEmail" type="email" placeholder="Email" required/>
+        <input class="form-control" name="email" id="userEmail" type="email" placeholder="Email" [(ngModel)]="user.email" required/>
       </div>
       <!-- first name -->
       <div class="input-group">
-        <input class="form-control" name="firstName" id="firstName" type="text" placeholder="First Name" required/>
+        <input class="form-control" name="firstName" id="firstName" type="text" placeholder="First Name"  [(ngModel)]="user.fname"  required/>
       </div>
       <!-- last name -->
       <div class="input-group">
-        <input class="form-control" name="lastName" id="lastName" type="text" placeholder="Last Name" required/>
+        <input class="form-control" name="lastName" id="lastName" type="text" placeholder="Last Name"  [(ngModel)]="user.lname"  required/>
       </div>
+      
+      <!-- car name -->
+      <div class="input-group">
+        <input class="form-control" name="carName" id="carName" type="text" placeholder="Car Name" [(ngModel)]="user.carName" required/>
+      </div>
+
+      <!-- car type -->
+      <div class="input-group">
+        <input class="form-control" name="carType" id="carType" type="carType" placeholder="car type" [(ngModel)]="user.carType" required/>
+      </div>
+
+      <!-- serial number -->
+      <div class="input-group">
+        <input class="form-control" name="serialNumber" id="serialNumber" type="text" placeholder="serial number" [(ngModel)]="user.serialNumber" required/>
+      </div>
+      
       <!-- password -->
       <div class="input-group">
-        <input class="form-control" name="userPassword" id="userPassword" type="password" placeholder="Password" required/>
+        <input class="form-control" name="userPassword" id="userPassword" type="password" placeholder="Password" [(ngModel)]="user.password" required/>
       </div>
       <!-- password repeat-->
       <div class="input-group">
-        <input class="form-control" name="userPasswordConfirm" id="userPasswordConfirm" type="password" placeholder="Confirm Password" required/>
+        <input class="form-control" name="userPasswordConfirm" id="userPasswordConfirm" type="password" placeholder="Confirm Password" [(ngModel)]="user.cPassword" required/>
       </div>
-      <button type="submit" id="Signup" (click)="signUpHandler()">Sign up</button>
+
+      <button type="submit" id="Signup">Sign up</button>
     </form>
     <div class="signup text-center">
       <p>Already have an account?</p>
-      <a (click)="signUpHandler()" class="primary-text">Log In</a>
+      <a (click)="logInHandler()" class="primary-text">Log In</a>
     </div>
   </div>
   <div class="signup-wrapper text-center">

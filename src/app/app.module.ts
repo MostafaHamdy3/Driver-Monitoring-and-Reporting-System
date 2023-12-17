@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { MatIconModule } from '@angular/material/icon';
 import { routes } from './app.routes';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -31,6 +32,7 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     MatIconModule,
     RouterModule, 
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyBFjh1plfxYmtD0OfyaQo0IAdGuaLf71vY"
     })
