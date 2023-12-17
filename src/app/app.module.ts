@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgxChartsModule }from '@swimlane/ngx-charts';  // added
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -34,6 +35,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     BrowserAnimationsModule,
     NgxChartsModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyBFjh1plfxYmtD0OfyaQo0IAdGuaLf71vY"
     })
