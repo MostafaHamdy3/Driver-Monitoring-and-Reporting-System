@@ -1,6 +1,14 @@
-.aggressive {
-  width: "100%";
-  height: "100%";
+.charts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 4rem;
+  margin-bottom: 6rem;
+}
+
+#chart-container {
+  margin-top: -42px;
 }
 
 #chart {
@@ -10,6 +18,5 @@
 
 #pie-chart {
   max-width: 380px;
-  margin: 35px auto;
   padding: 0;
 }

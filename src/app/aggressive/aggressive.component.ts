@@ -43,6 +43,10 @@ export type ChartOptions = {
 export type PieChartOptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
+  // chart: ApexChart & {
+  //   type: 'pie';
+  //   colors?: string[];
+  // };
   responsive: ApexResponsive[];
   labels: any;
 };
@@ -56,6 +60,9 @@ export type PieChartOptions = {
 })
 export class AggressiveComponent implements OnInit {
   speedValue: number = 80;
+  numSafe: number = 45;
+  numAggressive: number = 70;
+  numVeryAggressive: number = 30;
 
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
@@ -127,18 +134,19 @@ export class AggressiveComponent implements OnInit {
     };
 
     this.pieChartOptions = {
-      series: [44, 55, 13, 43, 22],
+      series: [0, this.numSafe, this.numAggressive, this.numVeryAggressive],
       chart: {
-        width: 380,
-        type: "pie"
+        width: 420,
+        type: 'pie',
+        // colors: ['#024730', '#ffaa00', '#c5132d'],
       },
-      labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+      labels: ["none", "Safe", "Aggressive", "Very aggressive"],
       responsive: [
         {
           breakpoint: 480,
           options: {
             chart: {
-              width: 200
+              width: 240
             },
             legend: {
               position: "bottom"

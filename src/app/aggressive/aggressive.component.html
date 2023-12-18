@@ -1,14 +1,14 @@
-<div id="chart-container"></div>
-<!-- <div id="chart">
-  <apx-chart
-    [series]="chartOptions.series"
-    [chart]="chartOptions.chart"
-    [dataLabels]="chartOptions.dataLabels"
-    [plotOptions]="chartOptions.plotOptions"
-    [xaxis]="chartOptions.xaxis"
-    [stroke]="chartOptions.stroke"
-  ></apx-chart>
-</div> -->
+<div class="charts">
+  <div id="chart-container"></div>
+  <div id="pie-chart">
+    <apx-chart
+      [series]="pieChartOptions.series"
+      [chart]="pieChartOptions.chart"
+      [labels]="pieChartOptions.labels"
+      [responsive]="pieChartOptions.responsive"
+    ></apx-chart>
+  </div>
+</div>
 
 <div id="chart">
   <apx-chart
@@ -25,11 +25,18 @@
   ></apx-chart>
 </div>
 
-<div id="pie-chart">
+
+
+
+<!-- Horizontal group chart
+<div id="chart">
   <apx-chart
-    [series]="pieChartOptions.series"
-    [chart]="pieChartOptions.chart"
-    [labels]="pieChartOptions.labels"
-    [responsive]="pieChartOptions.responsive"
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [dataLabels]="chartOptions.dataLabels"
+    [plotOptions]="chartOptions.plotOptions"
+    [xaxis]="chartOptions.xaxis"
+    [stroke]="chartOptions.stroke"
   ></apx-chart>
 </div>
+-->
