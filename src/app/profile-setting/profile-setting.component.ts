@@ -18,12 +18,15 @@ export class ProfileSettingComponent implements OnInit {
     firstName: string,
     lastName: string,
     job: string,
-    email: string
+    email: string,
+    phone: string,
+    gender: ["male", "female"]
   };
 
   vehicleInfo: {
     vehicle: string,
     model: string,
+    OEM: string,
     license: string,
     creation: number,
     serial: number,
@@ -33,9 +36,12 @@ export class ProfileSettingComponent implements OnInit {
   lastName = "Hamdy";
   job = "Software Engineer";
   email = "mostafa@gmail.com";
+  phone = "01093939204";
+  gender = "male";
 
   vehicle = "BlueSky Cruiser";
   model = "EcoGlide Deluxe";
+  OEM = "Deluxe";
   license = "ABC 1234";
   creation = 2021;
   serial= 0;

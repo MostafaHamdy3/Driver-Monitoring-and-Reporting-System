@@ -23,28 +23,52 @@
         />
       </div>
     </div>
-    <div class="input-group">
-      <label for="job">Job:</label>
-      <input
-        class="form-control"
-        name="Job"
-        id="Job"
-        type="text"
-        [(ngModel)]="job"
-      />
+    <div class="person-details">
+      <div class="input-group">
+        <label for="email">Email:</label>
+        <input
+          class="form-control"
+          name="email"
+          id="email"
+          type="email"
+          [(ngModel)]="email"
+        />
+      </div>
+      <div class="input-group">
+        <label for="job">Job:</label>
+        <input
+          class="form-control"
+          name="job"
+          id="job"
+          type="text"
+          [(ngModel)]="job"
+        />
+      </div>
     </div>
-    <div class="input-group">
-      <label for="userEmail">Email:</label>
-      <input
-        class="form-control"
-        name="email"
-        id="userEmail"
-        type="email"
-        [(ngModel)]="email"
-      />
+    <div class="person-details last-part">
+      <div class="input-group">
+        <label for="phone">Phone:</label>
+        <input
+          class="form-control"
+          name="phone"
+          id="phone"
+          type="phone"
+          [(ngModel)]="phone"
+        />
+      </div>
+      <div class="input-group">
+        <label for="gender">Select Gender:</label>
+        <select id="gender" name="gender" class="form-control">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
     </div>
     <button class="btn" type="submit" id="Signup">Save</button>
   </form>
+
+  <hr>
+  <br />
 
   <h2 class="title">About your vehicle</h2>
   <form action="" id="formvalidate">
@@ -60,18 +84,6 @@
         />
       </div>
       <div class="label-input">
-        <label for="model">Model:</label>
-        <input
-          class="form-control"
-          name="model"
-          id="model"
-          type="text"
-          [(ngModel)]="model"
-        />
-      </div>
-    </div>
-    <div class="person-details">
-      <div class="label-input">
         <label for="license">License:</label>
         <input
           class="form-control"
@@ -81,6 +93,30 @@
           [(ngModel)]="license"
         />
       </div>
+    </div>
+    <div class="person-details">
+      <div class="label-input">
+        <label for="model">Model:</label>
+        <input
+          class="form-control"
+          name="model"
+          id="model"
+          type="text"
+          [(ngModel)]="model"
+        />
+      </div>
+      <div class="label-input">
+        <label for="serial" class="text-label">OEM:</label>
+        <input
+          class="form-control"
+          name="OEM"
+          id="OEM"
+          type="text"
+          [(ngModel)]="OEM"
+        />
+      </div>
+    </div>
+    <div class="person-details">
       <div class="label-input">
         <label for="creation">Creation:</label>
         <input
@@ -91,20 +127,8 @@
           [(ngModel)]="creation"
         />
       </div>
-    </div>
-    <div class="person-details">
       <div class="label-input">
         <label for="serial" class="text-label">Serial:</label>
-        <input
-          class="form-control"
-          name="serial"
-          id="serial"
-          type="text"
-          [(ngModel)]="serial"
-        />
-      </div>
-      <div class="label-input">
-        <label for="serial" class="text-label">X:</label>
         <input
           class="form-control"
           name="serial"

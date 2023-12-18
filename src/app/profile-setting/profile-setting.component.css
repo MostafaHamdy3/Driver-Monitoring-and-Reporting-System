@@ -17,8 +17,13 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 72px;
   align-items: center;
   margin-bottom: 12px;
+}
+
+.last-part {
+  margin-top: -16px;
 }
 
 .label-input {
@@ -41,7 +46,8 @@ body {
   margin-bottom: 16px;
 }
 
-.input-group input {
+.input-group input,
+.input-group select {
   outline: none;
   display: block;
   width: 100%;
@@ -75,7 +81,7 @@ button:hover {
 }
 
 .btn {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   margin-top: 12px;
 }
 
