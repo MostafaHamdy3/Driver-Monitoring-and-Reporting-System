@@ -1,0 +1,7 @@
+.verify-account {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 12rem;
+  align-items: center;
+}

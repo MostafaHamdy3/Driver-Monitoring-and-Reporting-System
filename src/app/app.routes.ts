@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 import { AggressiveComponent } from './aggressive/aggressive.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 export const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -16,4 +17,5 @@ export const routes: Routes = [
     { path: "map", component: MapComponent },
     { path: "aggressive", component: AggressiveComponent },
   ] },
+  { path: "verify", component: VerifyEmailComponent }
 ];

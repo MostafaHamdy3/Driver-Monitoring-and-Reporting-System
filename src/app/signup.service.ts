@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserRegister } from './sign-up/user-register';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SignupService {
-  baseUrl="http://localhost:8081/user";
-  constructor(private httpClient:HttpClient) { }
+  baseUrl = 'http://localhost:8082/api/v1/registration';
+  constructor(private httpClient: HttpClient) {}
 
-  RegisterUser(user:UserRegister){
-    console.log(user);
-    return this.httpClient.post(`${this.baseUrl}`,user);
+  RegisterUser(userData: UserRegister) {
+    // console.log(userData);
+    return this.httpClient.post(`${this.baseUrl}`, userData);
   }
 }

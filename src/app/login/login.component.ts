@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from '../user';
 import { FormsModule } from '@angular/forms';
 import { UserLoginService } from '../user-login.service';
@@ -8,33 +8,33 @@ import { UserLoginService } from '../user-login.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [
-    CommonModule ,
-    FormsModule , 
-  
-  ],
-templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  imports: [CommonModule, FormsModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
-  user: User = new User(); 
-  isLoginFailed: boolean = false ;
-  constructor(private router: Router , private userService : UserLoginService) { }
+  user: User = new User();
+  isLoading: boolean = false;
+  isLoginFailed: boolean = false;
+  constructor(private router: Router, private userService: UserLoginService) {}
 
   ngOnInit() {}
 
   onLogin() {
-    console.log(this.user) ; 
-    this.userService.userLogin(this.user).subscribe(data=>{
-      this.router.navigate(["/dashboard"]);
-    } 
-    , error=>this.isLoginFailed = true )
-    console.log(this.isLoginFailed) ; 
-
-
+    this.isLoading = true;
+    this.userService.userLogin(this.user).subscribe(
+      (data) => {
+        this.router.navigate(['/dashboard']);
+      },
+      (error) => {
+        this.isLoginFailed = true;
+        this.isLoading = false;
+      }
+    );
+    // console.log(this.isLoginFailed);
   }
 
   showSignUpHandler() {
-    this.router.navigate(["/signUp"]);
+    this.router.navigate(['/signUp']);
   }
 }

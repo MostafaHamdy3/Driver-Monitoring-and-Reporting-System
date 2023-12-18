@@ -4,14 +4,14 @@
 <div class="wrapper">
   <div class="inner-warpper text-center">
     <h2 class="title">Login to your account</h2>
-    <form id="formvalidate" >
+    <form id="formvalidate">
       <div class="input-group">
         <input
           class="form-control"
           name="userEmail"
           id="userEmail"
           type="email"
-          [(ngModel)] = "user.email"
+          [(ngModel)]="user.email"
           placeholder="Email"
           required
         />
@@ -22,18 +22,23 @@
           name="userPassword"
           id="userPassword"
           type="password"
-          [(ngModel)] = "user.password"
+          [(ngModel)]="user.password"
           placeholder="Password"
           required
         />
       </div>
-      <div *ngIf="isLoginFailed" class="is-invalid"> 
-        <p> Please enter a correct email or password</p>
+      <div *ngIf="isLoginFailed" class="is-invalid">
+        <p>Please enter a correct email or password</p>
       </div>
-      <button (click)="onLogin()" class="form-control" type="submit" id="login">Login</button>
+      <div *ngIf="isLoading" class="text-center">
+        <p>Loading ...</p>
+      </div>
+      <button (click)="onLogin()" class="form-control" type="submit" id="login">
+        Login
+      </button>
       <div class="clearfix supporter">
         <div class="pull-left remember-me">
-          <input id="rememberMe" type="checkbox">
+          <input id="rememberMe" type="checkbox" />
           <label for="rememberMe">Remember Me</label>
         </div>
         <a class="forgot pull-right" href="#">Forgot Password?</a>
