@@ -8,11 +8,16 @@ import { CommonModule } from '@angular/common';
   templateUrl: './trips-table.component.html',
   styleUrls: ['./trips-table.component.css']
 })
+
 export class TripsTableComponent {
   suddenBrake: number = 0;
   aggressiveLeft: number = 0;
   aggressiveRight: number = 0;
   aggressiveSwerve: number = 0;
+  speedViolation: number = 0;
+  totalOtherSign: number = 0;
+  respondedOtherSign: number = 0;
+
   constructor() { }
 
   getTripData(): Array<[string, string, number, string]> {

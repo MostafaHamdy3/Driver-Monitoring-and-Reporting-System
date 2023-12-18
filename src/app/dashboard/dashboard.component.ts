@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
   totalAggressiveLeft: number = 0;
   totalAggressiveRight: number = 0;
   totalAggressiveSwerve: number = 0;
-  avgSpeed: number = 0;
+  speedViolation: number = 0;
   totalOtherSign: number = 0;
   respondedOtherSign: number = 0;
 
