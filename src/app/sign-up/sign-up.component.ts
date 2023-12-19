@@ -20,10 +20,10 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {}
 
   signUpHandler() {
-    // console.log(this.user);
+    console.log(this.user);
     this.isLoading = true;
     this.signupService.RegisterUser(this.user).subscribe(
-      (data) => {
+      () => {
         this.router.navigate(['/']);
       },
       (error) => {

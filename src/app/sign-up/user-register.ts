@@ -1,9 +1,11 @@
 export class UserRegister {
+  firstName!:string;
+  lastName!:string;
   email!:string;
-  fname!:string;
-  lname!:string;
-  carName!:string;
-  carType!:string;
-  serialNumber!:string;
   password!:string;
+  name!:string;
+  serialNumber!:string;
+  oem!:string;
+  
+  
 }
