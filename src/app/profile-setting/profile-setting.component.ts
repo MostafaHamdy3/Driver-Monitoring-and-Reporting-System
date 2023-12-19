@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Driver } from '../Services/Driver';
+import { Vehicle } from '../Services/Vehicle';
 
 @Component({
   selector: 'app-profile-setting',
@@ -11,44 +13,41 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class ProfileSettingComponent implements OnInit {
+  // TODO: Pass a driver and vehicle object
   constructor() { }
+  @Input() driver: Driver;
+  @Input() vehicle: Vehicle;
 
-  userDetails: {
-    id: number,
-    firstName: string,
-    lastName: string,
-    job: string,
-    email: string,
-    phone: string,
-    gender: ["male", "female"]
-  };
+  firstName: string;
+  lastName: string;
+  job: string;
+  email: string;
+  phone: string;
+  gender: string;
 
-  vehicleInfo: {
-    vehicle: string,
-    model: string,
-    OEM: string,
-    license: string,
-    creation: number,
-    serial: number,
-  };
-
-  firstName = "Mostafa";
-  lastName = "Hamdy";
-  job = "Software Engineer";
-  email = "mostafa@gmail.com";
-  phone = "01093939204";
-  gender = "male";
-
-  vehicle = "BlueSky Cruiser";
-  model = "EcoGlide Deluxe";
-  OEM = "Deluxe";
-  license = "ABC 1234";
-  creation = 2021;
-  serial= 0;
+  vehicleName: string;
+  model: string;
+  OEM: string;
+  license: string;
+  creation: number;
+  serial: String;
 
   ngOnInit(): void {
+    this.firstName = this.driver.firstName;
+    this.lastName = this.driver.lastName;
+    this.job = this.driver.jobTitle;
+    this.email = this.driver.email;
+    this.phone = this.driver.phone;
+    this.gender = this.driver.gender.toString();
 
+    this.vehicleName = this.vehicle.name;
+    this.model = this.vehicle.model;
+    this.OEM = this.vehicle.oem;
+    this.license = this.vehicle.licensePlate;
+    this.creation = this.vehicle.creationYear;
+    this.serial = this.vehicle.serialNumber;
   }
+
 
   onUpdateUser() {
     // this.serversService.updateServer(this.server.id, {});

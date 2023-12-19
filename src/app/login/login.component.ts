@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../Services/user';
 import { FormsModule } from '@angular/forms';
 import { UserLoginService } from '../Services/user-login.service';
+import { Driver } from '../Services/Driver';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     this.userService.userLogin(this.user).subscribe(
       (data) => {
-        console.log(data);
+        const driver: Driver = data as Driver;
+        console.log(driver);
         
         this.router.navigate(['/dashboard']);
       },
