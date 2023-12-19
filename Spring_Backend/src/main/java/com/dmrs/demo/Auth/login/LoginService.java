@@ -2,6 +2,7 @@ package com.dmrs.demo.Auth.login;
 
 
 import com.dmrs.demo.Auth.registration.EmailValidator;
+import com.dmrs.demo.Auth.registration.token.ConfirmationToken;
 import com.dmrs.demo.Auth.registration.token.ConfirmationTokenService;
 import com.dmrs.demo.driver.Driver;
 import com.dmrs.demo.driver.DriverService;
@@ -20,6 +21,7 @@ public class LoginService {
     private final DriverService driverService;
     private final EmailValidator emailValidator;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final ConfirmationTokenService confirmationTokenService;
 
     public ResponseEntity<?> login(LoginRequest request) {
 
@@ -40,8 +42,10 @@ public class LoginService {
             else if (!bCryptPasswordEncoder.matches(request.getPassword(), driver.get().getPassword())) {
                 responseEntity = ResponseEntity.badRequest().body("password not match");
             }
-
-            responseEntity = ResponseEntity.ok().body(driver.get());
+            else {
+              Optional<ConfirmationToken> confirmationToken = confirmationTokenService.getToken(request.getEmail());
+              responseEntity = ResponseEntity.ok().body(confirmationToken.get());
+            }
         }
         return responseEntity;
     }
