@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { SignupService } from '../signup.service';
+import { SignupService } from '../Services/signup.service';
 import { FormsModule } from '@angular/forms';
 import { UserRegister } from './user-register';
 

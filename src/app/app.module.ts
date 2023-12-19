@@ -13,8 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
-import { UserLoginService } from './user-login.service' ;
-import { SignupService } from './signup.service';
+import { UserLoginService } from './Services/user-login.service' ;
+import { SignupService } from './Services/signup.service';
 import { TripsTableComponent } from './trips-table/trips-table.component';
 import { RouterModule } from '@angular/router';
 
