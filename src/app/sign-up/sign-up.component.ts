@@ -15,19 +15,23 @@ import { UserRegister } from './user-register';
 export class SignUpComponent implements OnInit {
   user: UserRegister = new UserRegister();
   isLoading: boolean = false;
+  isSignUpFailed: boolean = false;
   constructor(private signupService: SignupService, private router: Router) {}
 
   ngOnInit() {}
 
   signUpHandler() {
-    console.log(this.user);
+    // console.log(this.user);
     this.isLoading = true;
     this.signupService.RegisterUser(this.user).subscribe(
       () => {
+        console.log('singUp success');
         this.router.navigate(['/']);
       },
       (error) => {
+        console.log('signUp failure!', error);
         this.isLoading = false;
+        this.isSignUpFailed = true;
       }
     );
   }

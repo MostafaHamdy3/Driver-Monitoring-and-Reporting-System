@@ -133,6 +133,10 @@ export class DashboardComponent implements OnInit {
     this.selectedNavItem = item;
   }
 
+  logoutHandler() {
+    localStorage.removeItem("token");
+  }
+
   getTripData(): Array<[string, string, number, string]> {
     return [
       ['10:00 AM', '2022-09-01', 50, 'Safe'],

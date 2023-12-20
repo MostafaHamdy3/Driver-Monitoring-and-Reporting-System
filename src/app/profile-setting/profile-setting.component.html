@@ -5,7 +5,7 @@
       <div class="label-input">
         <label for="firstName">First Name:</label>
         <input
-          [(ngModel)]="firstName"
+          [(ngModel)]="driverDetails.firstName"
           type="text"
           id="firstName"
           name="firstName"
@@ -19,7 +19,7 @@
           name="lastName"
           id="lastName"
           type="text"
-          [(ngModel)]="lastName"
+          [(ngModel)]="driverDetails.lastName"
         />
       </div>
     </div>
@@ -31,7 +31,7 @@
           name="email"
           id="email"
           type="email"
-          [(ngModel)]="email"
+          [(ngModel)]="driverDetails.email"
         />
       </div>
       <div class="input-group">
@@ -41,7 +41,7 @@
           name="job"
           id="job"
           type="text"
-          [(ngModel)]="job"
+          [(ngModel)]="driverDetails.jobTitle"
         />
       </div>
     </div>
@@ -53,7 +53,7 @@
           name="phone"
           id="phone"
           type="phone"
-          [(ngModel)]="phone"
+          [(ngModel)]="driverDetails.phone"
         />
       </div>
       <div class="input-group">
@@ -64,7 +64,12 @@
         </select>
       </div>
     </div>
-    <button class="btn" type="submit" id="Signup">Save</button>
+    <button
+      class="btn"
+      type="submit"
+      id="Signup"
+      (click)="onUpdateDriverData()"
+    >Save</button>
   </form>
 
   <hr>
@@ -80,7 +85,7 @@
           name="vehicle"
           id="vehicle"
           type="text"
-          [(ngModel)]="vehicleName"
+          [(ngModel)]="vehicleDetails.name"
         />
       </div>
       <div class="label-input">
@@ -90,7 +95,7 @@
           name="license"
           id="license"
           type="text"
-          [(ngModel)]="license"
+          [(ngModel)]="vehicleDetails.licensePlate"
         />
       </div>
     </div>
@@ -102,7 +107,7 @@
           name="model"
           id="model"
           type="text"
-          [(ngModel)]="model"
+          [(ngModel)]="vehicleDetails.model"
         />
       </div>
       <div class="label-input">
@@ -112,7 +117,7 @@
           name="OEM"
           id="OEM"
           type="text"
-          [(ngModel)]="OEM"
+          [(ngModel)]="vehicleDetails.oem"
         />
       </div>
     </div>
@@ -124,7 +129,7 @@
           name="creation"
           id="creation"
           type="text"
-          [(ngModel)]="creation"
+          [(ngModel)]="vehicleDetails.creationYear"
         />
       </div>
       <div class="label-input">
@@ -134,10 +139,15 @@
           name="serial"
           id="serial"
           type="text"
-          [(ngModel)]="serial"
+          [(ngModel)]="vehicleDetails.serialNumber"
         />
       </div>
     </div>
-    <button class="btn vehicle-btn" type="submit" id="Signup">Save</button>
+    <button
+      class="btn vehicle-btn"
+      type="submit"
+      id="Signup"
+      (click)="onUpdateVehicleData()"
+    >Save</button>
   </form>
 </div>

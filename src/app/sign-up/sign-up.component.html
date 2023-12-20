@@ -105,6 +105,9 @@
         />
       </div>
 
+      <div *ngIf="isSignUpFailed" class="is-invalid">
+        <p>Please enter a correct data</p>
+      </div>
       <div *ngIf="isLoading" class="text-center">
         <p>Loading ...</p>
       </div>
