@@ -24,10 +24,9 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.isLoading = true;
     this.userService.userLogin(this.user).subscribe(
-      (data) => {
-        const driver: Driver = data as Driver;
-        console.log(driver);
-        
+      (data: LoginResponse) => {
+        console.log(data);  // Add this line
+        localStorage.setItem('token', data.token);
         this.router.navigate(['/dashboard']);
       },
       (error) => {
@@ -35,10 +34,14 @@ export class LoginComponent implements OnInit {
         this.isLoading = false;
       }
     );
-    // console.log(this.isLoginFailed);
   }
 
   showSignUpHandler() {
     this.router.navigate(['/signUp']);
   }
+}
+
+interface LoginResponse {
+  token: string;
+  // add other properties if needed
 }
