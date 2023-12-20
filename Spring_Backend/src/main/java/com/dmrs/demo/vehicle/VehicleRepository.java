@@ -13,5 +13,5 @@ public interface VehicleRepository extends MongoRepository<Vehicle,String> {
     @Query("{ 'driver' : ?0 }")
     Optional<Vehicle> findByDriverId(String driverId);
 
-    void updateById(String id);
+
 }

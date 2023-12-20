@@ -113,7 +113,4 @@ public class DriverService  implements UserDetailsService{
 
   }
 
-  public void updateDriverById(String id) {
-    driverRepo.updateById(id);
-  }
 }

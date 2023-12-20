@@ -2,7 +2,6 @@ package com.dmrs.demo.driver;
 
 import com.dmrs.demo.DmrsApplication;
 import lombok.AllArgsConstructor;
-import org.springframework.data.mongodb.repository.Update;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,5 +18,5 @@ public class DriverController {
 
     @CrossOrigin(origins = DmrsApplication.crossOriginLink)
     @PutMapping
-    public void updateDriverById(String id){driverService.updateDriverById(id);}
+    public void updateDriver(Driver driver){driverService.updateDriver(driver);}
 }

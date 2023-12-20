@@ -19,8 +19,8 @@ public class VehicleService {
 //    public Iterable<Vehicle> getAllVehiclesByDriverEmail(String email){return vehicleRepo.findAllByDriverEmail(email);}
     public Optional<Vehicle> getVehicleByDriverId(String driverId){return vehicleRepo.findByDriverId(driverId);}
 
-  public void updateVehicleById(String id) {
-    vehicleRepo.updateById(id);
+  public void updateVehicle(Vehicle vehicle) {
+    vehicleRepo.save(vehicle);
 
   }
 }

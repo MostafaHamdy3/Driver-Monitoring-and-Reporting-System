@@ -20,7 +20,7 @@ public class VehicleController {
 
   @CrossOrigin(origins = DmrsApplication.crossOriginLink)
   @PutMapping
-  public void updateVehicleById(String id){
-    vehicleService.updateVehicleById(id);
+  public void updateVehicleById(Vehicle vehicle){
+    vehicleService.updateVehicle(vehicle);
   }
 }
