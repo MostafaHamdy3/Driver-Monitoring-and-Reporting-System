@@ -1,5 +1,6 @@
 package com.dmrs.demo.Auth.registration.token;
 
+import com.dmrs.demo.driver.Driver;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,13 @@ public class ConfirmationTokenService {
         confirmationTokenRepository.save(token);
     }
 
-    public Optional<ConfirmationToken> getToken(String token) {
-        return confirmationTokenRepository.findByToken(token);
+    public Optional<ConfirmationToken> getTokenByDriver(Driver driver) {
+        return confirmationTokenRepository.findByDriver(driver);
     }
+
+  public Optional<ConfirmationToken> getToken(String driverId) {
+    return confirmationTokenRepository.findByToken(driverId);
+  }
 
     public int setConfirmedAt(String token) {
         confirmationTokenRepository.updateConfirmedAt(

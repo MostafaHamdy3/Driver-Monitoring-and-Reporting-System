@@ -16,11 +16,11 @@ public class VehicleController {
 
   @CrossOrigin(origins = DmrsApplication.crossOriginLink)
   @GetMapping
-  public Optional<Vehicle> getVehicleByDriverId(String id){return vehicleService.getVehicleByDriverId(id);}
+  public Optional<Vehicle> getVehicleByDriverId(@RequestParam String id){return vehicleService.getVehicleByDriverId(id);}
 
   @CrossOrigin(origins = DmrsApplication.crossOriginLink)
   @PutMapping
-  public void updateVehicleById(Vehicle vehicle){
-    vehicleService.updateVehicle(vehicle);
+  public void updateVehicleById(@RequestBody VehicleRequest vehicleRequest){
+    vehicleService.updateVehicle(vehicleRequest);
   }
 }

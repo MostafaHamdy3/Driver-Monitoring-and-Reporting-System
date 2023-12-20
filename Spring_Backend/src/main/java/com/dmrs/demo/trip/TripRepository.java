@@ -9,7 +9,7 @@ import java.util.List;
 public interface TripRepository extends MongoRepository<Trip,String> {
     void deleteTripById(String id);
 
-    List<Trip> findAllBySerialNumber();
+    List<Trip> findAllBySerialNumber(String serialNumber);
 
   Page<Trip> findBySerialNumber(String serialNumber, Pageable pageable);
 }

@@ -5,11 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d70ab35c-bef4-41aa-b71b-bbe7beac1aa0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/TripRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/login/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/login/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/registration/token/ConfirmationTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/registration/token/ConfirmationTokenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/registration/token/ConfirmationTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/registration/token/ConfirmationTokenService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/TripController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/TripController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/TripRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/TripRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/TripService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/TripService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/driver/DriverRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/driver/DriverRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/driver/DriverService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/driver/DriverService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/trip/TripController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/trip/TripController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/trip/TripService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/trip/TripService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +55,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">

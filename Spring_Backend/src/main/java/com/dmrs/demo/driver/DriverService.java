@@ -29,12 +29,28 @@ public class DriverService  implements UserDetailsService{
     private final ConfirmationTokenService confirmationTokenService;
 
     public Optional<Driver> getDriverByEmail(String email){return driverRepo.findByEmail(email);}
-    public void addDriver(Driver driver){driverRepo.save(driver);}
+    public void addDriver(Driver driver){driverRepo.update(driver);}
     public void deleteDriver(String email){driverRepo.deleteDriverByEmail(email);}
-    public void updateDriver(Driver driver){driverRepo.save(driver);}
+
     public Iterable<Driver> getAllDrivers(){return driverRepo.findAll();}
 
+    public void updateDriver(DriverRequest driverRequest){
 
+      Driver driver = new Driver();
+      driver.setId(driverRequest.getId());
+      driver.setFirstName(driverRequest.getFirstName());
+      driver.setLastName(driverRequest.getLastName());
+      driver.setEmail(driverRequest.getEmail()); // TODO: check if email is already taken
+      driver.setPassword(driverRequest.getPassword());
+      driver.setPhone(driverRequest.getPhone());
+      driver.setGender(driverRequest.getGender());
+      driver.setJobTitle(driverRequest.getJobTitle());
+      driver.setImgUrl(driverRequest.getImgUrl());
+      driver.setAge(driverRequest.getAge());
+      driver.setScore(driverRequest.getScore());
+
+
+      driverRepo.save(driver);}
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return driverRepo.findByEmail(email)

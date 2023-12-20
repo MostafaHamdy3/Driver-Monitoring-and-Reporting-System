@@ -1,6 +1,7 @@
 package com.dmrs.demo.Auth.registration.token;
 
 
+import com.dmrs.demo.driver.Driver;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
@@ -23,4 +24,6 @@ public interface ConfirmationTokenRepository
     void updateConfirmedAt(String token,
                                    LocalDateTime confirmedAt);
 
+//  @Query("{ 'driver' : ?0 }")
+  Optional<ConfirmationToken> findByDriver(Driver driver);
 }

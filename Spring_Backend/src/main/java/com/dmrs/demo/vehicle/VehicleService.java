@@ -19,7 +19,18 @@ public class VehicleService {
 //    public Iterable<Vehicle> getAllVehiclesByDriverEmail(String email){return vehicleRepo.findAllByDriverEmail(email);}
     public Optional<Vehicle> getVehicleByDriverId(String driverId){return vehicleRepo.findByDriverId(driverId);}
 
-  public void updateVehicle(Vehicle vehicle) {
+  public void updateVehicle(VehicleRequest vehicleRequest) {
+      Vehicle vehicle = new Vehicle();
+      vehicle.setId(vehicleRequest.getId());
+      vehicle.setSerialNumber(vehicleRequest.getSerialNumber());
+      vehicle.setName(vehicleRequest.getName());
+      vehicle.setDriver(vehicleRequest.getDriver());
+      vehicle.setLicensePlate(vehicleRequest.getLicensePlate());
+      vehicle.setCreationYear(vehicleRequest.getCreationYear());
+      vehicle.setOem(vehicleRequest.getOem());
+      vehicle.setModel(vehicleRequest.getModel());
+
+
     vehicleRepo.save(vehicle);
 
   }

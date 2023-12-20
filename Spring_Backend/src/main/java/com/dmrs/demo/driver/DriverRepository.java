@@ -17,6 +17,7 @@ public interface DriverRepository extends MongoRepository<Driver,String> {
     @Update("{ $set: { 'enabled' : ?1 } }")
     void updateEnabledByEmail(String email, boolean enabled);
 
-
-
+  @Query("{ 'email' : ?0.email }")
+  @Update("{ $set: { 'firstName' : ?0.firstName, 'lastName' : ?0.lastName, 'phone' : ?0.phone, 'gender':?.gender,}")
+    void update(Driver driver);
 }

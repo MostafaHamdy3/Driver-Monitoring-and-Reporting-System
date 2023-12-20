@@ -43,7 +43,10 @@ public class LoginService {
                 responseEntity = ResponseEntity.badRequest().body("password not match");
             }
             else {
-              Optional<ConfirmationToken> confirmationToken = confirmationTokenService.getToken(request.getEmail());
+              System.out.println(request);
+              System.out.println(driver.get());
+              Optional<ConfirmationToken> confirmationToken = confirmationTokenService.getTokenByDriver(driver.get());
+              System.out.println(confirmationToken.get());
               responseEntity = ResponseEntity.ok().body(confirmationToken.get());
             }
         }
