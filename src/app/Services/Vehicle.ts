@@ -1,12 +1,12 @@
 export class Vehicle {
 
-    idNumber!: string;
-    name!: string;
-    serialNumber!: string;
-    licensePlate!: string;
-    creationYear!: number;
-    oem!: string;
-    model!: string;
+    idNumber?: string;
+    name?: string;
+    serialNumber?: string;
+    licensePlate?: string;
+    creationYear?: number;
+    oem?: string;
+    model?: string;
 
     // constructor(idNumber: string, name: string, serialNumber: string, licensePlate: string, creationYear: number, oem: string, model: string) {
     //     this.idNumber = idNumber;

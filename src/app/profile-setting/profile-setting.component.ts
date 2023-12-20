@@ -32,10 +32,10 @@ export class ProfileSettingComponent implements OnInit {
   // serial: String;
 
   token: string = localStorage.getItem('token');
-
   constructor(private driverData: DriverVehicleService) {}
 
   ngOnInit() {
+    console.log("Token = "+this.token)
     this.onGetDriverData();
     this.onGetVehicleData();
   }
