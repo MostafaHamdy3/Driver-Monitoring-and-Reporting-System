@@ -98,4 +98,22 @@ public class DriverService  implements UserDetailsService{
         driverRepo.updateEnabledByEmail(email,true);
 
     }
+
+  public Optional<Driver> getDriverByToken(String token) {
+    Optional<ConfirmationToken> confirmationToken = confirmationTokenService.getToken(token);
+    Optional<Driver> driver = Optional.empty();
+    if (confirmationToken.isPresent()){
+      driver = Optional.ofNullable(confirmationToken.get().getDriver());
+    }else {
+      // TODO: throw an exception
+    }
+
+
+    return driver;
+
+  }
+
+  public void updateDriverById(String id) {
+    driverRepo.updateById(id);
+  }
 }

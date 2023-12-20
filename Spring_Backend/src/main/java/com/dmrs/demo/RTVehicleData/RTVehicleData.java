@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.ZonedDateTime;
+
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -19,14 +21,14 @@ public class RTVehicleData {
     private String serialNumber;
     private String gps;
     private int speed;
-    private BSONTimestampCodec timestamp;
+    private ZonedDateTime timestamp;
     private Status status;
     private DriverBehaviour driverBehaviour;
     private int speedLimit ;
     private RoadSign roadSign;
     private boolean roadSignAdherence ;
 
-    public RTVehicleData(String serialNumber, String gps, int speed, BSONTimestampCodec timestamp, Status status, DriverBehaviour driverBehaviour) {
+    public RTVehicleData(String serialNumber, String gps, int speed, ZonedDateTime timestamp, Status status, DriverBehaviour driverBehaviour) {
         this.serialNumber = serialNumber;
         this.gps = gps;
         this.speed = speed;
@@ -35,7 +37,7 @@ public class RTVehicleData {
         this.driverBehaviour = driverBehaviour;
     }
 
-    public RTVehicleData(String id, String serialNumber, String gps, int speed, BSONTimestampCodec timestamp, Status status, DriverBehaviour driverBehaviour, int speedLimit, RoadSign roadSign, boolean roadSignAdherence) {
+    public RTVehicleData(String id, String serialNumber, String gps, int speed, ZonedDateTime timestamp, Status status, DriverBehaviour driverBehaviour, int speedLimit, RoadSign roadSign, boolean roadSignAdherence) {
         this.id = id;
         this.serialNumber = serialNumber;
         this.gps = gps;
@@ -48,7 +50,7 @@ public class RTVehicleData {
         this.roadSignAdherence = roadSignAdherence;
     }
 
-    public RTVehicleData(String serialNumber, String gps, int speed, BSONTimestampCodec timestamp, Status status, DriverBehaviour driverBehaviour, int speedLimit) {
+    public RTVehicleData(String serialNumber, String gps, int speed, ZonedDateTime timestamp, Status status, DriverBehaviour driverBehaviour, int speedLimit) {
         this.serialNumber = serialNumber;
         this.gps = gps;
         this.speed = speed;
@@ -58,7 +60,7 @@ public class RTVehicleData {
         this.speedLimit = speedLimit;
     }
 
-    public RTVehicleData(String serialNumber, String gps, int speed, BSONTimestampCodec timestamp, Status status) {
+    public RTVehicleData(String serialNumber, String gps, int speed, ZonedDateTime timestamp, Status status) {
         this.serialNumber = serialNumber;
         this.gps = gps;
         this.speed = speed;

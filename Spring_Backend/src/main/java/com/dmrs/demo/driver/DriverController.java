@@ -1,6 +1,8 @@
 package com.dmrs.demo.driver;
 
+import com.dmrs.demo.DmrsApplication;
 import lombok.AllArgsConstructor;
+import org.springframework.data.mongodb.repository.Update;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -9,30 +11,13 @@ import org.springframework.web.bind.annotation.*;
 public class DriverController {
     private final DriverService driverService;
 
-    record NewDoctorRequest(
-             String firstName,
-             String lastName,
-             Gender gender,
-             String phone,
-             String email,
-             String password
-             ){}
-
-    @PostMapping
-    public void addDriver(@RequestBody NewDoctorRequest request){
-        Driver driver = new Driver(request.firstName(),
-                request.lastName(),
-                request.gender(),
-                request.phone(),
-                request.email(),
-                request.password());
-
-        System.out.println(request);
-        driverService.addDriver(driver);
-    }
-
+    @CrossOrigin(origins = DmrsApplication.crossOriginLink)
     @GetMapping
-    public Driver getDriverByMail(@RequestParam String email){
-        return driverService.getDriverByEmail(email).orElseThrow();
+    public Driver getDriverByToken(@RequestParam String token){
+        return driverService.getDriverByToken(token).orElseThrow(); // TODO: change the exception and return a proper response
     }
+
+    @CrossOrigin(origins = DmrsApplication.crossOriginLink)
+    @PutMapping
+    public void updateDriverById(String id){driverService.updateDriverById(id);}
 }

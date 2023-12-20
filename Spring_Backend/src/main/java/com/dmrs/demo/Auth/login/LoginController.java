@@ -1,6 +1,7 @@
 package com.dmrs.demo.Auth.login;
 
 
+import com.dmrs.demo.DmrsApplication;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,7 @@ public class LoginController {
 
     private final LoginService loginService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = DmrsApplication.crossOriginLink)
     @PostMapping
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         return loginService.login(request);

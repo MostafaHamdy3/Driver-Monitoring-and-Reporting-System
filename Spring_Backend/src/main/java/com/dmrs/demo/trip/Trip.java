@@ -9,6 +9,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.ZonedDateTime;
+
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -19,8 +21,8 @@ public class Trip {
     @Id
     private String id;
     private String serialNumber;
-    private BSONTimestampCodec start_timestamp;
-    private BSONTimestampCodec end_timestamp;
+    private ZonedDateTime start_timestamp;
+    private ZonedDateTime end_timestamp;
     private int distance;
     private Status status;
 }

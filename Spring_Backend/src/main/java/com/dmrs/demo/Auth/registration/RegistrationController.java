@@ -1,5 +1,6 @@
 package com.dmrs.demo.Auth.registration;
 
+import com.dmrs.demo.DmrsApplication;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,12 +11,13 @@ public class RegistrationController {
 
     private final RegistrationService registrationService;
 
-    @CrossOrigin (origins = "http://localhost:4200")
+    @CrossOrigin(origins = DmrsApplication.crossOriginLink)
     @PostMapping
-    public String register(@RequestBody RegistrationRequest request) {
-        return registrationService.register(request);
+    public void register(@RequestBody RegistrationRequest request) {
+         registrationService.register(request); // TODO: return a proper response
     }
 
+    @CrossOrigin(origins = DmrsApplication.crossOriginLink)
     @GetMapping(path = "confirm")
     public String confirm(@RequestParam("token") String token) {
         return registrationService.confirmToken(token);

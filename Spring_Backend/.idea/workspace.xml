@@ -5,13 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d70ab35c-bef4-41aa-b71b-bbe7beac1aa0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/login/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/login/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.dmrs.demo.DmrsApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.dmrs.demo.DmrsApplicationTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.dmrs.demo.DmrsApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.dmrs.demo.DmrsApplicationTests.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/registration/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/registration/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/DmrsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/DmrsApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/RTVehicleData/RTVehicleData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/RTVehicleData/RTVehicleData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/Trip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/TripController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/TripController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/TripRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/TripRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/TripService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/trip/TripService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/OEM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/OEM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/Auth/login/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/Auth/login/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/Auth/login/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/Auth/login/LoginService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/Auth/registration/RegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/Auth/registration/RegistrationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/DmrsApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/DmrsApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/RTVehicleData/RTVehicleData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/RTVehicleData/RTVehicleData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/driver/DriverController$NewDoctorRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/driver/DriverController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/driver/DriverController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/driver/DriverRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/driver/DriverRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/driver/DriverService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/driver/DriverService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/trip/Trip.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/trip/Trip.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/trip/TripController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/trip/TripController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/trip/TripRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/trip/TripRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/trip/TripService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/trip/TripService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/vehicle/OEM.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/vehicle/OEM.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/vehicle/VehicleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/vehicle/VehicleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/vehicle/VehicleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/vehicle/VehicleRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/vehicle/VehicleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/vehicle/VehicleService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +79,7 @@
       <recent name="H:\Faculty\7th Semester\Graduation Project\Web App\DMRS_Backend" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DmrsApplication">
+  <component name="RunManager" selected="Docker.docker-compose.yaml: Compose Deployment">
     <configuration name="DmrsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dmrs.demo.DmrsApplication" />
       <module name="demo" />
@@ -80,8 +106,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DmrsApplication" />
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Application.DmrsApplication" />
       </list>
     </recent_temporary>
   </component>

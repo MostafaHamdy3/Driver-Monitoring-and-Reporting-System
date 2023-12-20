@@ -17,6 +17,10 @@ public class VehicleService {
     public Optional<Vehicle> getVehicle(String serialNumber){return vehicleRepo.findBySerialNumber(serialNumber);}
     public List<Vehicle> getAllVehicles(){return vehicleRepo.findAll();}
 //    public Iterable<Vehicle> getAllVehiclesByDriverEmail(String email){return vehicleRepo.findAllByDriverEmail(email);}
+    public Optional<Vehicle> getVehicleByDriverId(String driverId){return vehicleRepo.findByDriverId(driverId);}
 
+  public void updateVehicleById(String id) {
+    vehicleRepo.updateById(id);
 
+  }
 }
