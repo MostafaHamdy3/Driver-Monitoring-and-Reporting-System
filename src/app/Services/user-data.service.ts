@@ -12,10 +12,16 @@ export class DriverVehicleService {
   private driverUrl = 'http://localhost:8082/api/v1/driver';
   private vehicleUrl = 'http://localhost:8082/api/v1/vehicle';
 
+  driverId:string;
   constructor(private http: HttpClient) { }
 
-  getDriver(): Observable<object> {
-    return this.http.get(`${this.driverUrl}`);
+  getDriver(): Observable<Driver> {
+
+    let driver = this.http.get<Driver>(`${this.driverUrl}`);
+
+    this.driverId = driver['id'];
+    console.log(driver);
+    return driver;
   }
 
   getVehicle(): Observable<object> {
