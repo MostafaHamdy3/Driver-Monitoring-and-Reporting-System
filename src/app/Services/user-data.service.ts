@@ -13,18 +13,17 @@ export class DriverVehicleService {
   token: string = localStorage.getItem('token');
   id: string = localStorage.getItem('driverId');
 
-  private driverUrl = `http://localhost:8082/api/v1/driver?token=${this.token}`;
-  private vehicleUrl = `http://localhost:8082/api/v1/vehicle?id=${this.id}`;
+  private driverUrl = `http://localhost:8082/api/v1/driver`;
+  private vehicleUrl = `http://localhost:8082/api/v1/vehicle`;
 
-  driverId:string;
   constructor(private http: HttpClient) { }
 
   getDriver(): Observable<object> {
-    return this.http.get(`${this.driverUrl}`);
+    return this.http.get(`${this.driverUrl}?token=${this.token}`);
   }
 
   getVehicle(): Observable<object> {
-    return this.http.get(`${this.vehicleUrl}`);
+    return this.http.get(`${this.vehicleUrl}?id=${this.id}`);
   }
 
   updateDriver(driverData: Driver): Observable<object> {
