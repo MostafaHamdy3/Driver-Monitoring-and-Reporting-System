@@ -32,6 +32,7 @@ public class VehicleService {
       vehicle.setCreationYear(vehicleRequest.getCreationYear());
       vehicle.setOem(vehicleRequest.getOem());
       vehicle.setModel(vehicleRequest.getModel());
+      vehicle.setDriver(getVehicle(vehicleRequest.getSerialNumber()).get().getDriver());
 
 
     vehicleRepo.save(vehicle);
