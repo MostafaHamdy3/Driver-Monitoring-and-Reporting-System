@@ -16,7 +16,7 @@ export class DriverVehicleService {
   private driverUrl = `http://localhost:8082/api/v1/driver?token=${this.token}`;
   private vehicleUrl = `http://localhost:8082/api/v1/vehicle?id=${this.id}`;
 
-  driverId:string;
+  // driverId:string;
   constructor(private http: HttpClient) { }
 
   getDriver(): Observable<object> {

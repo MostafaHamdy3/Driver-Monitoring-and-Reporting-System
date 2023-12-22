@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d70ab35c-bef4-41aa-b71b-bbe7beac1aa0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/exception/ApiException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/exception/ApiExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/exception/ApiRequestException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/exception/ErrorCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/login/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/login/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/Auth/login/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/driver/DriverService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dmrs/demo/vehicle/VehicleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/dmrs/demo/Auth/login/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dmrs/demo/Auth/login/LoginService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/Services/user-data.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/Services/user-data.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
