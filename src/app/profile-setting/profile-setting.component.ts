@@ -56,6 +56,7 @@ export class ProfileSettingComponent implements OnInit {
   onGetVehicleData() {
     this.driverData.getVehicle().subscribe((vehicle : Vehicle) => {
       console.log(vehicle);
+      this.vehicleDetails.id = vehicle.id;
       this.vehicleDetails.name = vehicle.name;
       this.vehicleDetails.model = vehicle.model;
       this.vehicleDetails.oem = vehicle.oem;
@@ -69,6 +70,9 @@ export class ProfileSettingComponent implements OnInit {
     this.driverData.updateDriver(this.driverDetails).subscribe(() => {
       console.log("Updated driver successfully");
       this.updatedDeriver = true;
+      setInterval(() => {
+        this.updatedDeriver = false;
+      }, 2000);
     }, (err) => {
       console.log("Failed to update driver");
     })
@@ -78,6 +82,9 @@ export class ProfileSettingComponent implements OnInit {
     this.driverData.updateVehicle(this.vehicleDetails).subscribe(() => {
       console.log("Updated vehicle successfully");
       this.updatedVehicle = true;
+      setInterval(() => {
+        this.updatedVehicle = false;
+      }, 2000);
     }, (err) => {
       console.log("Failed to update vehicle");
     })
