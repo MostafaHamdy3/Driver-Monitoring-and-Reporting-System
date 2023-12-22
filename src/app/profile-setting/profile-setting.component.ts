@@ -17,6 +17,8 @@ import { DriverVehicleService } from '../Services/user-data.service';
 export class ProfileSettingComponent implements OnInit {
   driverDetails: Driver = new Driver();
   vehicleDetails: Vehicle = new Vehicle();
+  updatedDeriver: boolean = false;
+  updatedVehicle: boolean = false;
   // firstName: string;
   // lastName: string;
   // job: string;
@@ -35,7 +37,6 @@ export class ProfileSettingComponent implements OnInit {
   constructor(private driverData: DriverVehicleService) {}
 
   ngOnInit() {
-    console.log("Token = "+this.token)
     this.onGetDriverData();
     this.onGetVehicleData();
   }
@@ -43,6 +44,7 @@ export class ProfileSettingComponent implements OnInit {
   onGetDriverData() {
     this.driverData.getDriver().subscribe((driver : Driver) => {
       console.log(driver);
+      this.driverDetails.id = driver.id;
       this.driverDetails.firstName = driver.firstName;
       this.driverDetails.lastName = driver.lastName;
       this.driverDetails.jobTitle = driver.jobTitle;
@@ -67,6 +69,7 @@ export class ProfileSettingComponent implements OnInit {
   onUpdateDriverData() {
     this.driverData.updateDriver(this.driverDetails).subscribe(() => {
       console.log("Updated driver successfully");
+      this.updatedDeriver = true;
     }, (err) => {
       console.log("Failed to update driver");
     })
@@ -75,6 +78,7 @@ export class ProfileSettingComponent implements OnInit {
   onUpdateVehicleData() {
     this.driverData.updateVehicle(this.vehicleDetails).subscribe(() => {
       console.log("Updated vehicle successfully");
+      this.updatedVehicle = true;
     }, (err) => {
       console.log("Failed to update vehicle");
     })
