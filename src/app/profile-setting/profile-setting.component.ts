@@ -19,51 +19,10 @@ export class ProfileSettingComponent implements OnInit {
   vehicleDetails: Vehicle = new Vehicle();
   updatedDeriver: boolean = false;
   updatedVehicle: boolean = false;
-  // firstName: string;
-  // lastName: string;
-  // job: string;
-  // email: string;
-  // phone: string;
-  // gender: any;
-
-  // vehicleName: string;
-  // model: string;
-  // OEM: string;
-  // license: string;
-  // creation: number;
-  // serial: String;
 
   constructor(private driverData: DriverVehicleService) {}
 
   ngOnInit() {
-    this.onGetDriverData();
-    this.onGetVehicleData();
-  }
-
-  onGetDriverData() {
-    this.driverData.getDriver().subscribe((driver : Driver) => {
-      console.log(driver);
-      this.driverDetails.id = driver.id;
-      this.driverDetails.firstName = driver.firstName;
-      this.driverDetails.lastName = driver.lastName;
-      this.driverDetails.jobTitle = driver.jobTitle;
-      this.driverDetails.email = driver.email;
-      this.driverDetails.phone = driver.phone;
-      this.driverDetails.gender = driver.gender;
-    })
-  }
-
-  onGetVehicleData() {
-    this.driverData.getVehicle().subscribe((vehicle : Vehicle) => {
-      console.log(vehicle);
-      this.vehicleDetails.id = vehicle.id;
-      this.vehicleDetails.name = vehicle.name;
-      this.vehicleDetails.model = vehicle.model;
-      this.vehicleDetails.oem = vehicle.oem;
-      this.vehicleDetails.licensePlate = vehicle.licensePlate;
-      this.vehicleDetails.creationYear = vehicle.creationYear;
-      this.vehicleDetails.serialNumber = vehicle.serialNumber;
-    })
   }
 
   onUpdateDriverData() {

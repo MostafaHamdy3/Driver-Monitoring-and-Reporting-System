@@ -102,10 +102,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let trip of getTripData()">
-                    <td>{{ trip[0] }}</td>
-                    <td>{{ trip[1] }}</td>
-                    <td>{{ trip[2] }}</td>
+                  <tr *ngFor="let trip of tripDetails">
+                    <td>{{ trip.start_timestamp }}</td>
+                    <td>{{ trip.start_timestamp | date:'dd' }}</td>
+                    <td>{{ trip.distance }}</td>
                     <td>
                       <div
                         id="event_status"
@@ -128,7 +128,7 @@
                               : ''
                         }"
                       >
-                        {{ trip[3] }}
+                        {{ trip.status }}
                       </div>
                     </td>
                   </tr>

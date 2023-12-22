@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  Router,
   RouterLink,
   RouterLinkActive,
   RouterOutlet,
@@ -19,10 +18,13 @@ import {
   ApexLegend,
   ApexFill,
   ApexTooltip,
-  ApexNonAxisChartSeries,
-  ApexResponsive,
   NgApexchartsModule,
 } from "ng-apexcharts";
+import { DriverVehicleService } from '../Services/user-data.service';
+import { Driver } from '../Services/Driver';
+import { Vehicle } from '../Services/Vehicle';
+import { TripService } from '../Services/user-trip.service';
+import { Trip, TripsContent } from '../Services/Trip';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -45,8 +47,13 @@ export type ChartOptions = {
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  driverDetails: Driver = new Driver();
+  vehicleDetails: Vehicle = new Vehicle();
+  tripDetails: Trip[] = [];
+
   selectedNavItem: string | null = 'dashboard';
   openDashboard = true;
+
   totalSuddenBrake: number = 0;
   totalAggressiveLeft: number = 0;
   totalAggressiveRight: number = 0;
@@ -58,7 +65,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor() {
+  constructor(private driverData: DriverVehicleService, private tripData: TripService) {
     this.chartOptions = {
       series: [
         {
@@ -124,7 +131,44 @@ export class DashboardComponent implements OnInit {
     };
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.onGetDriverData();
+    this.onGetVehicleData();
+    this.onGetTrips();
+  }
+
+  onGetDriverData() {
+    this.driverData.getDriver().subscribe((driver : Driver) => {
+      console.log(driver);
+      this.driverDetails.id = driver.id;
+      this.driverDetails.firstName = driver.firstName;
+      this.driverDetails.lastName = driver.lastName;
+      this.driverDetails.jobTitle = driver.jobTitle;
+      this.driverDetails.email = driver.email;
+      this.driverDetails.phone = driver.phone;
+      this.driverDetails.gender = driver.gender;
+    })
+  }
+
+  onGetVehicleData() {
+    this.driverData.getVehicle().subscribe((vehicle : Vehicle) => {
+      console.log(vehicle);
+      this.vehicleDetails.id = vehicle.id;
+      this.vehicleDetails.name = vehicle.name;
+      this.vehicleDetails.model = vehicle.model;
+      this.vehicleDetails.oem = vehicle.oem;
+      this.vehicleDetails.licensePlate = vehicle.licensePlate;
+      this.vehicleDetails.creationYear = vehicle.creationYear;
+      this.vehicleDetails.serialNumber = vehicle.serialNumber;
+    })
+  }
+
+  onGetTrips() {
+    this.tripData.getTrips().subscribe((trip: TripsContent) => {
+      console.log(trip);
+      this.tripDetails = this.tripDetails.concat(trip.content);
+    })
+  }
 
   onNavItemClicked(item: string) {
     item === 'dashboard'
