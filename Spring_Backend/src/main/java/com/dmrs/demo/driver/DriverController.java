@@ -18,5 +18,5 @@ public class DriverController {
 
     @CrossOrigin(origins = DmrsApplication.crossOriginLink)
     @PutMapping
-    public void updateDriver(DriverRequest driverRequest){driverService.updateDriver(driverRequest);}
+    public void updateDriver(@RequestParam DriverRequest driverRequest){driverService.updateDriver(driverRequest);}
 }

@@ -1,5 +1,6 @@
 package com.dmrs.demo.vehicle;
 
+import com.dmrs.demo.driver.Driver;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
@@ -10,8 +11,8 @@ public interface VehicleRepository extends MongoRepository<Vehicle,String> {
 
     Optional<Vehicle> findBySerialNumber(String serialNumber);
 
-    @Query("{ 'driver' : ?0 }")
-    Optional<Vehicle> findByDriverId(String driverId);
+
+    Optional<Vehicle> findByDriver(Driver driver);
 
 
 }

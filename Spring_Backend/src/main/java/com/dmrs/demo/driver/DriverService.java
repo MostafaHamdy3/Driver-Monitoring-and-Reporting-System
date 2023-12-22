@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.UUID;
 
 import java.util.Optional;
@@ -129,4 +130,8 @@ public class DriverService  implements UserDetailsService{
 
   }
 
+  public Driver getDriverById(String driverId) {
+
+    return driverRepo.findById(driverId).orElseThrow();
+  }
 }

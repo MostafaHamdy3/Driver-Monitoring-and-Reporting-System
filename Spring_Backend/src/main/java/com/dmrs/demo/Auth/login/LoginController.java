@@ -2,6 +2,7 @@ package com.dmrs.demo.Auth.login;
 
 
 import com.dmrs.demo.DmrsApplication;
+import com.dmrs.demo.exception.ApiRequestException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ public class LoginController {
 
     @CrossOrigin(origins = DmrsApplication.crossOriginLink)
     @PostMapping
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) throws ApiRequestException {
         return loginService.login(request);
     }
 
