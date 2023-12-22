@@ -1,6 +1,5 @@
 export class Vehicle {
-
-    idNumber?: string;
+    id?: string;
     name?: string;
     serialNumber?: string;
     licensePlate?: string;
