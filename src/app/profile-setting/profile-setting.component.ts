@@ -35,7 +35,6 @@ export class ProfileSettingComponent implements OnInit {
   constructor(private driverData: DriverVehicleService) {}
 
   ngOnInit() {
-    console.log("Token = "+this.token)
     this.onGetDriverData();
     this.onGetVehicleData();
   }
@@ -43,6 +42,7 @@ export class ProfileSettingComponent implements OnInit {
   onGetDriverData() {
     this.driverData.getDriver().subscribe((driver : Driver) => {
       console.log(driver);
+      this.driverDetails.id = driver.id;
       this.driverDetails.firstName = driver.firstName;
       this.driverDetails.lastName = driver.lastName;
       this.driverDetails.jobTitle = driver.jobTitle;
