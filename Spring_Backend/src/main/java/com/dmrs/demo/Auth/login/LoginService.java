@@ -6,7 +6,8 @@ import com.dmrs.demo.Auth.registration.token.ConfirmationToken;
 import com.dmrs.demo.Auth.registration.token.ConfirmationTokenService;
 import com.dmrs.demo.driver.Driver;
 import com.dmrs.demo.driver.DriverService;
-import com.dmrs.demo.vehicle.VehicleRepository;
+import com.dmrs.demo.exception.ApiRequestException;
+import com.dmrs.demo.exception.ErrorCode;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,28 +24,36 @@ public class LoginService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
 
-    public ResponseEntity<?> login(LoginRequest request) {
+    public ResponseEntity<?> login(LoginRequest request) throws ApiRequestException {
 
         ResponseEntity<?> responseEntity ;
 
         boolean isValidEmail = emailValidator.
                 test(request.getEmail());
 
+
+
         if (!isValidEmail) {
-            responseEntity = ResponseEntity.badRequest().body("email not valid");
+//            responseEntity = ResponseEntity.badRequest().body("email not valid");
+          throw new ApiRequestException("email not valid");
         } else {
 
-            Optional<Driver> driver = driverService.getDriverByEmail(request.getEmail());
-            if (driver.isEmpty()) {
-                responseEntity = ResponseEntity.badRequest().body("email not found");
-            }
+            Driver driver = driverService.getDriverByEmail(request.getEmail()).orElseThrow(() ->
+                    new ApiRequestException("email not Found"));
+//            if (driver.isEmpty()) {
+////                responseEntity = ResponseEntity.badRequest().body("email not found");
+//              throw new ApiRequestException(
+//                ErrorCode.EMAIL_NOT_FOUND,
+//                HttpStatus.BAD_REQUEST
+//              );
+//            }
 
-            else if (!bCryptPasswordEncoder.matches(request.getPassword(), driver.get().getPassword())) {
+            if (!bCryptPasswordEncoder.matches(request.getPassword(), driver.getPassword())) {
                 responseEntity = ResponseEntity.badRequest().body("password not match");
             }
             else {
-              Optional<ConfirmationToken> confirmationToken = confirmationTokenService.getTokenByDriver(driver.get());
-              responseEntity = ResponseEntity.ok().body(confirmationToken.get().getToken());
+              Optional<ConfirmationToken> confirmationToken = confirmationTokenService.getTokenByDriver(driver);
+              responseEntity = ResponseEntity.ok().body(confirmationToken.get());
             }
         }
         return responseEntity;
