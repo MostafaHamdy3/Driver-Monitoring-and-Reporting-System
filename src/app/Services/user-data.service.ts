@@ -11,10 +11,10 @@ import { Vehicle } from "./Vehicle";
 export class DriverVehicleService {
   driverDetails: Driver = new Driver();
   token: string = localStorage.getItem('token');
-  id: string = this.driverDetails.id;
+  id: string = localStorage.getItem('driverId');
 
   private driverUrl = `http://localhost:8082/api/v1/driver?token=${this.token}`;
-  private vehicleUrl = `http://localhost:8082/api/v1/vehicle?token=${this.id}`;
+  private vehicleUrl = `http://localhost:8082/api/v1/vehicle?id=${this.id}`;
 
   driverId:string;
   constructor(private http: HttpClient) { }

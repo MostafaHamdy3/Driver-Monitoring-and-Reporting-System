@@ -135,6 +135,7 @@ export class DashboardComponent implements OnInit {
 
   logoutHandler() {
     localStorage.removeItem("token");
+    localStorage.removeItem("driverId");
   }
 
   getTripData(): Array<[string, string, number, string]> {

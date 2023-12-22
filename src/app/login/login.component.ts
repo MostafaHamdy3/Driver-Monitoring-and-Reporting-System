@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
       (data: LoginResponse) => {
         console.log(data);  // Add this line
         localStorage.setItem('token', data.token);
+        localStorage.setItem('driverId', data.id);
         this.router.navigate(['/dashboard']);
       },
       (error) => {
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
 }
 
 interface LoginResponse {
+  id: string;
   token: string;
   // add other properties if needed
 }
