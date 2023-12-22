@@ -64,6 +64,9 @@
         </select>
       </div>
     </div>
+    <div *ngIf="updatedDeriver" class="valid-feedback text-center">
+      <p>Updated successfully</p>
+    </div>
     <button
       class="btn"
       type="submit"
@@ -142,6 +145,9 @@
           [(ngModel)]="vehicleDetails.serialNumber"
         />
       </div>
+    </div>
+    <div *ngIf="updatedDeriver" class="valid-feedback text-center">
+      <p>Updated successfully</p>
     </div>
     <button
       class="btn vehicle-btn"
