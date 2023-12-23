@@ -16,7 +16,7 @@ public class LoginController {
 
     @CrossOrigin(origins = DmrsApplication.crossOriginLink)
     @PostMapping
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) throws ApiRequestException {
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         return loginService.login(request);
     }
 

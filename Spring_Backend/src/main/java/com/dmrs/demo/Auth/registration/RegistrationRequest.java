@@ -7,26 +7,24 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-@Getter
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
-public class RegistrationRequest {
-    private String firstName;
-    private String lastName;
-    private Gender gender;
-    private String phone;
-    private String email;
-    private String password;
-    private String jobTitle;
-    private String imgUrl;
-    private int age;
+
+public record RegistrationRequest (
+    String firstName,
+    String lastName,
+    Gender gender,
+    String phone,
+    String email,
+    String password,
+    String jobTitle,
+    String imgUrl,
+    int age,
 
     //Vehicle
-    private String name;
-    private String serialNumber;
-    private String licensePlate;
-    private int creationYear;
-    private OEM oem;
-    private String model;
+    String name,
+    String serialNumber,
+    String licensePlate,
+    int creationYear,
+    OEM oem,
+    String model
+) {
 }

@@ -2,9 +2,10 @@ package com.dmrs.demo.driver;
 
 import com.dmrs.demo.Auth.registration.token.ConfirmationToken;
 import com.dmrs.demo.Auth.registration.token.ConfirmationTokenService;
+import com.dmrs.demo.exception.ApiRequestException;
+import com.dmrs.demo.exception.ErrorCode;
 import com.dmrs.demo.vehicle.Vehicle;
 import com.dmrs.demo.vehicle.VehicleRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,30 +13,35 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Map;
 import java.util.UUID;
-
 import java.util.Optional;
 
-@AllArgsConstructor
 @Service
-public class DriverService  implements UserDetailsService{
-    private final DriverRepository driverRepo;
-    private final VehicleRepository vehicleRepo;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
+public record DriverService(DriverRepository driverRepo,
+                            VehicleRepository vehicleRepo,
+                            BCryptPasswordEncoder bCryptPasswordEncoder,
+                            ConfirmationTokenService confirmationTokenService) implements UserDetailsService {
     // TODO: Create a class for User messages
     private final static String USER_NOT_FOUND_MSG =
             "user with email %s not found";
-    private final ConfirmationTokenService confirmationTokenService;
 
-    public Optional<Driver> getDriverByEmail(String email){return driverRepo.findByEmail(email);}
-    public void addDriver(Driver driver){driverRepo.update(driver);}
-    public void deleteDriver(String email){driverRepo.deleteDriverByEmail(email);}
+  public Optional<Driver> getDriverByEmail(String email) {
+    return driverRepo.findByEmail(email);
+  }
 
-    public Iterable<Driver> getAllDrivers(){return driverRepo.findAll();}
+  public void addDriver(Driver driver) {
+    driverRepo.update(driver);
+  }
 
-    public void updateDriver(DriverRequest driverRequest){
+  public void deleteDriver(String email) {
+    driverRepo.deleteDriverByEmail(email);
+  }
+
+    public Iterable<Driver> getAllDrivers() {
+      return driverRepo.findAll();
+    }
+
+    public void updateDriver(DriverRequest driverRequest) {
 
       Driver driver = new Driver();
       driver.setId(driverRequest.getId());
@@ -51,8 +57,10 @@ public class DriverService  implements UserDetailsService{
       driver.setScore(driverRequest.getScore());
 
 
-      driverRepo.save(driver);}
-    @Override
+      driverRepo.save(driver);
+    }
+
+  @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return driverRepo.findByEmail(email)
                 .orElseThrow(() ->
@@ -61,7 +69,7 @@ public class DriverService  implements UserDetailsService{
     }
 
 
-    public String signUpUser(Driver driver , Vehicle vehicle) {
+    public String signUpUser(Driver driver, Vehicle vehicle) {
 
         // TODO: remove the signup logic from here and put it in the RegistrationService
         boolean userExists = driverRepo
@@ -76,7 +84,7 @@ public class DriverService  implements UserDetailsService{
             // TODO check of attributes are the same and
             // TODO if email not confirmed send confirmation email.
 
-            throw new IllegalStateException("email already taken");
+            throw new ApiRequestException("email already taken", ErrorCode.EMAIL_ALREADY_TAKEN);
         }
 
         String encodedPassword = bCryptPasswordEncoder
@@ -112,16 +120,16 @@ public class DriverService  implements UserDetailsService{
 //                        new UsernameNotFoundException(
 //                                String.format(USER_NOT_FOUND_MSG, email)));
 
-        driverRepo.updateEnabledByEmail(email,true);
+        driverRepo.updateEnabledByEmail(email, true);
 
     }
 
   public Optional<Driver> getDriverByToken(String token) {
     Optional<ConfirmationToken> confirmationToken = confirmationTokenService.getToken(token);
     Optional<Driver> driver = Optional.empty();
-    if (confirmationToken.isPresent()){
+    if (confirmationToken.isPresent()) {
       driver = Optional.ofNullable(confirmationToken.get().getDriver());
-    }else {
+    } else {
       // TODO: throw an exception
     }
 

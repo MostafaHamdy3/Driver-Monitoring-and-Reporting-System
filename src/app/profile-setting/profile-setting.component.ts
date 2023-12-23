@@ -25,6 +25,7 @@ export class ProfileSettingComponent implements OnInit {
   ngOnInit() {
     this.driverDetails = this.driverService.driverDetails;
     this.vehicleDetails = this.driverService.vehicleDetails;
+    console.log(this.driverDetails)
   }
 
   onUpdateDriverData() {

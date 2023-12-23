@@ -9,14 +9,11 @@ import lombok.ToString;
 import java.time.ZonedDateTime;
 
 
-@Getter
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
-public class TripRequest {
-  private String serialNumber;
-  private ZonedDateTime start_timestamp;
-  private ZonedDateTime end_timestamp;
-  private int distance = 0;
-  private Status status;
-}
+
+public record TripRequest (
+   String serialNumber,
+   String start_timestamp,
+   String end_timestamp,
+   int distance ,
+   Status status
+){}
