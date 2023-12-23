@@ -53,6 +53,7 @@ export class DashboardComponent implements OnInit {
 
   selectedNavItem: string | null = 'dashboard';
   openDashboard = true;
+  serialNumber: string = '';
 
   totalSuddenBrake: number = 0;
   totalAggressiveLeft: number = 0;
@@ -134,32 +135,36 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.onGetDriverData();
     this.onGetVehicleData();
-    this.onGetTrips();
+    setInterval(() => {
+      this.onGetTrips();
+    }, 2000);
   }
 
   onGetDriverData() {
     this.driverData.getDriver().subscribe((driver : Driver) => {
       console.log(driver);
-      this.driverDetails.id = driver.id;
-      this.driverDetails.firstName = driver.firstName;
-      this.driverDetails.lastName = driver.lastName;
-      this.driverDetails.jobTitle = driver.jobTitle;
-      this.driverDetails.email = driver.email;
-      this.driverDetails.phone = driver.phone;
-      this.driverDetails.gender = driver.gender;
+      // this.driverDetails.id = driver.id;
+      // this.driverDetails.firstName = driver.firstName;
+      // this.driverDetails.lastName = driver.lastName;
+      // this.driverDetails.jobTitle = driver.jobTitle;
+      // this.driverDetails.email = driver.email;
+      // this.driverDetails.phone = driver.phone;
+      // this.driverDetails.gender = driver.gender;
+      this.driverData.updateDriverDetails(driver);
     })
   }
 
   onGetVehicleData() {
     this.driverData.getVehicle().subscribe((vehicle : Vehicle) => {
       console.log(vehicle);
-      this.vehicleDetails.id = vehicle.id;
-      this.vehicleDetails.name = vehicle.name;
-      this.vehicleDetails.model = vehicle.model;
-      this.vehicleDetails.oem = vehicle.oem;
-      this.vehicleDetails.licensePlate = vehicle.licensePlate;
-      this.vehicleDetails.creationYear = vehicle.creationYear;
-      this.vehicleDetails.serialNumber = vehicle.serialNumber;
+      // this.vehicleDetails.id = vehicle.id;
+      // this.vehicleDetails.name = vehicle.name;
+      // this.vehicleDetails.model = vehicle.model;
+      // this.vehicleDetails.oem = vehicle.oem;
+      // this.vehicleDetails.licensePlate = vehicle.licensePlate;
+      // this.vehicleDetails.creationYear = vehicle.creationYear;
+      // this.vehicleDetails.serialNumber = vehicle.serialNumber;
+      this.driverData.updateDriverDetails(vehicle);
     })
   }
 

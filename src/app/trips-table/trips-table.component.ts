@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Trip, TripsContent } from '../Services/Trip';
+import { TripService } from '../Services/user-trip.service';
 
 @Component({
   selector: 'app-trips-table',
@@ -9,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./trips-table.component.css']
 })
 
-export class TripsTableComponent {
+export class TripsTableComponent implements OnInit {
   suddenBrake: number = 0;
   aggressiveLeft: number = 0;
   aggressiveRight: number = 0;
@@ -18,15 +20,28 @@ export class TripsTableComponent {
   totalOtherSign: number = 0;
   respondedOtherSign: number = 0;
 
-  constructor() { }
+  tripDetails: Trip[] = [];
 
-  getTripData(): Array<[string, string, number, string]> {
-    return [
-      ['10:00 AM', '2022-09-01', 50, 'Safe'],
-      ['02:30 PM', '2022-09-02', 75, 'Aggressive'],
-      ['09:15 AM', '2022-09-03', 30, 'Safe'],
-      ['04:45 PM', '2022-09-04', 60, 'Very Aggressive'],
-      ['08:30 AM', '2022-09-05', 45, 'Safe']
-    ];
+  constructor(private tripData: TripService) { }
+
+  ngOnInit() {
+    this.onGetTrips();
   }
+
+  onGetTrips() {
+    this.tripData.getTrips().subscribe((trip: TripsContent) => {
+      console.log(trip);
+      this.tripDetails = this.tripDetails.concat(trip.content);
+    })
+  }
+
+  // getTripData(): Array<[string, string, number, string]> {
+  //   return [
+  //     ['10:00 AM', '2022-09-01', 50, 'Safe'],
+  //     ['02:30 PM', '2022-09-02', 75, 'Aggressive'],
+  //     ['09:15 AM', '2022-09-03', 30, 'Safe'],
+  //     ['04:45 PM', '2022-09-04', 60, 'Very Aggressive'],
+  //     ['08:30 AM', '2022-09-05', 45, 'Safe']
+  //   ];
+  // }
 }

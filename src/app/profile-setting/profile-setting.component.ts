@@ -15,18 +15,20 @@ import { DriverVehicleService } from '../Services/user-data.service';
 })
 
 export class ProfileSettingComponent implements OnInit {
-  driverDetails: Driver = new Driver();
-  vehicleDetails: Vehicle = new Vehicle();
+  driverDetails: Driver;
+  vehicleDetails: Vehicle;
   updatedDeriver: boolean = false;
   updatedVehicle: boolean = false;
 
-  constructor(private driverData: DriverVehicleService) {}
+  constructor(private driverService: DriverVehicleService) {}
 
   ngOnInit() {
+    this.driverDetails = this.driverService.driverDetails;
+    this.vehicleDetails = this.driverService.vehicleDetails;
   }
 
   onUpdateDriverData() {
-    this.driverData.updateDriver(this.driverDetails).subscribe(() => {
+    this.driverService.updateDriver(this.driverDetails).subscribe(() => {
       console.log("Updated driver successfully");
       this.updatedDeriver = true;
       setInterval(() => {
@@ -34,11 +36,12 @@ export class ProfileSettingComponent implements OnInit {
       }, 2000);
     }, (err) => {
       console.log("Failed to update driver");
+      this.updatedDeriver = false;
     })
   }
 
   onUpdateVehicleData() {
-    this.driverData.updateVehicle(this.vehicleDetails).subscribe(() => {
+    this.driverService.updateVehicle(this.vehicleDetails).subscribe(() => {
       console.log("Updated vehicle successfully");
       this.updatedVehicle = true;
       setInterval(() => {
@@ -46,6 +49,7 @@ export class ProfileSettingComponent implements OnInit {
       }, 2000);
     }, (err) => {
       console.log("Failed to update vehicle");
+      this.updatedDeriver = false;
     })
   }
 }

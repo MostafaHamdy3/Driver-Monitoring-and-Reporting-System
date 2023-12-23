@@ -10,6 +10,7 @@ import { Vehicle } from "./Vehicle";
 
 export class DriverVehicleService {
   driverDetails: Driver = new Driver();
+  vehicleDetails: Vehicle = new Vehicle();
   token: string = localStorage.getItem('token');
   id: string = localStorage.getItem('driverId');
 
@@ -24,6 +25,14 @@ export class DriverVehicleService {
 
   getVehicle(): Observable<object> {
     return this.http.get(`${this.vehicleUrl}?id=${this.id}`);
+  }
+
+  updateDriverDetails(driver: Driver) {
+    this.driverDetails = driver;
+  }
+
+  updateVehicleDetails(vehicle: Vehicle) {
+    this.vehicleDetails = vehicle;
   }
 
   updateDriver(driverData: Driver): Observable<object> {
