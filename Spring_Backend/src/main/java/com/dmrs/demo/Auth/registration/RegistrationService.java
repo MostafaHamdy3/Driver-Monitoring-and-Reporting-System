@@ -6,50 +6,47 @@ import com.dmrs.demo.driver.DriverService;
 import com.dmrs.demo.Auth.registration.email.EmailSender;
 import com.dmrs.demo.Auth.registration.token.ConfirmationToken;
 
+import com.dmrs.demo.exception.ApiRequestException;
+import com.dmrs.demo.exception.ErrorCode;
 import com.dmrs.demo.vehicle.Vehicle;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 
 @Service
-@AllArgsConstructor
-public class RegistrationService {
+public record RegistrationService(DriverService driverService,
+                                  EmailValidator emailValidator,
+                                  ConfirmationTokenService confirmationTokenService,
+                                  EmailSender emailSender) {
 
-    private final DriverService driverService;
-    private final EmailValidator emailValidator;
-    private final ConfirmationTokenService confirmationTokenService;
-    private final EmailSender emailSender;
-
-    public String register(RegistrationRequest request) {
+    public void register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.
-                test(request.getEmail());
+                test(request.email());
 
         if (!isValidEmail) {
-            throw new IllegalStateException("email not valid");
+            throw new ApiRequestException("email not valid", ErrorCode.EMAIL_NOT_VALID);
         }
 
         Driver driver = new Driver(
-                request.getFirstName(),
-                request.getLastName(),
-                request.getGender(),
-                request.getPhone(),
-                request.getEmail(),
-                request.getPassword(),
-                request.getJobTitle(),
-                request.getImgUrl(),
-                request.getAge()
+                request.firstName(),
+                request.lastName(),
+                request.gender(),
+                request.phone(),
+                request.email(),
+                request.password(),
+                request.jobTitle(),
+                request.imgUrl(),
+                request.age()
         );
 
         Vehicle vehicle = new Vehicle(
-                request.getName(),
+                request.name(),
                 driver,
-                request.getSerialNumber(),
-                request.getLicensePlate(),
-                request.getCreationYear(),
-                request.getOem(),
-                request.getModel()
+                request.serialNumber(),
+                request.licensePlate(),
+                request.creationYear(),
+                request.oem(),
+                request.model()
         );
 
         String token = driverService.signUpUser(driver, vehicle);
@@ -57,29 +54,28 @@ public class RegistrationService {
 
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
         emailSender.send(
-                request.getEmail(),
-                buildEmail(request.getFirstName(), link));
+                request.email(),
+                buildEmail(request.firstName(), link));
 
-        return token;
     }
 
     @Transactional
     public String confirmToken(String token) {
 
         ConfirmationToken confirmationToken = confirmationTokenService
-                .getToken(token.toString()).orElse(null);
+                .getToken(token).orElse(null);
         if (confirmationToken == null) {
-            throw new IllegalStateException("token not found");
+            throw new ApiRequestException("token not found", ErrorCode.TOKEN_NOT_FOUND);
         }
 
         if (confirmationToken.getConfirmedAt() != null) {
-            throw new IllegalStateException("email already confirmed");
+            throw new ApiRequestException("email already confirmed", ErrorCode.EMAIL_ALREADY_CONFIRMED);
         }
 
         LocalDateTime expiredAt = confirmationToken.getExpiresAt();
 
         if (expiredAt.isBefore(LocalDateTime.now())) {
-            throw new IllegalStateException("token expired");
+            throw new ApiRequestException("token expired", ErrorCode.TOKEN_EXPIRED);
         }
 
         confirmationTokenService.setConfirmedAt(token);

@@ -23,6 +23,7 @@ export class ProfileSettingComponent implements OnInit {
   constructor(private driverData: DriverVehicleService) {}
 
   ngOnInit() {
+    console.log(this.driverDetails)
   }
 
   onUpdateDriverData() {

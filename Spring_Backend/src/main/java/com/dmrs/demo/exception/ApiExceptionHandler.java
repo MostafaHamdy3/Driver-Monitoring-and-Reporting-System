@@ -6,6 +6,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.time.ZoneId;
@@ -14,11 +15,10 @@ import java.time.ZonedDateTime;
 @ControllerAdvice
 public class ApiExceptionHandler {
    @ExceptionHandler(value = {ApiRequestException.class})
-   public ResponseEntity<Object> handleApiRequestException(ApiRequestException e)
+   public ResponseEntity<Object> handleApiRequestException(ApiRequestException e, WebRequest webRequest)
    {
      HttpStatus badRequest = HttpStatus.BAD_REQUEST;
      ApiException apiException = new ApiException(
-       ErrorCode.INVALID_REQUEST_BODY,
        e.getMessage(),
        badRequest,
         ZonedDateTime.now(ZoneId.of("Z"))
@@ -32,7 +32,6 @@ public class ApiExceptionHandler {
    {
      HttpStatus badRequest = HttpStatus.BAD_REQUEST;
      ApiException apiException = new ApiException(
-       ErrorCode.INVALID_REQUEST_BODY,
        e.getMessage(),
        badRequest,
        ZonedDateTime.now(ZoneId.of("Z"))
@@ -46,7 +45,6 @@ public class ApiExceptionHandler {
    {
      HttpStatus badRequest = HttpStatus.BAD_REQUEST;
      ApiException apiException = new ApiException(
-       ErrorCode.INVALID_REQUEST_BODY,
        e.getMessage(),
        badRequest,
        ZonedDateTime.now(ZoneId.of("Z"))
@@ -60,7 +58,6 @@ public class ApiExceptionHandler {
    {
      HttpStatus badRequest = HttpStatus.BAD_REQUEST;
      ApiException apiException = new ApiException(
-       ErrorCode.INVALID_REQUEST_BODY,
        e.getMessage(),
        badRequest,
        ZonedDateTime.now(ZoneId.of("Z"))
@@ -74,7 +71,6 @@ public class ApiExceptionHandler {
    {
      HttpStatus badRequest = HttpStatus.BAD_REQUEST;
      ApiException apiException = new ApiException(
-       ErrorCode.INVALID_REQUEST_BODY,
        e.getMessage(),
        badRequest,
        ZonedDateTime.now(ZoneId.of("Z"))
