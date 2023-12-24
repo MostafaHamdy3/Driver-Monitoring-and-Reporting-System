@@ -1,9 +1,9 @@
 package com.dmrs.demo.vehicle;
 
+import com.dmrs.demo.Auth.dto.VehicleDTO;
+import com.dmrs.demo.Auth.dto.VehicleRequest;
 import com.dmrs.demo.DmrsApplication;
-import com.dmrs.demo.driver.DriverService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.mongodb.repository.Update;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -16,7 +16,20 @@ public class VehicleController {
 
   @CrossOrigin(origins = DmrsApplication.crossOriginLink)
   @GetMapping
-  public Optional<Vehicle> getVehicleByDriverId(@RequestParam String id){return vehicleService.getVehicleByDriverId(id);}
+  public VehicleDTO getVehicleByDriverId(@RequestParam String id){
+
+    Vehicle vehicle = vehicleService.getVehicleByDriverId(id).orElseThrow(() -> new RuntimeException("Vehicle not found"));
+
+    return VehicleDTO.builder()
+            .id(vehicle.getId())
+            .serialNumber(vehicle.getSerialNumber())
+            .name(vehicle.getName())
+            .licensePlate(vehicle.getLicensePlate())
+            .creationYear(vehicle.getCreationYear())
+            .oem(vehicle.getOem())
+            .model(vehicle.getModel())
+            .build();
+  }
 
   @CrossOrigin(origins = DmrsApplication.crossOriginLink)
   @PutMapping
