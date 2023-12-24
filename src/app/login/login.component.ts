@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     this.userService.userLogin(this.user).subscribe(
       (data: LoginResponse) => {
-        console.log(data.driver);  // Add this line
         localStorage.setItem('token', data.token);
-        localStorage.setItem('driverId', data.driver.id);
+        localStorage.setItem('driverId', data.driverId);
+        localStorage.setItem('serialNumber', data.vehicleSerialNumber);
         this.router.navigate(['/dashboard']);
       },
       (error) => {
@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit {
 }
 
 interface LoginResponse {
-  id: string;
-  driver: Driver;
   token: string;
+  driverId: string;
+  vehicleSerialNumber: string;
   // add other properties if needed
 }

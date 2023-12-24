@@ -1,13 +1,12 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Driver } from "./Driver";
-import { Vehicle } from "./Vehicle";
+import { Driver } from './Driver';
+import { Vehicle } from './Vehicle';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class DriverVehicleService {
   driverDetails: Driver = new Driver();
   vehicleDetails: Vehicle = new Vehicle();
@@ -17,7 +16,7 @@ export class DriverVehicleService {
   private driverUrl = `http://localhost:8082/api/v1/driver`;
   private vehicleUrl = `http://localhost:8082/api/v1/vehicle`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getDriver(): Observable<object> {
     return this.http.get(`${this.driverUrl}?token=${this.token}`);
