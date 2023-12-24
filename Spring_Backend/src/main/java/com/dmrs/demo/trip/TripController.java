@@ -1,5 +1,6 @@
 package com.dmrs.demo.trip;
 
+import com.dmrs.demo.Auth.dto.TripRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;

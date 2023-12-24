@@ -1,5 +1,6 @@
-package com.dmrs.demo.driver;
+package com.dmrs.demo.Auth.dto;
 
+import com.dmrs.demo.driver.Gender;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

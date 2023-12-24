@@ -1,6 +1,7 @@
-package com.dmrs.demo.vehicle;
+package com.dmrs.demo.Auth.dto;
 
 import com.dmrs.demo.driver.Driver;
+import com.dmrs.demo.vehicle.OEM;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

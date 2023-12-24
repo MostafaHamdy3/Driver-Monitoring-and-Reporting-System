@@ -1,16 +1,12 @@
 package com.dmrs.demo.trip;
 
 
-import org.springframework.data.mongodb.core.aggregation.DateOperators;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.dmrs.demo.Auth.dto.TripRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 

@@ -1,5 +1,7 @@
 package com.dmrs.demo.driver;
 
+import com.dmrs.demo.Auth.dto.DriverDTO;
+import com.dmrs.demo.Auth.dto.DriverRequest;
 import com.dmrs.demo.Auth.registration.token.ConfirmationToken;
 import com.dmrs.demo.Auth.registration.token.ConfirmationTokenService;
 import com.dmrs.demo.exception.ApiRequestException;
@@ -43,18 +45,34 @@ public record DriverService(DriverRepository driverRepo,
 
     public void updateDriver(DriverRequest driverRequest) {
 
+      Driver oldDriver = driverRepo.findById(driverRequest.getId()).orElseThrow(() ->
+              new ApiRequestException("Driver not Found"));
+
       Driver driver = new Driver();
       driver.setId(driverRequest.getId());
-      driver.setFirstName(driverRequest.getFirstName());
-      driver.setLastName(driverRequest.getLastName());
-      driver.setEmail(driverRequest.getEmail()); // TODO: check if email is already taken
-      driver.setPassword(driverRequest.getPassword());
-      driver.setPhone(driverRequest.getPhone());
-      driver.setGender(driverRequest.getGender());
-      driver.setJobTitle(driverRequest.getJobTitle());
-      driver.setImgUrl(driverRequest.getImgUrl());
-      driver.setAge(driverRequest.getAge());
-      driver.setScore(driverRequest.getScore());
+
+      if (driverRequest.getFirstName() == null) driver.setFirstName(oldDriver.getFirstName());
+      else driver.setFirstName(driverRequest.getFirstName());
+      if (driverRequest.getLastName() == null) driver.setLastName(oldDriver.getLastName());
+      else driver.setLastName(driverRequest.getLastName());
+      if (driverRequest.getEmail() == null) driver.setEmail(oldDriver.getEmail()); // TODO: check if email is already taken
+      else driver.setEmail(driverRequest.getEmail());
+
+
+      driver.setPassword(oldDriver.getPassword());
+
+      if (driverRequest.getPhone() == null) driver.setPhone(oldDriver.getPhone());
+      else driver.setPhone(driverRequest.getPhone());
+      if (driverRequest.getGender() == null) driver.setGender(oldDriver.getGender());
+      else driver.setGender(driverRequest.getGender());
+      if (driverRequest.getJobTitle() == null) driver.setJobTitle(oldDriver.getJobTitle());
+      else  driver.setJobTitle(driverRequest.getJobTitle());
+      if (driverRequest.getImgUrl() == null) driver.setImgUrl(oldDriver.getImgUrl());
+      else driver.setImgUrl(driverRequest.getImgUrl());
+      if (driverRequest.getAge() == 0) driver.setAge(oldDriver.getAge());
+      else driver.setAge(driverRequest.getAge());
+      if (driverRequest.getScore() == 0) driver.setScore(oldDriver.getScore());
+      else driver.setScore(driverRequest.getScore());
 
 
       driverRepo.save(driver);
@@ -124,7 +142,7 @@ public record DriverService(DriverRepository driverRepo,
 
     }
 
-  public Optional<Driver> getDriverByToken(String token) {
+  public DriverDTO getDriverByToken(String token) {
     Optional<ConfirmationToken> confirmationToken = confirmationTokenService.getToken(token);
     Optional<Driver> driver = Optional.empty();
     if (confirmationToken.isPresent()) {
@@ -133,8 +151,10 @@ public record DriverService(DriverRepository driverRepo,
       // TODO: throw an exception
     }
 
+    DriverDTO driverDTO = new DriverDTO(driver.get().getId(), driver.get().getFirstName(), driver.get().getLastName(), driver.get().getEmail(), driver.get().getGender(), driver.get().getAge(), driver.get().getPhone(), driver.get().getJobTitle(), driver.get().getImgUrl());
 
-    return driver;
+
+    return driverDTO;
 
   }
 

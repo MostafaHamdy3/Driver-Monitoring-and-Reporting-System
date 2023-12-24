@@ -1,4 +1,4 @@
-package com.dmrs.demo.trip;
+package com.dmrs.demo.Auth.dto;
 
 import com.dmrs.demo.RTVehicleData.Status;
 import lombok.AllArgsConstructor;
