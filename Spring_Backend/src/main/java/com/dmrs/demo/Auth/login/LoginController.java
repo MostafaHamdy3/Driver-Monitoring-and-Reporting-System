@@ -14,7 +14,6 @@ public class LoginController {
 
     private final LoginService loginService;
 
-    @CrossOrigin(origins = DmrsApplication.crossOriginLink)
     @PostMapping
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         return loginService.login(request);

@@ -14,7 +14,7 @@ import java.util.Optional;
 public class VehicleController {
   VehicleService vehicleService;
 
-  @CrossOrigin(origins = DmrsApplication.crossOriginLink)
+
   @GetMapping
   public VehicleDTO getVehicleByDriverId(@RequestParam String id){
 
@@ -31,7 +31,7 @@ public class VehicleController {
             .build();
   }
 
-  @CrossOrigin(origins = DmrsApplication.crossOriginLink)
+
   @PutMapping
   public void updateVehicleById(@RequestBody VehicleRequest vehicleRequest){
     vehicleService.updateVehicle(vehicleRequest);

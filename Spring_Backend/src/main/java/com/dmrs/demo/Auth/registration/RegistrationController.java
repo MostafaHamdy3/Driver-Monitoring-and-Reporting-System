@@ -11,13 +11,13 @@ public class RegistrationController {
 
     private final RegistrationService registrationService;
 
-    @CrossOrigin(origins = DmrsApplication.crossOriginLink)
+
     @PostMapping
     public void register(@RequestBody RegistrationRequest request) {
          registrationService.register(request); // TODO: return a proper response
     }
 
-    @CrossOrigin(origins = DmrsApplication.crossOriginLink)
+
     @GetMapping(path = "confirm")
     public String confirm(@RequestParam("token") String token) {
         return registrationService.confirmToken(token);
