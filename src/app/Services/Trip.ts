@@ -7,10 +7,6 @@ export class Trip {
   status: Status;
 }
 
-export class TripsContent {
-  content: Trip[];
-}
-
 export enum Status{
   Normal, Aggressive, Very_Aggressive
 }

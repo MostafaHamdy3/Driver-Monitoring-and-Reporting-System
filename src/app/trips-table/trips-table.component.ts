@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Trip, TripsContent } from '../Services/Trip';
+import { Trip } from '../Services/Trip';
 import { TripService } from '../Services/user-trip.service';
 
 @Component({
@@ -29,9 +29,10 @@ export class TripsTableComponent implements OnInit {
   }
 
   onGetTrips() {
-    this.tripData.getTrips().subscribe((trip: TripsContent) => {
-      console.log(trip);
-      this.tripDetails = this.tripDetails.concat(trip.content);
+    this.tripData.getTrips().subscribe((data: Trip[]) => {
+      // console.log(data);
+      // this.tripDetails = this.tripDetails.concat(trip.content);
+      this.tripDetails = data;
     })
   }
 

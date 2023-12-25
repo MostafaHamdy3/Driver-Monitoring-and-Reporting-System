@@ -16,9 +16,8 @@ import {
   ApexTooltip,
   NgApexchartsModule,
 } from 'ng-apexcharts';
-import { DriverVehicleService } from '../Services/user-data.service';
 import { TripService } from '../Services/user-trip.service';
-import { Trip, TripsContent } from '../Services/Trip';
+import { Trip } from '../Services/Trip';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -135,9 +134,9 @@ export class DashboardComponent implements OnInit {
   }
 
   onGetTrips() {
-    this.tripData.getTrips().subscribe((trip: TripsContent) => {
-      console.log(trip);
-      this.tripDetails = this.tripDetails.concat(trip.content);
+    this.tripData.getTrips().subscribe((data: Trip[]) => {
+      console.log(data);
+      this.tripDetails = data;
     });
   }
 

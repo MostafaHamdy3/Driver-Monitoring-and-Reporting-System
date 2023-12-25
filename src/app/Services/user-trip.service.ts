@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Trip } from './Trip';
 
 @Injectable({
@@ -15,9 +15,11 @@ export class TripService {
 
   constructor(private http: HttpClient) {}
 
-  getTrips(): Observable<object> {
-    return this.http.get(
+  getTrips(): Observable<Trip[]> {
+    return this.http.get<Trip[]>(
       `${this.tripUrl}?pageNumber=${this.pageNumber}&pageSize=${this.pageSize}&serialNumber=${this.serialNumber}`
-    );
+    ).pipe(map((data: Trip[]) => {
+      return data;
+    }));
   }
 }
