@@ -22,9 +22,11 @@ export class ProfileSettingComponent implements OnInit {
   constructor(private driverService: DriverVehicleService) {}
 
   ngOnInit() {
-    this.driverDetails = this.driverService.driverDetails;
-    this.vehicleDetails = this.driverService.vehicleDetails;
-    console.log(this.driverDetails);
+    this.onGetDriverData();
+    this.onGetVehicleData();
+    // this.driverDetails = this.driverService.driverDetails;
+    // this.vehicleDetails = this.driverService.vehicleDetails;
+    // console.log(this.driverDetails);
   }
 
   onGetDriverData() {
@@ -37,7 +39,7 @@ export class ProfileSettingComponent implements OnInit {
       this.driverDetails.email = driver.email;
       this.driverDetails.phone = driver.phone;
       this.driverDetails.gender = driver.gender;
-      this.driverService.updateDriverDetails(driver);
+      // this.driverService.updateDriverDetails(driver);
     });
   }
 
@@ -51,7 +53,7 @@ export class ProfileSettingComponent implements OnInit {
       this.vehicleDetails.licensePlate = vehicle.licensePlate;
       this.vehicleDetails.creationYear = vehicle.creationYear;
       this.vehicleDetails.serialNumber = vehicle.serialNumber;
-      this.driverService.updateDriverDetails(vehicle);
+      // this.driverService.updateDriverDetails(vehicle);
     });
   }
 
