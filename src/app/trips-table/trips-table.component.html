@@ -15,7 +15,7 @@
           <tbody>
             <!-- Use *ngFor to iterate over the trip data and display each row -->
             <tr *ngFor="let trip of tripDetails">
-              <td>{{ trip.start_timestamp }}</td>
+              <td>{{ trip.start_timestamp | date:'HH:mm:ss' }}</td>
               <td>{{ trip.start_timestamp | date : "dd-MM-yyyy" }}</td>
               <td>{{ trip.distance }}</td>
               <td>
@@ -23,7 +23,7 @@
                   id="event_status"
                   [ngStyle]="{
                     'background-color':
-                      trip.status === 'SAFE'
+                      trip.status === 'NORMAL'
                         ? 'rgba(26, 147, 46, 0.18)'
                         : trip.status === 'AGGRESSIVE'
                         ? 'rgba(226, 177, 51, 0.18)'
@@ -31,7 +31,7 @@
                         ? 'rgba(238, 32, 28, 0.18)'
                         : '',
                     color:
-                      trip.status === 'SAFE'
+                      trip.status === 'NORMAL'
                         ? '#1A932E'
                         : trip.status === 'AGGRESSIVE'
                         ? '#DFA510'
