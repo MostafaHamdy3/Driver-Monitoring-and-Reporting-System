@@ -64,7 +64,7 @@
         </select>
       </div>
     </div>
-    <div *ngIf="updatedDeriver" class="valid-feedback">
+    <div *ngIf="updatedDeriver" class="text-center primary-text">
       <p>Updated driver details successfully</p>
     </div>
     <button
@@ -72,10 +72,12 @@
       type="submit"
       id="Signup"
       (click)="onUpdateDriverData()"
-    >Save</button>
+    >
+      Save
+    </button>
   </form>
 
-  <hr>
+  <hr />
   <br />
 
   <h2 class="title">About your vehicle</h2>
@@ -146,7 +148,7 @@
         />
       </div>
     </div>
-    <div *ngIf="updatedVehicle" class="text-center">
+    <div *ngIf="updatedVehicle" class="text-center primary-text">
       <p>Updated vehicle details successfully</p>
     </div>
     <button
@@ -154,6 +156,8 @@
       type="submit"
       id="Signup"
       (click)="onUpdateVehicleData()"
-    >Save</button>
+    >
+      Save
+    </button>
   </form>
 </div>

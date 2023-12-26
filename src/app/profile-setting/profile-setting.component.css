@@ -65,7 +65,7 @@ body {
 
 button {
   cursor: pointer;
-  background: #00A885;
+  background: #00a885;
   width: 25%;
   border: 0;
   padding: 10px 15px;
@@ -104,13 +104,13 @@ button:hover {
 }
 
 .primary-text {
-  color: #00A885;
+  color: #00a885;
 }
 
 .supporter {
   margin-top: 10px;
   font-size: 14px;
-  color: #8E8E8E;
+  color: #8e8e8e;
   cursor: pointer;
 }
 .remember-me {
