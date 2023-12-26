@@ -8,9 +8,8 @@ import { TripService } from '../Services/user-trip.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './trips-table.component.html',
-  styleUrls: ['./trips-table.component.css']
+  styleUrls: ['./trips-table.component.css'],
 })
-
 export class TripsTableComponent implements OnInit {
   suddenBrake: number = 0;
   aggressiveLeft: number = 0;
@@ -22,7 +21,7 @@ export class TripsTableComponent implements OnInit {
 
   tripDetails: Trip[] = [];
 
-  constructor(private tripData: TripService) { }
+  constructor(private tripData: TripService) {}
 
   ngOnInit() {
     this.onGetTrips();
@@ -30,19 +29,7 @@ export class TripsTableComponent implements OnInit {
 
   onGetTrips() {
     this.tripData.getTrips().subscribe((data: Trip[]) => {
-      // console.log(data);
-      // this.tripDetails = this.tripDetails.concat(trip.content);
       this.tripDetails = data;
-    })
+    });
   }
-
-  // getTripData(): Array<[string, string, number, string]> {
-  //   return [
-  //     ['10:00 AM', '2022-09-01', 50, 'Safe'],
-  //     ['02:30 PM', '2022-09-02', 75, 'Aggressive'],
-  //     ['09:15 AM', '2022-09-03', 30, 'Safe'],
-  //     ['04:45 PM', '2022-09-04', 60, 'Very Aggressive'],
-  //     ['08:30 AM', '2022-09-05', 45, 'Safe']
-  //   ];
-  // }
 }

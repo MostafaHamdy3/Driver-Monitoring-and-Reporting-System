@@ -16,26 +16,26 @@
             <!-- Use *ngFor to iterate over the trip data and display each row -->
             <tr *ngFor="let trip of tripDetails">
               <td>{{ trip.start_timestamp }}</td>
-              <td>{{ trip.start_timestamp | date:'dd' }}</td>
+              <td>{{ trip.start_timestamp | date : "dd-MM-yyyy" }}</td>
               <td>{{ trip.distance }}</td>
               <td>
                 <div
                   id="event_status"
                   [ngStyle]="{
                     'background-color':
-                      trip[3] === 'Safe'
+                      trip.status === 'SAFE'
                         ? 'rgba(26, 147, 46, 0.18)'
-                        : trip[3] === 'Aggressive'
+                        : trip.status === 'AGGRESSIVE'
                         ? 'rgba(226, 177, 51, 0.18)'
-                        : trip[3] === 'Very Aggressive'
+                        : trip.status === 'VERY_AGGRESSIVE'
                         ? 'rgba(238, 32, 28, 0.18)'
                         : '',
                     color:
-                      trip[3] === 'Safe'
+                      trip.status === 'SAFE'
                         ? '#1A932E'
-                        : trip[3] === 'Aggressive'
+                        : trip.status === 'AGGRESSIVE'
                         ? '#DFA510'
-                        : trip[3] === 'Very Aggressive'
+                        : trip.status === 'VERY_AGGRESSIVE'
                         ? '#EE201C'
                         : ''
                   }"
@@ -78,30 +78,18 @@
       <p class="card-description">Aggressive right</p>
     </div>
     <div class="card">
-      <img
-        src="../../assets/swerve.png"
-        alt="aggressive"
-        class="card-img"
-      />
+      <img src="../../assets/swerve.png" alt="aggressive" class="card-img" />
       <p class="card-num">{{ aggressiveSwerve }}</p>
       <p class="card-description">Aggressive swerve</p>
     </div>
     <div class="card">
-      <img
-        src="../../assets/speed.png"
-        alt="speed"
-        class="card-img"
-      />
+      <img src="../../assets/speed.png" alt="speed" class="card-img" />
       <p class="card-num">{{ speedViolation }}</p>
       <p class="card-description">Speed limit violation</p>
     </div>
     <div class="card">
-      <img
-        src="../../assets/road-sign.png"
-        alt="road-sign"
-        class="card-img"
-      />
-      <p class="card-num">{{ totalOtherSign }}/{{respondedOtherSign}}</p>
+      <img src="../../assets/road-sign.png" alt="road-sign" class="card-img" />
+      <p class="card-num">{{ totalOtherSign }}/{{ respondedOtherSign }}</p>
       <p class="card-description">Other traffic sign</p>
     </div>
   </div>
