@@ -111,19 +111,19 @@
                         id="event_status"
                         [ngStyle]="{
                           'background-color':
-                            trip[3] === 'Safe'
+                          trip.status === 'SAFE'
                               ? 'rgba(26, 147, 46, 0.18)'
-                              : trip[3] === 'Aggressive'
+                              : trip.status === 'AGGRESSIVE'
                               ? 'rgba(226, 177, 51, 0.18)'
-                              : trip[3] === 'Very Aggressive'
+                              : trip.status === 'VERY_AGGRESSIVE'
                               ? 'rgba(238, 32, 28, 0.18)'
                               : '',
                           color:
-                            trip[3] === 'Safe'
+                          trip.status === 'SAFE'
                               ? '#1A932E'
-                              : trip[3] === 'Aggressive'
+                              : trip.status === 'AGGRESSIVE'
                               ? '#DFA510'
-                              : trip[3] === 'Very Aggressive'
+                              : trip.status === 'VERY_AGGRESSIVE'
                               ? '#EE201C'
                               : ''
                         }"
