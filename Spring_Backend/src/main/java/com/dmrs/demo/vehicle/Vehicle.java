@@ -8,9 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 @NoArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode
+@AllArgsConstructor
 @Data
 @Document
 public class Vehicle {
@@ -47,17 +45,4 @@ public class Vehicle {
         this.model = model;
     }
 
-    //    public Vehicle(String diverMail, String serialNumber, String licensePlate, int creationYear, OEM oem, String model) {
-//        this.diverMail = diverMail;
-//        this.serialNumber = serialNumber;
-//        this.licensePlate = licensePlate;
-//        this.creationYear = creationYear;
-//        this.oem = oem;
-//        this.model = model;
-//    }
-//
-//    public Vehicle(String diverMail, String serialNumber) {
-//        this.diverMail = diverMail;
-//        this.serialNumber = serialNumber;
-//    }
 }

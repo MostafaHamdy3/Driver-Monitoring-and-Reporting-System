@@ -1,6 +1,6 @@
 package com.dmrs.demo.vehicle;
 
-import com.dmrs.demo.Auth.dto.VehicleRequest;
+import com.dmrs.demo.dto.VehicleRequest;
 import com.dmrs.demo.driver.Driver;
 import com.dmrs.demo.driver.DriverService;
 import com.dmrs.demo.exception.ApiRequestException;

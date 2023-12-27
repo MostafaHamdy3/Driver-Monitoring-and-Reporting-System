@@ -1,4 +1,4 @@
-package com.dmrs.demo.Auth.dto;
+package com.dmrs.demo.dto;
 
 public record LoginResponse (
         String token,

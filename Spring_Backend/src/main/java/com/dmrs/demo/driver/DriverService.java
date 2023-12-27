@@ -1,7 +1,7 @@
 package com.dmrs.demo.driver;
 
-import com.dmrs.demo.Auth.dto.DriverDTO;
-import com.dmrs.demo.Auth.dto.DriverRequest;
+import com.dmrs.demo.dto.DriverDTO;
+import com.dmrs.demo.dto.DriverRequest;
 import com.dmrs.demo.Auth.registration.token.ConfirmationToken;
 import com.dmrs.demo.Auth.registration.token.ConfirmationTokenService;
 import com.dmrs.demo.exception.ApiRequestException;

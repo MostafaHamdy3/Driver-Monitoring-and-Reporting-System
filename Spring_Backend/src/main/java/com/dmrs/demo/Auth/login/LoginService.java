@@ -1,7 +1,7 @@
 package com.dmrs.demo.Auth.login;
 
 
-import com.dmrs.demo.Auth.dto.LoginResponse;
+import com.dmrs.demo.dto.LoginResponse;
 import com.dmrs.demo.Auth.registration.EmailValidator;
 import com.dmrs.demo.Auth.registration.token.ConfirmationToken;
 import com.dmrs.demo.Auth.registration.token.ConfirmationTokenService;

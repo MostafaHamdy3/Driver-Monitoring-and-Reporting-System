@@ -1,4 +1,4 @@
-package com.dmrs.demo.RTVehicleData;
+package com.dmrs.demo.RTVehicleData.conditions;
 
 public enum DriverBehaviour {
     NORMAL,SUDDEN_ACCEL,SUDDEN_RT,SUDDEN_LT,SUDDEN_BR,

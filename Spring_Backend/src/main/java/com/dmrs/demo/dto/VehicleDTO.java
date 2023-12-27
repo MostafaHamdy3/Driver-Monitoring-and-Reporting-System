@@ -1,4 +1,4 @@
-package com.dmrs.demo.Auth.dto;
+package com.dmrs.demo.dto;
 
 import com.dmrs.demo.vehicle.OEM;
 import lombok.AllArgsConstructor;
