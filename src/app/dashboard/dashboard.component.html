@@ -161,94 +161,9 @@
         <div class="cards-outside">
           <p class="total-event">Your Total Events</p>
           <div class="cards">
-            <div class="card">
-              <img
-                src="../../assets/aggressive-icon.png"
-                alt="aggressive"
-                class="card-img"
-              />
-              <p class="card-num">{{ totalSuddenBrake }}</p>
-              <p class="card-description">Total sudden brake</p>
-            </div>
-            <div class="card">
-              <img
-                src="../../assets/aggressive-left-turn.png"
-                alt="aggressive-left-turn"
-                class="card-img"
-              />
-              <p class="card-num">{{ totalAggressiveLeft }}</p>
-              <p class="card-description">Total aggressive left</p>
-            </div>
-            <div class="card">
-              <img
-                src="../../assets/aggressive-right-turn.png"
-                alt="aggressive-right-turn"
-                class="card-img"
-              />
-              <p class="card-num">{{ totalAggressiveRight }}</p>
-              <p class="card-description">Total aggressive right</p>
-            </div>
-            <div class="card">
-              <img
-                src="../../assets/swerve.png"
-                alt="swerve"
-                class="card-img"
-              />
-              <p class="card-num">{{ totalAggressiveSwerve }}</p>
-              <p class="card-description">Total aggressive swerve</p>
-            </div>
-            <div class="card">
-              <img src="../../assets/speed.png" alt="speed" class="card-img" />
-              <p class="card-num">{{ speedViolation }}</p>
-              <p class="card-description">Speed limit violation</p>
-            </div>
-            <div class="card">
-              <img
-                src="../../assets/road-sign.png"
-                alt="road-sign"
-                class="card-img"
-              />
-              <p class="card-num">
-                {{ totalOtherSign }}
-              </p>
-              <p class="card-description">Other traffic sign</p>
-            </div>
-            <!-- <app-event-card
-              [imgSrc]="'../../assets/aggressive-icon.png'"
-              [imgAlt]="'aggressive'"
-              [eventCount]="totalEvents.suddenBraking"
-              [description]="'Total sudden brake'"
-            ></app-event-card>
-            <app-event-card
-              [imgSrc]="'../../assets/aggressive-left-turn.png'"
-              [imgAlt]="'aggressive-left-turn'"
-              [eventCount]="totalEvents.aggTL"
-              [description]="'Total aggressive left'"
-            ></app-event-card>
-            <app-event-card
-              [imgSrc]="'../../assets/aggressive-right-turn.png'"
-              [imgAlt]="'aggressive-right-turn'"
-              [eventCount]="totalEvents.aggTR"
-              [description]="'Total aggressive right'"
-            ></app-event-card>
-            <app-event-card
-              [imgSrc]="'../../assets/swerve.png'"
-              [imgAlt]="'swerve'"
-              [eventCount]="totalEvents.swerve"
-              [description]="'Total aggressive swerve'"
-            ></app-event-card>
-            <app-event-card
-              [imgSrc]="'../../assets/speed.png'"
-              [imgAlt]="'speed limit'"
-              [eventCount]="totalEvents.speedLimitViolation"
-              [description]="'Speed limit violation'"
-            ></app-event-card>
-            <app-event-card
-              [imgSrc]="'../../assets/road-sign.png'"
-              [imgAlt]="'road-sign'"
-              [eventCount]="totalEvents.otherTrafficViolation"
-              [description]="'Other traffic sign'"
-            ></app-event-card> -->
+            <ng-container *ngFor="let cardData of cardsData">
+              <app-event-card [CardDataProps]="cardData"></app-event-card>
+            </ng-container>
           </div>
         </div>
       </div>

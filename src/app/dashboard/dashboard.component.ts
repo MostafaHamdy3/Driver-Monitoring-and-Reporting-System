@@ -23,6 +23,7 @@ import { TotalEvents } from '../models/TotalEvents';
 import { ChartGroup } from '../models/Charts';
 import { ChartsService } from '../Services/charts.service';
 import { AuthService } from '../Services/auth.service';
+import { EventCardComponentComponent } from '../event-card-component/event-card-component.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -46,6 +47,7 @@ export type ChartOptions = {
     RouterLink,
     RouterLinkActive,
     NgApexchartsModule,
+    EventCardComponentComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
@@ -54,6 +56,45 @@ export class DashboardComponent implements OnInit {
   tripDetails: Trip[] = [];
   totalEvents: TotalEvents = new TotalEvents();
   chartGroup: ChartGroup = new ChartGroup();
+
+  cardsData = [
+    {
+      imgSrc: '../../assets/aggressive-icon.png',
+      imgAlt: 'aggressive',
+      eventCount: this.totalEvents.suddenBraking,
+      description: 'Total sudden brake',
+    },
+    {
+      imgSrc: '../../assets/aggressive-left-turn.png',
+      imgAlt: 'aggressive-left-turn',
+      eventCount: this.totalEvents.aggTL,
+      description: 'Total aggressive left',
+    },
+    {
+      imgSrc: '../../assets/aggressive-right-turn.png',
+      imgAlt: 'aggressive-right-turn',
+      eventCount: this.totalEvents.aggTR,
+      description: 'Total aggressive right',
+    },
+    {
+      imgSrc: '../../assets/swerve.png',
+      imgAlt: 'swerve',
+      eventCount: this.totalEvents.swerve,
+      description: 'Total aggressive swerve',
+    },
+    {
+      imgSrc: '../../assets/speed.png',
+      imgAlt: 'speed limit',
+      eventCount: this.totalEvents.speedLimitViolation,
+      description: 'Speed limit violation',
+    },
+    {
+      imgSrc: '../../assets/road-sign.png',
+      imgAlt: 'road-sign',
+      eventCount: this.totalEvents.otherTrafficViolation,
+      description: 'Other traffic sign',
+    },
+  ];
 
   selectedNavItem: string | null = 'dashboard';
   openDashboard = true;

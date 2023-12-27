@@ -1,16 +1,26 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-event-card-component',
+  selector: 'app-event-card',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './event-card-component.component.html',
   styleUrl: '../dashboard/dashboard.component.css',
 })
-export class EventCardComponentComponent {
-  @Input() imgSrc: string;
-  @Input() imgAlt: string;
-  @Input() eventCount: number;
-  @Input() description: string;
+export class EventCardComponentComponent implements OnChanges {
+  @Input('CardDataProps') cardDataProps: CardDetails;
+  cardData: CardDetails;
+
+  ngOnChanges() {
+    console.log(this.cardDataProps);
+    this.cardData = this.cardDataProps;
+  }
+}
+
+interface CardDetails {
+  imgSrc: string;
+  imgAlt: string;
+  eventCount: number;
+  description: string;
 }
