@@ -161,6 +161,44 @@
         <div class="cards-outside">
           <p class="total-event">Your Total Events</p>
           <div class="cards">
+            <app-event-card
+              [imgSrc]="'../../assets/aggressive-icon.png'"
+              [imgAlt]="'aggressive'"
+              [eventCount]="totalEvents.suddenBraking"
+              [description]="'Total sudden brake'"
+            ></app-event-card>
+            <app-event-card
+              [imgSrc]="'../../assets/aggressive-left-turn.png'"
+              [imgAlt]="'aggressive-left-turn'"
+              [eventCount]="totalEvents.aggTL"
+              [description]="'Total aggressive left'"
+            ></app-event-card>
+            <app-event-card
+              [imgSrc]="'../../assets/aggressive-right-turn.png'"
+              [imgAlt]="'aggressive-right-turn'"
+              [eventCount]="totalEvents.aggTR"
+              [description]="'Total aggressive right'"
+            ></app-event-card>
+            <app-event-card
+              [imgSrc]="'../../assets/swerve.png'"
+              [imgAlt]="'swerve'"
+              [eventCount]="totalEvents.swerve"
+              [description]="'Total aggressive swerve'"
+            ></app-event-card>
+            <app-event-card
+              [imgSrc]="'../../assets/speed.png'"
+              [imgAlt]="'speed limit'"
+              [eventCount]="totalEvents.speedLimitViolation"
+              [description]="'Speed limit violation'"
+            ></app-event-card>
+            <app-event-card
+              [imgSrc]="'../../assets/road-sign.png'"
+              [imgAlt]="'road-sign'"
+              [eventCount]="totalEvents.otherTrafficViolation"
+              [description]="'Other traffic sign'"
+            ></app-event-card>
+          </div>
+          <!-- <div class="cards">
             <div class="card">
               <img
                 src="../../assets/aggressive-icon.png"
@@ -213,7 +251,7 @@
               </p>
               <p class="card-description">Other traffic sign</p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <ng-template #changeContent>
