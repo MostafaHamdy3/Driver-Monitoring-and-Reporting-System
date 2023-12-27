@@ -110,7 +110,7 @@ export class DashboardComponent implements OnInit {
     this.chartOptions = {
       series: [
         {
-          name: 'Sudden Brake',
+          name: 'Aggressive Cornering & Braking',
           data: [
             this.chartGroup?.oneToSix?.aggCorneringAndBraking || 0,
             this.chartGroup?.sevenToTwelve?.aggCorneringAndBraking || 0,
@@ -119,7 +119,7 @@ export class DashboardComponent implements OnInit {
           ],
         },
         {
-          name: 'Sudden Accedence',
+          name: 'Swerve',
           data: [
             this.chartGroup?.oneToSix?.swerve || 0,
             this.chartGroup?.sevenToTwelve?.swerve || 0,
@@ -128,7 +128,7 @@ export class DashboardComponent implements OnInit {
           ],
         },
         {
-          name: 'Aggressive Turn Left',
+          name: 'Traffic Violation',
           data: [
             this.chartGroup?.oneToSix?.trafficViolation || 0,
             this.chartGroup?.sevenToTwelve?.trafficViolation || 0,
