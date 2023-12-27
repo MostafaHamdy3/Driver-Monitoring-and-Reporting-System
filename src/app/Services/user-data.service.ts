@@ -46,7 +46,7 @@ export class DataService {
   }
 
   getTotalEvents(): Observable<object> {
-    return this.http.get(`${this.totalEventsUrl}?id=${this.id}`);
+    return this.http.get(`${this.totalEventsUrl}?driverId=${this.id}`);
   }
 
   updateEvents(totalEvents: TotalEvents) {

@@ -16,14 +16,12 @@ export class TripService {
   constructor(private http: HttpClient) {}
 
   getTrips(): Observable<Trip[]> {
-    // console.log(this.serialNumber);
     return this.http
       .get<TripGetResponse>(
         `${this.tripUrl}?pageNumber=${this.pageNumber}&pageSize=${this.pageSize}&serialNumber=${this.serialNumber}`
       )
       .pipe(
         map((data) => {
-          console.log(data.content);
           return data.content;
         })
       );

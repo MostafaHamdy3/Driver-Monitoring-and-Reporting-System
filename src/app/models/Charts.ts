@@ -1,22 +1,22 @@
 export class ChartGroup {
   oneToSix: {
-    suddenBraking: number;
-    suddenAcc: number;
-    aggTL: number;
+    aggCorneringAndBraking: number;
+    swerve: number;
+    trafficViolation: number;
   };
   sevenToTwelve: {
-    suddenBraking: number;
-    suddenAcc: number;
-    aggTL: number;
+    aggCorneringAndBraking: number;
+    swerve: number;
+    trafficViolation: number;
   };
   thirteenToEighteen: {
-    suddenBraking: number;
-    suddenAcc: number;
-    aggTL: number;
+    aggCorneringAndBraking: number;
+    swerve: number;
+    trafficViolation: number;
   };
   nineteenToTwentyFour: {
-    suddenBraking: number;
-    suddenAcc: number;
-    aggTL: number;
+    aggCorneringAndBraking: number;
+    swerve: number;
+    trafficViolation: number;
   };
 }

@@ -63,18 +63,12 @@ export type PieChartOptions = {
   styleUrl: './aggressive.component.css',
 })
 export class AggressiveComponent implements OnInit {
-  totalScore: string = localStorage.getItem('totalScore');
   chartGroup: ChartGroup = new ChartGroup();
   totalEvents: TotalEvents = new TotalEvents();
 
-  AggCorneringBraking =
-    this.totalEvents.aggTL +
-      this.totalEvents.aggTR +
-      this.totalEvents.suddenBraking || 0;
+  AggCorneringBraking: number;
 
-  TrafficSignViolations =
-    this.totalEvents.speedLimitViolation +
-      this.totalEvents.otherTrafficViolation || 0;
+  TrafficSignViolations: number;
 
   @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
@@ -83,34 +77,73 @@ export class AggressiveComponent implements OnInit {
   constructor(
     private chartService: ChartsService,
     private dataService: DataService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
+    this.onGetTotalEvents();
+    this.onGetChartGroupData();
+  }
+
+  renderFusionCharts() {
+    FusionCharts.ready(() => {
+      const chartObj = new FusionCharts({
+        type: 'angulargauge',
+        renderAt: 'chart-container',
+        width: '450',
+        height: '300',
+        dataSource: {
+          chart: {
+            caption: '',
+            subcaption: '',
+            lowerLimit: '0',
+            upperLimit: '180',
+            theme: 'fusion',
+          },
+          colorRange: {
+            color: [
+              { minValue: '0', maxValue: '70', code: '#6baa01' },
+              { minValue: '70', maxValue: '100', code: '#f8bd19' },
+              { minValue: '100', maxValue: '180', code: '#e44a00' },
+            ],
+          },
+          dials: {
+            dial: [{ value: this.totalEvents.totalScore }],
+          },
+        },
+      });
+
+      chartObj.render();
+    });
+  }
+
+  renderGroupChart() {
     this.chartOptions = {
       series: [
         {
           name: 'Sudden Brake',
           data: [
-            this.chartGroup.oneToSix.suddenBraking,
-            this.chartGroup.sevenToTwelve.suddenBraking,
-            this.chartGroup.nineteenToTwentyFour.suddenBraking,
-            this.chartGroup.nineteenToTwentyFour.suddenBraking,
+            this.chartGroup?.oneToSix?.aggCorneringAndBraking || 0,
+            this.chartGroup?.sevenToTwelve?.aggCorneringAndBraking || 0,
+            this.chartGroup?.nineteenToTwentyFour?.aggCorneringAndBraking || 0,
+            this.chartGroup?.nineteenToTwentyFour?.aggCorneringAndBraking || 0,
           ],
         },
         {
           name: 'Sudden Accedence',
           data: [
-            this.chartGroup.oneToSix.suddenAcc,
-            this.chartGroup.sevenToTwelve.suddenAcc,
-            this.chartGroup.nineteenToTwentyFour.suddenAcc,
-            this.chartGroup.nineteenToTwentyFour.suddenAcc,
+            this.chartGroup?.oneToSix?.swerve || 0,
+            this.chartGroup?.sevenToTwelve?.swerve || 0,
+            this.chartGroup?.nineteenToTwentyFour?.swerve || 0,
+            this.chartGroup?.nineteenToTwentyFour?.swerve || 0,
           ],
         },
         {
           name: 'Aggressive Turn Left',
           data: [
-            this.chartGroup.oneToSix.aggTL,
-            this.chartGroup.sevenToTwelve.aggTL,
-            this.chartGroup.nineteenToTwentyFour.aggTL,
-            this.chartGroup.nineteenToTwentyFour.aggTL,
+            this.chartGroup?.oneToSix?.trafficViolation || 0,
+            this.chartGroup?.sevenToTwelve?.trafficViolation || 0,
+            this.chartGroup?.nineteenToTwentyFour?.trafficViolation || 0,
+            this.chartGroup?.nineteenToTwentyFour?.trafficViolation || 0,
           ],
         },
       ],
@@ -135,8 +168,8 @@ export class AggressiveComponent implements OnInit {
       },
       xaxis: {
         categories: [
-          '1:00 - 6:00',
-          '7:00 - 12:00',
+          '01:00 - 06:00',
+          '07:00 - 12:00',
           '13:00 - 18:00',
           '19:00 - 00:00',
         ],
@@ -157,11 +190,22 @@ export class AggressiveComponent implements OnInit {
         },
       },
     };
+  }
+
+  renderPieChart() {
+    this.AggCorneringBraking =
+      this.totalEvents.aggTL +
+        this.totalEvents.aggTR +
+        this.totalEvents.suddenBraking || 0;
+
+    this.TrafficSignViolations =
+      this.totalEvents.speedLimitViolation +
+        this.totalEvents.otherTrafficViolation || 0;
 
     this.pieChartOptions = {
       series: [
-        this.totalEvents.swerve,
-        this.totalEvents.normal,
+        this.totalEvents?.swerve,
+        this.totalEvents?.normal,
         this.AggCorneringBraking,
         this.TrafficSignViolations,
       ],
@@ -191,62 +235,20 @@ export class AggressiveComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {
-    this.onGetTotalEvents();
-    this.onGetChartGroupData();
-    FusionCharts.ready(() => {
-      const chartObj = new FusionCharts({
-        type: 'angulargauge',
-        renderAt: 'chart-container',
-        width: '450',
-        height: '300',
-        // dataFormat: 'json',
-        dataSource: {
-          chart: {
-            caption: '',
-            subcaption: '',
-            lowerLimit: '0',
-            upperLimit: '180',
-            theme: 'fusion',
-          },
-          colorRange: {
-            color: [
-              { minValue: '0', maxValue: '70', code: '#6baa01' },
-              { minValue: '70', maxValue: '100', code: '#f8bd19' },
-              { minValue: '100', maxValue: '180', code: '#e44a00' },
-            ],
-          },
-          dials: {
-            dial: [{ value: this.totalScore }],
-          },
-        },
-      });
-
-      chartObj.render();
-    });
-  }
-
   onGetTotalEvents() {
     this.dataService.getTotalEvents().subscribe((data: TotalEvents) => {
-      console.log(data);
       this.totalEvents = data;
-      // this.totalSuddenBrake = data.suddenBraking;
-      // this.totalAggressiveLeft = data.aggTL;
-      // this.totalAggressiveRight = data.aggTR;
-      // this.totalAggressiveSwerve = data.swerve;
-      // this.speedViolation = data.speedLimitViolation;
-      // this.totalOtherSign = data.otherTrafficViolation;
+
+      this.renderFusionCharts();
+      this.renderPieChart();
     });
   }
 
   onGetChartGroupData() {
     this.chartService.getChartGroupData().subscribe((data: ChartGroup) => {
-      console.log(data);
       this.chartGroup = data;
-      // this.chartGroup.oneToSix = data.oneToSix;
-      // this.chartGroup.sevenToTwelve = data.sevenToTwelve;
-      // this.chartGroup.thirteenToEighteen = data.thirteenToEighteen;
-      // this.chartGroup.nineteenToTwentyFour = data.nineteenToTwentyFour;
+
+      this.renderGroupChart();
     });
   }
 }

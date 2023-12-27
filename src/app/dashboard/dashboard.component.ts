@@ -58,14 +58,6 @@ export class DashboardComponent implements OnInit {
   openDashboard = true;
   serialNumber: string = '';
 
-  totalSuddenBrake: number = 0;
-  totalAggressiveLeft: number = 0;
-  totalAggressiveRight: number = 0;
-  totalAggressiveSwerve: number = 0;
-  speedViolation: number = 0;
-  totalOtherSign: number = 0;
-  // respondedOtherSign: number = 0;
-
   @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
@@ -73,34 +65,75 @@ export class DashboardComponent implements OnInit {
     private tripData: TripService,
     private dataService: DataService,
     private chartService: ChartsService
-  ) {
+  ) {}
+
+  ngOnInit() {
+    this.onGetTrips();
+    this.onGetTotalEvents();
+    this.onGetChartGroupData();
+  }
+
+  onGetTrips() {
+    this.tripData.getTrips().subscribe((data: Trip[]) => {
+      this.tripDetails = data;
+    });
+  }
+
+  onGetTotalEvents() {
+    this.dataService.getTotalEvents().subscribe((data: TotalEvents) => {
+      this.totalEvents = data;
+    });
+  }
+
+  onGetChartGroupData() {
+    this.chartService.getChartGroupData().subscribe((data: ChartGroup) => {
+      this.chartGroup = data;
+
+      this.renderGroupChart();
+    });
+  }
+
+  onNavItemClicked(item: string) {
+    item === 'dashboard'
+      ? (this.openDashboard = true)
+      : (this.openDashboard = false);
+    this.selectedNavItem = item;
+  }
+
+  logoutHandler() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('driverId');
+    localStorage.removeItem('serialNumber');
+  }
+
+  renderGroupChart() {
     this.chartOptions = {
       series: [
         {
           name: 'Sudden Brake',
           data: [
-            this.chartGroup.oneToSix.suddenBraking,
-            this.chartGroup.sevenToTwelve.suddenBraking,
-            this.chartGroup.nineteenToTwentyFour.suddenBraking,
-            this.chartGroup.nineteenToTwentyFour.suddenBraking,
+            this.chartGroup?.oneToSix?.aggCorneringAndBraking || 0,
+            this.chartGroup?.sevenToTwelve?.aggCorneringAndBraking || 0,
+            this.chartGroup?.nineteenToTwentyFour?.aggCorneringAndBraking || 0,
+            this.chartGroup?.nineteenToTwentyFour?.aggCorneringAndBraking || 0,
           ],
         },
         {
           name: 'Sudden Accedence',
           data: [
-            this.chartGroup.oneToSix.suddenAcc,
-            this.chartGroup.sevenToTwelve.suddenAcc,
-            this.chartGroup.nineteenToTwentyFour.suddenAcc,
-            this.chartGroup.nineteenToTwentyFour.suddenAcc,
+            this.chartGroup?.oneToSix?.swerve || 0,
+            this.chartGroup?.sevenToTwelve?.swerve || 0,
+            this.chartGroup?.nineteenToTwentyFour?.swerve || 0,
+            this.chartGroup?.nineteenToTwentyFour?.swerve || 0,
           ],
         },
         {
           name: 'Aggressive Turn Left',
           data: [
-            this.chartGroup.oneToSix.aggTL,
-            this.chartGroup.sevenToTwelve.aggTL,
-            this.chartGroup.nineteenToTwentyFour.aggTL,
-            this.chartGroup.nineteenToTwentyFour.aggTL,
+            this.chartGroup?.oneToSix?.trafficViolation || 0,
+            this.chartGroup?.sevenToTwelve?.trafficViolation || 0,
+            this.chartGroup?.nineteenToTwentyFour?.trafficViolation || 0,
+            this.chartGroup?.nineteenToTwentyFour?.trafficViolation || 0,
           ],
         },
       ],
@@ -125,8 +158,8 @@ export class DashboardComponent implements OnInit {
       },
       xaxis: {
         categories: [
-          '1:00 - 6:00',
-          '7:00 - 12:00',
+          '01:00 - 06:00',
+          '07:00 - 12:00',
           '13:00 - 18:00',
           '19:00 - 00:00',
         ],
@@ -148,62 +181,4 @@ export class DashboardComponent implements OnInit {
       },
     };
   }
-
-  ngOnInit() {
-    this.onGetTrips();
-    this.onGetTotalEvents();
-    this.onGetChartGroupData();
-  }
-
-  onGetTrips() {
-    this.tripData.getTrips().subscribe((data: Trip[]) => {
-      console.log(data);
-      this.tripDetails = data;
-    });
-  }
-
-  onGetTotalEvents() {
-    this.dataService.getTotalEvents().subscribe((data: TotalEvents) => {
-      console.log(data);
-      this.totalEvents = data;
-      this.totalSuddenBrake = data.suddenBraking;
-      this.totalAggressiveLeft = data.aggTL;
-      this.totalAggressiveRight = data.aggTR;
-      this.totalAggressiveSwerve = data.swerve;
-      this.speedViolation = data.speedLimitViolation;
-      this.totalOtherSign = data.otherTrafficViolation;
-    });
-  }
-
-  onGetChartGroupData() {
-    this.chartService.getChartGroupData().subscribe((data: ChartGroup) => {
-      console.log(data);
-      this.chartGroup = data;
-      // this.chartGroup.oneToSix = data.oneToSix;
-      // this.chartGroup.sevenToTwelve = data.sevenToTwelve;
-      // this.chartGroup.thirteenToEighteen = data.thirteenToEighteen;
-      // this.chartGroup.nineteenToTwentyFour = data.nineteenToTwentyFour;
-    });
-  }
-
-  onNavItemClicked(item: string) {
-    item === 'dashboard'
-      ? (this.openDashboard = true)
-      : (this.openDashboard = false);
-    this.selectedNavItem = item;
-  }
-
-  logoutHandler() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('driverId');
-    localStorage.removeItem('serialNumber');
-  }
-
-  // getTripData(): Array<[string, string, number, string]> {
-  //   return [
-  //     ['10:00 AM', '2022-09-01', 50, 'Safe'],
-  //     ['02:30 PM', '2022-09-02', 75, 'Aggressive'],
-  //     ['04:45 PM', '2022-09-04', 60, 'Very Aggressive'],
-  //   ];
-  // }
 }

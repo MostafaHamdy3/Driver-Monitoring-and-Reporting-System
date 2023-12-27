@@ -10,7 +10,6 @@ export class SignupService {
   constructor(private httpClient: HttpClient) {}
 
   RegisterUser(userData: UserRegister) {
-    // console.log(userData);
     return this.httpClient.post(`${this.baseUrl}`, userData);
   }
 }
