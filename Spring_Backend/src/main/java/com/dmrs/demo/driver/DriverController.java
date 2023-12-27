@@ -1,8 +1,7 @@
 package com.dmrs.demo.driver;
 
-import com.dmrs.demo.Auth.dto.DriverDTO;
-import com.dmrs.demo.Auth.dto.DriverRequest;
-import com.dmrs.demo.DmrsApplication;
+import com.dmrs.demo.dto.DriverDTO;
+import com.dmrs.demo.dto.DriverRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

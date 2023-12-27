@@ -1,12 +1,9 @@
 package com.dmrs.demo.vehicle;
 
-import com.dmrs.demo.Auth.dto.VehicleDTO;
-import com.dmrs.demo.Auth.dto.VehicleRequest;
-import com.dmrs.demo.DmrsApplication;
+import com.dmrs.demo.dto.VehicleDTO;
+import com.dmrs.demo.dto.VehicleRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/vehicle")

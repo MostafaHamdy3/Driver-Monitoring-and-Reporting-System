@@ -1,70 +1,35 @@
 package com.dmrs.demo.RTVehicleData;
 
-import com.mongodb.BSONTimestampCodec;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import com.dmrs.demo.RTVehicleData.conditions.Conditions;
+import com.dmrs.demo.RTVehicleData.conditions.DriverBehaviour;
+import com.dmrs.demo.RTVehicleData.conditions.RoadSign;
+import com.dmrs.demo.RTVehicleData.conditions.Status;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.ZonedDateTime;
 
-@Getter
-@Setter
-@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Document
 public class RTVehicleData {
     @Id
     private String id;
     private String serialNumber;
-    private String gps;
-    private int speed;
-    private ZonedDateTime timestamp;
+    private float latitude;
+    private float longitude;
+    private String timestamp; // todo: change to ZonedDateTime
     private Status status;
-    private DriverBehaviour driverBehaviour;
-    private int speedLimit ;
-    private RoadSign roadSign;
-    private boolean roadSignAdherence ;
+    private Conditions conditions;
 
-    public RTVehicleData(String serialNumber, String gps, int speed, ZonedDateTime timestamp, Status status, DriverBehaviour driverBehaviour) {
+    public RTVehicleData(String serialNumber, float latitude, float longitude, String timestamp, Status status, Conditions conditions) {
         this.serialNumber = serialNumber;
-        this.gps = gps;
-        this.speed = speed;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.timestamp = timestamp;
         this.status = status;
-        this.driverBehaviour = driverBehaviour;
-    }
-
-    public RTVehicleData(String id, String serialNumber, String gps, int speed, ZonedDateTime timestamp, Status status, DriverBehaviour driverBehaviour, int speedLimit, RoadSign roadSign, boolean roadSignAdherence) {
-        this.id = id;
-        this.serialNumber = serialNumber;
-        this.gps = gps;
-        this.speed = speed;
-        this.timestamp = timestamp;
-        this.status = status;
-        this.driverBehaviour = driverBehaviour;
-        this.speedLimit = speedLimit;
-        this.roadSign = roadSign;
-        this.roadSignAdherence = roadSignAdherence;
-    }
-
-    public RTVehicleData(String serialNumber, String gps, int speed, ZonedDateTime timestamp, Status status, DriverBehaviour driverBehaviour, int speedLimit) {
-        this.serialNumber = serialNumber;
-        this.gps = gps;
-        this.speed = speed;
-        this.timestamp = timestamp;
-        this.status = status;
-        this.driverBehaviour = driverBehaviour;
-        this.speedLimit = speedLimit;
-    }
-
-    public RTVehicleData(String serialNumber, String gps, int speed, ZonedDateTime timestamp, Status status) {
-        this.serialNumber = serialNumber;
-        this.gps = gps;
-        this.speed = speed;
-        this.timestamp = timestamp;
-        this.status = status;
+        this.conditions = conditions;
     }
 }

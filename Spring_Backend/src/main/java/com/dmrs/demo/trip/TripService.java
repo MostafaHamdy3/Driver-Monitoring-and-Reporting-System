@@ -1,7 +1,7 @@
 package com.dmrs.demo.trip;
 
 
-import com.dmrs.demo.Auth.dto.TripRequest;
+import com.dmrs.demo.dto.TripRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
