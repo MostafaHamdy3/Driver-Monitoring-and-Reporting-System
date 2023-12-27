@@ -22,6 +22,7 @@ import { DataService } from '../Services/user-data.service';
 import { TotalEvents } from '../models/TotalEvents';
 import { ChartGroup } from '../models/Charts';
 import { ChartsService } from '../Services/charts.service';
+import { AuthService } from '../Services/auth.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -64,7 +65,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private tripData: TripService,
     private dataService: DataService,
-    private chartService: ChartsService
+    private chartService: ChartsService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -100,10 +102,13 @@ export class DashboardComponent implements OnInit {
     this.selectedNavItem = item;
   }
 
-  logoutHandler() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('driverId');
-    localStorage.removeItem('serialNumber');
+  generateChartData(key: string) {
+    return [
+      this.chartGroup?.oneToSix?.[key] || 0,
+      this.chartGroup?.sevenToTwelve?.[key] || 0,
+      this.chartGroup?.thirteenToEighteen?.[key] || 0,
+      this.chartGroup?.nineteenToTwentyFour?.[key] || 0,
+    ];
   }
 
   renderGroupChart() {
@@ -111,30 +116,15 @@ export class DashboardComponent implements OnInit {
       series: [
         {
           name: 'Aggressive Cornering & Braking',
-          data: [
-            this.chartGroup?.oneToSix?.aggCorneringAndBraking || 0,
-            this.chartGroup?.sevenToTwelve?.aggCorneringAndBraking || 0,
-            this.chartGroup?.nineteenToTwentyFour?.aggCorneringAndBraking || 0,
-            this.chartGroup?.nineteenToTwentyFour?.aggCorneringAndBraking || 0,
-          ],
+          data: this.generateChartData('aggCorneringAndBraking'),
         },
         {
           name: 'Swerve',
-          data: [
-            this.chartGroup?.oneToSix?.swerve || 0,
-            this.chartGroup?.sevenToTwelve?.swerve || 0,
-            this.chartGroup?.nineteenToTwentyFour?.swerve || 0,
-            this.chartGroup?.nineteenToTwentyFour?.swerve || 0,
-          ],
+          data: this.generateChartData('swerve'),
         },
         {
           name: 'Traffic Violation',
-          data: [
-            this.chartGroup?.oneToSix?.trafficViolation || 0,
-            this.chartGroup?.sevenToTwelve?.trafficViolation || 0,
-            this.chartGroup?.nineteenToTwentyFour?.trafficViolation || 0,
-            this.chartGroup?.nineteenToTwentyFour?.trafficViolation || 0,
-          ],
+          data: this.generateChartData('trafficViolation'),
         },
       ],
       chart: {
@@ -180,5 +170,9 @@ export class DashboardComponent implements OnInit {
         },
       },
     };
+  }
+
+  logoutHandler() {
+    this.authService.logout();
   }
 }
