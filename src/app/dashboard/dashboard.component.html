@@ -103,7 +103,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let trip of tripDetails">
-                    <td>{{ trip.start_timestamp | date:'HH:mm:ss'}}</td>
+                    <td>{{ trip.start_timestamp | date : "HH:mm:ss" }}</td>
                     <td>{{ trip.start_timestamp | date : "dd-MM-yyyy" }}</td>
                     <td>{{ trip.distance }}</td>
                     <td>
@@ -209,7 +209,7 @@
                 class="card-img"
               />
               <p class="card-num">
-                {{ totalOtherSign }}/{{ respondedOtherSign }}
+                {{ totalOtherSign }}
               </p>
               <p class="card-description">Other traffic sign</p>
             </div>

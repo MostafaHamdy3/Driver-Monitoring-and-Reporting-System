@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { User } from '../Services/user';
+import { User } from '../models/userLogin';
 import { FormsModule } from '@angular/forms';
 import { UserLoginService } from '../Services/user-login.service';
-import { Driver } from '../Services/Driver';
+import { Driver } from '../models/Driver';
 
 @Component({
   selector: 'app-login',

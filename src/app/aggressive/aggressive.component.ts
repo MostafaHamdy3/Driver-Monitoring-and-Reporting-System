@@ -20,7 +20,11 @@ import {
   ApexNonAxisChartSeries,
   ApexResponsive,
   NgApexchartsModule,
-} from "ng-apexcharts";
+} from 'ng-apexcharts';
+import { ChartsService } from '../Services/charts.service';
+import { ChartGroup } from '../models/Charts';
+import { DataService } from '../Services/user-data.service';
+import { TotalEvents } from '../models/TotalEvents';
 
 // Apply the chart and theme modules
 Charts(FusionCharts);
@@ -56,108 +60,140 @@ export type PieChartOptions = {
   standalone: true,
   imports: [CommonModule, NgApexchartsModule],
   templateUrl: './aggressive.component.html',
-  styleUrl: './aggressive.component.css'
+  styleUrl: './aggressive.component.css',
 })
 export class AggressiveComponent implements OnInit {
-  speedValue: number = 80;
-  numSafe: number = 45;
-  numAggressive: number = 70;
-  numVeryAggressive: number = 30;
+  totalScore: string = localStorage.getItem('totalScore');
+  chartGroup: ChartGroup = new ChartGroup();
+  totalEvents: TotalEvents = new TotalEvents();
 
-  @ViewChild("chart") chart: ChartComponent;
+  AggCorneringBraking =
+    this.totalEvents.aggTL +
+      this.totalEvents.aggTR +
+      this.totalEvents.suddenBraking || 0;
+
+  TrafficSignViolations =
+    this.totalEvents.speedLimitViolation +
+      this.totalEvents.otherTrafficViolation || 0;
+
+  @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   public pieChartOptions: Partial<PieChartOptions>;
 
-  constructor() {
+  constructor(
+    private chartService: ChartsService,
+    private dataService: DataService
+  ) {
     this.chartOptions = {
       series: [
         {
-          name: "Net Profit",
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+          name: 'Sudden Brake',
+          data: [
+            this.chartGroup.oneToSix.suddenBraking,
+            this.chartGroup.sevenToTwelve.suddenBraking,
+            this.chartGroup.nineteenToTwentyFour.suddenBraking,
+            this.chartGroup.nineteenToTwentyFour.suddenBraking,
+          ],
         },
         {
-          name: "Revenue",
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+          name: 'Sudden Accedence',
+          data: [
+            this.chartGroup.oneToSix.suddenAcc,
+            this.chartGroup.sevenToTwelve.suddenAcc,
+            this.chartGroup.nineteenToTwentyFour.suddenAcc,
+            this.chartGroup.nineteenToTwentyFour.suddenAcc,
+          ],
         },
         {
-          name: "Free Cash Flow",
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-        }
+          name: 'Aggressive Turn Left',
+          data: [
+            this.chartGroup.oneToSix.aggTL,
+            this.chartGroup.sevenToTwelve.aggTL,
+            this.chartGroup.nineteenToTwentyFour.aggTL,
+            this.chartGroup.nineteenToTwentyFour.aggTL,
+          ],
+        },
       ],
       chart: {
-        type: "bar",
-        height: 350
+        type: 'bar',
+        height: 350,
       },
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "55%",
+          columnWidth: '55%',
           // endingShape: "rounded"
-        }
+        },
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       stroke: {
         show: true,
         width: 2,
-        colors: ["transparent"]
+        colors: ['transparent'],
       },
       xaxis: {
         categories: [
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct"
-        ]
+          '1:00 - 6:00',
+          '7:00 - 12:00',
+          '13:00 - 18:00',
+          '19:00 - 00:00',
+        ],
       },
       yaxis: {
         title: {
-          text: "$ (thousands)"
-        }
+          text: 'Violations Count',
+        },
       },
       fill: {
-        opacity: 1
+        opacity: 1,
       },
       tooltip: {
         y: {
-          formatter: function(val) {
-            return "$ " + val + " thousands";
-          }
-        }
-      }
+          formatter: function (val) {
+            return val + ' thousands';
+          },
+        },
+      },
     };
 
     this.pieChartOptions = {
-      series: [0, this.numSafe, this.numAggressive, this.numVeryAggressive],
+      series: [
+        this.totalEvents.swerve,
+        this.totalEvents.normal,
+        this.AggCorneringBraking,
+        this.TrafficSignViolations,
+      ],
       chart: {
         width: 420,
         type: 'pie',
-        // colors: ['#024730', '#ffaa00', '#c5132d'],
       },
-      labels: ["none", "Safe", "Aggressive", "Very aggressive"],
+      labels: [
+        'Swerve',
+        'Normal',
+        'Aggressive Cornering & Braking',
+        'Traffic Sign Violations',
+      ],
       responsive: [
         {
           breakpoint: 480,
           options: {
             chart: {
-              width: 240
+              width: 240,
             },
             legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ]
+              position: 'bottom',
+            },
+          },
+        },
+      ],
     };
   }
 
   ngOnInit(): void {
+    this.onGetTotalEvents();
+    this.onGetChartGroupData();
     FusionCharts.ready(() => {
       const chartObj = new FusionCharts({
         type: 'angulargauge',
@@ -181,12 +217,36 @@ export class AggressiveComponent implements OnInit {
             ],
           },
           dials: {
-            dial: [{ value: this.speedValue }],
+            dial: [{ value: this.totalScore }],
           },
         },
       });
 
       chartObj.render();
+    });
+  }
+
+  onGetTotalEvents() {
+    this.dataService.getTotalEvents().subscribe((data: TotalEvents) => {
+      console.log(data);
+      this.totalEvents = data;
+      // this.totalSuddenBrake = data.suddenBraking;
+      // this.totalAggressiveLeft = data.aggTL;
+      // this.totalAggressiveRight = data.aggTR;
+      // this.totalAggressiveSwerve = data.swerve;
+      // this.speedViolation = data.speedLimitViolation;
+      // this.totalOtherSign = data.otherTrafficViolation;
+    });
+  }
+
+  onGetChartGroupData() {
+    this.chartService.getChartGroupData().subscribe((data: ChartGroup) => {
+      console.log(data);
+      this.chartGroup = data;
+      // this.chartGroup.oneToSix = data.oneToSix;
+      // this.chartGroup.sevenToTwelve = data.sevenToTwelve;
+      // this.chartGroup.thirteenToEighteen = data.thirteenToEighteen;
+      // this.chartGroup.nineteenToTwentyFour = data.nineteenToTwentyFour;
     });
   }
 }

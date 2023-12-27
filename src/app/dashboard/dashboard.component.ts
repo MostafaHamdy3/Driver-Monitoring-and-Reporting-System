@@ -17,7 +17,11 @@ import {
   NgApexchartsModule,
 } from 'ng-apexcharts';
 import { TripService } from '../Services/user-trip.service';
-import { Trip } from '../Services/Trip';
+import { Trip } from '../models/Trip';
+import { DataService } from '../Services/user-data.service';
+import { TotalEvents } from '../models/TotalEvents';
+import { ChartGroup } from '../models/Charts';
+import { ChartsService } from '../Services/charts.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -47,6 +51,8 @@ export type ChartOptions = {
 })
 export class DashboardComponent implements OnInit {
   tripDetails: Trip[] = [];
+  totalEvents: TotalEvents = new TotalEvents();
+  chartGroup: ChartGroup = new ChartGroup();
 
   selectedNavItem: string | null = 'dashboard';
   openDashboard = true;
@@ -58,25 +64,44 @@ export class DashboardComponent implements OnInit {
   totalAggressiveSwerve: number = 0;
   speedViolation: number = 0;
   totalOtherSign: number = 0;
-  respondedOtherSign: number = 0;
+  // respondedOtherSign: number = 0;
 
   @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor(private tripData: TripService) {
+  constructor(
+    private tripData: TripService,
+    private dataService: DataService,
+    private chartService: ChartsService
+  ) {
     this.chartOptions = {
       series: [
         {
-          name: 'Net Profit',
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
+          name: 'Sudden Brake',
+          data: [
+            this.chartGroup.oneToSix.suddenBraking,
+            this.chartGroup.sevenToTwelve.suddenBraking,
+            this.chartGroup.nineteenToTwentyFour.suddenBraking,
+            this.chartGroup.nineteenToTwentyFour.suddenBraking,
+          ],
         },
         {
-          name: 'Revenue',
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
+          name: 'Sudden Accedence',
+          data: [
+            this.chartGroup.oneToSix.suddenAcc,
+            this.chartGroup.sevenToTwelve.suddenAcc,
+            this.chartGroup.nineteenToTwentyFour.suddenAcc,
+            this.chartGroup.nineteenToTwentyFour.suddenAcc,
+          ],
         },
         {
-          name: 'Free Cash Flow',
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
+          name: 'Aggressive Turn Left',
+          data: [
+            this.chartGroup.oneToSix.aggTL,
+            this.chartGroup.sevenToTwelve.aggTL,
+            this.chartGroup.nineteenToTwentyFour.aggTL,
+            this.chartGroup.nineteenToTwentyFour.aggTL,
+          ],
         },
       ],
       chart: {
@@ -100,20 +125,15 @@ export class DashboardComponent implements OnInit {
       },
       xaxis: {
         categories: [
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'Jul',
-          'Aug',
-          'Sep',
-          'Oct',
+          '1:00 - 6:00',
+          '7:00 - 12:00',
+          '13:00 - 18:00',
+          '19:00 - 00:00',
         ],
       },
       yaxis: {
         title: {
-          text: '$ (thousands)',
+          text: 'Violations Count',
         },
       },
       fill: {
@@ -122,7 +142,7 @@ export class DashboardComponent implements OnInit {
       tooltip: {
         y: {
           formatter: function (val) {
-            return '$ ' + val + ' thousands';
+            return val + ' thousands';
           },
         },
       },
@@ -131,12 +151,38 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.onGetTrips();
+    this.onGetTotalEvents();
+    this.onGetChartGroupData();
   }
 
   onGetTrips() {
     this.tripData.getTrips().subscribe((data: Trip[]) => {
       console.log(data);
       this.tripDetails = data;
+    });
+  }
+
+  onGetTotalEvents() {
+    this.dataService.getTotalEvents().subscribe((data: TotalEvents) => {
+      console.log(data);
+      this.totalEvents = data;
+      this.totalSuddenBrake = data.suddenBraking;
+      this.totalAggressiveLeft = data.aggTL;
+      this.totalAggressiveRight = data.aggTR;
+      this.totalAggressiveSwerve = data.swerve;
+      this.speedViolation = data.speedLimitViolation;
+      this.totalOtherSign = data.otherTrafficViolation;
+    });
+  }
+
+  onGetChartGroupData() {
+    this.chartService.getChartGroupData().subscribe((data: ChartGroup) => {
+      console.log(data);
+      this.chartGroup = data;
+      // this.chartGroup.oneToSix = data.oneToSix;
+      // this.chartGroup.sevenToTwelve = data.sevenToTwelve;
+      // this.chartGroup.thirteenToEighteen = data.thirteenToEighteen;
+      // this.chartGroup.nineteenToTwentyFour = data.nineteenToTwentyFour;
     });
   }
 

@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { Driver } from '../Services/Driver';
-import { Vehicle } from '../Services/Vehicle';
-import { DriverVehicleService } from '../Services/user-data.service';
+import { Driver } from '../models/Driver';
+import { Vehicle } from '../models/Vehicle';
+import { DataService } from '../Services/user-data.service';
 
 @Component({
   selector: 'app-profile-setting',
@@ -19,7 +19,7 @@ export class ProfileSettingComponent implements OnInit {
   updatedDeriver: boolean = false;
   updatedVehicle: boolean = false;
 
-  constructor(private driverService: DriverVehicleService) {}
+  constructor(private driverService: DataService) {}
 
   ngOnInit() {
     this.onGetDriverData();
