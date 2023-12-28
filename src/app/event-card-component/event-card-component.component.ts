@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './event-card-component.component.html',
   styleUrl: '../dashboard/dashboard.component.css',
 })
-export class EventCardComponentComponent implements OnChanges {
+export class EventCardComponent implements OnChanges {
   @Input('CardDataProps') cardDataProps: CardDetails;
   cardData: CardDetails;
 

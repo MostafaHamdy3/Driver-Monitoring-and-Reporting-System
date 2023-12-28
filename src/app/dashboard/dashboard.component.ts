@@ -23,7 +23,7 @@ import { TotalEvents } from '../models/TotalEvents';
 import { ChartGroup } from '../models/Charts';
 import { ChartsService } from '../Services/charts.service';
 import { AuthService } from '../Services/auth.service';
-import { EventCardComponentComponent } from '../event-card-component/event-card-component.component';
+import { EventCardComponent } from '../event-card-component/event-card-component.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -47,7 +47,7 @@ export type ChartOptions = {
     RouterLink,
     RouterLinkActive,
     NgApexchartsModule,
-    EventCardComponentComponent,
+    EventCardComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],

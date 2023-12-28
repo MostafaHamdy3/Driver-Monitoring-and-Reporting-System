@@ -12,6 +12,7 @@ export class TripService {
   pageSize: number = 5;
 
   private tripUrl = `http://localhost:8082/api/v1/trips`;
+  private tripEventsUrl = `http://localhost:8082/api/v1/analysis/tripEvents`;
 
   constructor(private http: HttpClient) {}
 
@@ -25,6 +26,10 @@ export class TripService {
           return data.content;
         })
       );
+  }
+
+  getTripEvents(tripId: number): Observable<object> {
+    return this.http.get(`${this.tripEventsUrl}?driverId=${tripId}`);
   }
 }
 
