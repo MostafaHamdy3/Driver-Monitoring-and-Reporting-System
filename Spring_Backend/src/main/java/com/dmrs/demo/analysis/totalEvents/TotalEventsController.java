@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1/analysis/totalEvents")
 @AllArgsConstructor
-public class TotalEventController {
+public class TotalEventsController {
 
   private final TotalEventsService totalEventsService;
 
