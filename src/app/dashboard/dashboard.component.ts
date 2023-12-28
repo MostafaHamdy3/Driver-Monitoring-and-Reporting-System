@@ -57,44 +57,7 @@ export class DashboardComponent implements OnInit {
   totalEvents: TotalEvents = new TotalEvents();
   chartGroup: ChartGroup = new ChartGroup();
 
-  cardsData = [
-    {
-      imgSrc: '../../assets/aggressive-icon.png',
-      imgAlt: 'aggressive',
-      eventCount: this.totalEvents.suddenBraking,
-      description: 'Total sudden brake',
-    },
-    {
-      imgSrc: '../../assets/aggressive-left-turn.png',
-      imgAlt: 'aggressive-left-turn',
-      eventCount: this.totalEvents.aggTL,
-      description: 'Total aggressive left',
-    },
-    {
-      imgSrc: '../../assets/aggressive-right-turn.png',
-      imgAlt: 'aggressive-right-turn',
-      eventCount: this.totalEvents.aggTR,
-      description: 'Total aggressive right',
-    },
-    {
-      imgSrc: '../../assets/swerve.png',
-      imgAlt: 'swerve',
-      eventCount: this.totalEvents.swerve,
-      description: 'Total aggressive swerve',
-    },
-    {
-      imgSrc: '../../assets/speed.png',
-      imgAlt: 'speed limit',
-      eventCount: this.totalEvents.speedLimitViolation,
-      description: 'Speed limit violation',
-    },
-    {
-      imgSrc: '../../assets/road-sign.png',
-      imgAlt: 'road-sign',
-      eventCount: this.totalEvents.otherTrafficViolation,
-      description: 'Other traffic sign',
-    },
-  ];
+  cardsData: Array<any> ;
 
   selectedNavItem: string | null = 'dashboard';
   openDashboard = true;
@@ -125,6 +88,44 @@ export class DashboardComponent implements OnInit {
   onGetTotalEvents() {
     this.dataService.getTotalEvents().subscribe((data: TotalEvents) => {
       this.totalEvents = data;
+      this.cardsData = [
+        {
+          imgSrc: '../../assets/aggressive-icon.png',
+          imgAlt: 'aggressive',
+          eventCount: this.totalEvents.suddenBraking,
+          description: 'Total sudden brake',
+        },
+        {
+          imgSrc: '../../assets/aggressive-left-turn.png',
+          imgAlt: 'aggressive-left-turn',
+          eventCount: this.totalEvents.aggTL,
+          description: 'Total aggressive left',
+        },
+        {
+          imgSrc: '../../assets/aggressive-right-turn.png',
+          imgAlt: 'aggressive-right-turn',
+          eventCount: this.totalEvents.aggTR,
+          description: 'Total aggressive right',
+        },
+        {
+          imgSrc: '../../assets/swerve.png',
+          imgAlt: 'swerve',
+          eventCount: this.totalEvents.swerve,
+          description: 'Total aggressive swerve',
+        },
+        {
+          imgSrc: '../../assets/speed.png',
+          imgAlt: 'speed limit',
+          eventCount: this.totalEvents.speedLimitViolation,
+          description: 'Speed limit violation',
+        },
+        {
+          imgSrc: '../../assets/road-sign.png',
+          imgAlt: 'road-sign',
+          eventCount: this.totalEvents.otherTrafficViolation,
+          description: 'Other traffic sign',
+        },
+      ];
     });
   }
 

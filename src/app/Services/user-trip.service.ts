@@ -29,7 +29,7 @@ export class TripService {
   }
 
   getTripEvents(tripId: number): Observable<object> {
-    return this.http.get(`${this.tripEventsUrl}?driverId=${tripId}`);
+    return this.http.get(`${this.tripEventsUrl}?tripId=${tripId}`);
   }
 }
 
