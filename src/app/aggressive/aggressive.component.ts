@@ -20,7 +20,11 @@ import {
   ApexNonAxisChartSeries,
   ApexResponsive,
   NgApexchartsModule,
-} from "ng-apexcharts";
+} from 'ng-apexcharts';
+import { ChartsService } from '../Services/charts.service';
+import { ChartGroup } from '../models/Charts';
+import { DataService } from '../Services/user-data.service';
+import { TotalEvents } from '../models/TotalEvents';
 
 // Apply the chart and theme modules
 Charts(FusionCharts);
@@ -56,115 +60,37 @@ export type PieChartOptions = {
   standalone: true,
   imports: [CommonModule, NgApexchartsModule],
   templateUrl: './aggressive.component.html',
-  styleUrl: './aggressive.component.css'
+  styleUrl: './aggressive.component.css',
 })
 export class AggressiveComponent implements OnInit {
-  speedValue: number = 80;
-  numSafe: number = 45;
-  numAggressive: number = 70;
-  numVeryAggressive: number = 30;
+  chartGroup: ChartGroup = new ChartGroup();
+  totalEvents: TotalEvents = new TotalEvents();
 
-  @ViewChild("chart") chart: ChartComponent;
+  AggCorneringBraking: number;
+
+  TrafficSignViolations: number;
+
+  @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   public pieChartOptions: Partial<PieChartOptions>;
 
-  constructor() {
-    this.chartOptions = {
-      series: [
-        {
-          name: "Net Profit",
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-        },
-        {
-          name: "Revenue",
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-        },
-        {
-          name: "Free Cash Flow",
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-        }
-      ],
-      chart: {
-        type: "bar",
-        height: 350
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "55%",
-          // endingShape: "rounded"
-        }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        show: true,
-        width: 2,
-        colors: ["transparent"]
-      },
-      xaxis: {
-        categories: [
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct"
-        ]
-      },
-      yaxis: {
-        title: {
-          text: "$ (thousands)"
-        }
-      },
-      fill: {
-        opacity: 1
-      },
-      tooltip: {
-        y: {
-          formatter: function(val) {
-            return "$ " + val + " thousands";
-          }
-        }
-      }
-    };
-
-    this.pieChartOptions = {
-      series: [0, this.numSafe, this.numAggressive, this.numVeryAggressive],
-      chart: {
-        width: 420,
-        type: 'pie',
-        // colors: ['#024730', '#ffaa00', '#c5132d'],
-      },
-      labels: ["none", "Safe", "Aggressive", "Very aggressive"],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 240
-            },
-            legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ]
-    };
-  }
+  constructor(
+    private chartService: ChartsService,
+    private dataService: DataService
+  ) {}
 
   ngOnInit(): void {
+    this.onGetTotalEvents();
+    this.onGetChartGroupData();
+  }
+
+  renderFusionCharts() {
     FusionCharts.ready(() => {
       const chartObj = new FusionCharts({
         type: 'angulargauge',
         renderAt: 'chart-container',
         width: '450',
         height: '300',
-        // dataFormat: 'json',
         dataSource: {
           chart: {
             caption: '',
@@ -181,12 +107,148 @@ export class AggressiveComponent implements OnInit {
             ],
           },
           dials: {
-            dial: [{ value: this.speedValue }],
+            dial: [{ value: this.totalEvents.totalScore }],
           },
         },
       });
 
       chartObj.render();
+    });
+  }
+
+  renderGroupChart() {
+    this.chartOptions = {
+      series: [
+        {
+          name: 'Aggressive Cornering & Braking',
+          data: [
+            this.chartGroup?.oneToSix?.aggCorneringAndBraking || 0,
+            this.chartGroup?.sevenToTwelve?.aggCorneringAndBraking || 0,
+            this.chartGroup?.nineteenToTwentyFour?.aggCorneringAndBraking || 0,
+            this.chartGroup?.nineteenToTwentyFour?.aggCorneringAndBraking || 0,
+          ],
+        },
+        {
+          name: 'Swerve',
+          data: [
+            this.chartGroup?.oneToSix?.swerve || 0,
+            this.chartGroup?.sevenToTwelve?.swerve || 0,
+            this.chartGroup?.nineteenToTwentyFour?.swerve || 0,
+            this.chartGroup?.nineteenToTwentyFour?.swerve || 0,
+          ],
+        },
+        {
+          name: 'Traffic Violation',
+          data: [
+            this.chartGroup?.oneToSix?.trafficViolation || 0,
+            this.chartGroup?.sevenToTwelve?.trafficViolation || 0,
+            this.chartGroup?.nineteenToTwentyFour?.trafficViolation || 0,
+            this.chartGroup?.nineteenToTwentyFour?.trafficViolation || 0,
+          ],
+        },
+      ],
+      chart: {
+        type: 'bar',
+        height: 350,
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: '55%',
+          // endingShape: "rounded"
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        show: true,
+        width: 2,
+        colors: ['transparent'],
+      },
+      xaxis: {
+        categories: [
+          '01:00 - 06:00',
+          '07:00 - 12:00',
+          '13:00 - 18:00',
+          '19:00 - 00:00',
+        ],
+      },
+      yaxis: {
+        title: {
+          text: 'Violations Count',
+        },
+      },
+      fill: {
+        opacity: 1,
+      },
+      tooltip: {
+        y: {
+          formatter: function (val) {
+            return val + ' thousands';
+          },
+        },
+      },
+    };
+  }
+
+  renderPieChart() {
+    this.AggCorneringBraking =
+      this.totalEvents.aggTL +
+        this.totalEvents.aggTR +
+        this.totalEvents.suddenBraking || 0;
+
+    this.TrafficSignViolations =
+      this.totalEvents.speedLimitViolation +
+        this.totalEvents.otherTrafficViolation || 0;
+
+    this.pieChartOptions = {
+      series: [
+        this.totalEvents?.swerve,
+        this.totalEvents?.normal,
+        this.AggCorneringBraking,
+        this.TrafficSignViolations,
+      ],
+      chart: {
+        width: 420,
+        type: 'pie',
+      },
+      labels: [
+        'Swerve',
+        'Normal',
+        'Aggressive Cornering & Braking',
+        'Traffic Sign Violations',
+      ],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 240,
+            },
+            legend: {
+              position: 'bottom',
+            },
+          },
+        },
+      ],
+    };
+  }
+
+  onGetTotalEvents() {
+    this.dataService.getTotalEvents().subscribe((data: TotalEvents) => {
+      this.totalEvents = data;
+
+      this.renderFusionCharts();
+      this.renderPieChart();
+    });
+  }
+
+  onGetChartGroupData() {
+    this.chartService.getChartGroupData().subscribe((data: ChartGroup) => {
+      this.chartGroup = data;
+
+      this.renderGroupChart();
     });
   }
 }

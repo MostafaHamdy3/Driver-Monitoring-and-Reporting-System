@@ -17,7 +17,13 @@ import {
   NgApexchartsModule,
 } from 'ng-apexcharts';
 import { TripService } from '../Services/user-trip.service';
-import { Trip } from '../Services/Trip';
+import { Trip } from '../models/Trip';
+import { DataService } from '../Services/user-data.service';
+import { TotalEvents } from '../models/TotalEvents';
+import { ChartGroup } from '../models/Charts';
+import { ChartsService } from '../Services/charts.service';
+import { AuthService } from '../Services/auth.service';
+import { EventCardComponentComponent } from '../event-card-component/event-card-component.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -41,42 +47,125 @@ export type ChartOptions = {
     RouterLink,
     RouterLinkActive,
     NgApexchartsModule,
+    EventCardComponentComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
   tripDetails: Trip[] = [];
+  totalEvents: TotalEvents = new TotalEvents();
+  chartGroup: ChartGroup = new ChartGroup();
+
+  cardsData = [
+    {
+      imgSrc: '../../assets/aggressive-icon.png',
+      imgAlt: 'aggressive',
+      eventCount: this.totalEvents.suddenBraking,
+      description: 'Total sudden brake',
+    },
+    {
+      imgSrc: '../../assets/aggressive-left-turn.png',
+      imgAlt: 'aggressive-left-turn',
+      eventCount: this.totalEvents.aggTL,
+      description: 'Total aggressive left',
+    },
+    {
+      imgSrc: '../../assets/aggressive-right-turn.png',
+      imgAlt: 'aggressive-right-turn',
+      eventCount: this.totalEvents.aggTR,
+      description: 'Total aggressive right',
+    },
+    {
+      imgSrc: '../../assets/swerve.png',
+      imgAlt: 'swerve',
+      eventCount: this.totalEvents.swerve,
+      description: 'Total aggressive swerve',
+    },
+    {
+      imgSrc: '../../assets/speed.png',
+      imgAlt: 'speed limit',
+      eventCount: this.totalEvents.speedLimitViolation,
+      description: 'Speed limit violation',
+    },
+    {
+      imgSrc: '../../assets/road-sign.png',
+      imgAlt: 'road-sign',
+      eventCount: this.totalEvents.otherTrafficViolation,
+      description: 'Other traffic sign',
+    },
+  ];
 
   selectedNavItem: string | null = 'dashboard';
   openDashboard = true;
   serialNumber: string = '';
 
-  totalSuddenBrake: number = 0;
-  totalAggressiveLeft: number = 0;
-  totalAggressiveRight: number = 0;
-  totalAggressiveSwerve: number = 0;
-  speedViolation: number = 0;
-  totalOtherSign: number = 0;
-  respondedOtherSign: number = 0;
-
   @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor(private tripData: TripService) {
+  constructor(
+    private tripData: TripService,
+    private dataService: DataService,
+    private chartService: ChartsService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit() {
+    this.onGetTrips();
+    this.onGetTotalEvents();
+    this.onGetChartGroupData();
+  }
+
+  onGetTrips() {
+    this.tripData.getTrips().subscribe((data: Trip[]) => {
+      this.tripDetails = data;
+    });
+  }
+
+  onGetTotalEvents() {
+    this.dataService.getTotalEvents().subscribe((data: TotalEvents) => {
+      this.totalEvents = data;
+    });
+  }
+
+  onGetChartGroupData() {
+    this.chartService.getChartGroupData().subscribe((data: ChartGroup) => {
+      this.chartGroup = data;
+
+      this.renderGroupChart();
+    });
+  }
+
+  onNavItemClicked(item: string) {
+    item === 'dashboard'
+      ? (this.openDashboard = true)
+      : (this.openDashboard = false);
+    this.selectedNavItem = item;
+  }
+
+  generateChartData(key: string) {
+    return [
+      this.chartGroup?.oneToSix?.[key] || 0,
+      this.chartGroup?.sevenToTwelve?.[key] || 0,
+      this.chartGroup?.thirteenToEighteen?.[key] || 0,
+      this.chartGroup?.nineteenToTwentyFour?.[key] || 0,
+    ];
+  }
+
+  renderGroupChart() {
     this.chartOptions = {
       series: [
         {
-          name: 'Net Profit',
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
+          name: 'Aggressive Cornering & Braking',
+          data: this.generateChartData('aggCorneringAndBraking'),
         },
         {
-          name: 'Revenue',
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
+          name: 'Swerve',
+          data: this.generateChartData('swerve'),
         },
         {
-          name: 'Free Cash Flow',
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
+          name: 'Traffic Violation',
+          data: this.generateChartData('trafficViolation'),
         },
       ],
       chart: {
@@ -100,20 +189,15 @@ export class DashboardComponent implements OnInit {
       },
       xaxis: {
         categories: [
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'Jul',
-          'Aug',
-          'Sep',
-          'Oct',
+          '01:00 - 06:00',
+          '07:00 - 12:00',
+          '13:00 - 18:00',
+          '19:00 - 00:00',
         ],
       },
       yaxis: {
         title: {
-          text: '$ (thousands)',
+          text: 'Violations Count',
         },
       },
       fill: {
@@ -122,42 +206,14 @@ export class DashboardComponent implements OnInit {
       tooltip: {
         y: {
           formatter: function (val) {
-            return '$ ' + val + ' thousands';
+            return val + ' thousands';
           },
         },
       },
     };
   }
 
-  ngOnInit() {
-    this.onGetTrips();
-  }
-
-  onGetTrips() {
-    this.tripData.getTrips().subscribe((data: Trip[]) => {
-      console.log(data);
-      this.tripDetails = data;
-    });
-  }
-
-  onNavItemClicked(item: string) {
-    item === 'dashboard'
-      ? (this.openDashboard = true)
-      : (this.openDashboard = false);
-    this.selectedNavItem = item;
-  }
-
   logoutHandler() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('driverId');
-    localStorage.removeItem('serialNumber');
+    this.authService.logout();
   }
-
-  // getTripData(): Array<[string, string, number, string]> {
-  //   return [
-  //     ['10:00 AM', '2022-09-01', 50, 'Safe'],
-  //     ['02:30 PM', '2022-09-02', 75, 'Aggressive'],
-  //     ['04:45 PM', '2022-09-04', 60, 'Very Aggressive'],
-  //   ];
-  // }
 }

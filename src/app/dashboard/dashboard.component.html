@@ -103,7 +103,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let trip of tripDetails">
-                    <td>{{ trip.start_timestamp | date:'HH:mm:ss'}}</td>
+                    <td>{{ trip.start_timestamp | date : "HH:mm:ss" }}</td>
                     <td>{{ trip.start_timestamp | date : "dd-MM-yyyy" }}</td>
                     <td>{{ trip.distance }}</td>
                     <td>
@@ -161,58 +161,9 @@
         <div class="cards-outside">
           <p class="total-event">Your Total Events</p>
           <div class="cards">
-            <div class="card">
-              <img
-                src="../../assets/aggressive-icon.png"
-                alt="aggressive"
-                class="card-img"
-              />
-              <p class="card-num">{{ totalSuddenBrake }}</p>
-              <p class="card-description">Total sudden brake</p>
-            </div>
-            <div class="card">
-              <img
-                src="../../assets/aggressive-left-turn.png"
-                alt="aggressive-left-turn"
-                class="card-img"
-              />
-              <p class="card-num">{{ totalAggressiveLeft }}</p>
-              <p class="card-description">Total aggressive left</p>
-            </div>
-            <div class="card">
-              <img
-                src="../../assets/aggressive-right-turn.png"
-                alt="aggressive-right-turn"
-                class="card-img"
-              />
-              <p class="card-num">{{ totalAggressiveRight }}</p>
-              <p class="card-description">Total aggressive right</p>
-            </div>
-            <div class="card">
-              <img
-                src="../../assets/swerve.png"
-                alt="swerve"
-                class="card-img"
-              />
-              <p class="card-num">{{ totalAggressiveSwerve }}</p>
-              <p class="card-description">Total aggressive swerve</p>
-            </div>
-            <div class="card">
-              <img src="../../assets/speed.png" alt="speed" class="card-img" />
-              <p class="card-num">{{ speedViolation }}</p>
-              <p class="card-description">Speed limit violation</p>
-            </div>
-            <div class="card">
-              <img
-                src="../../assets/road-sign.png"
-                alt="road-sign"
-                class="card-img"
-              />
-              <p class="card-num">
-                {{ totalOtherSign }}/{{ respondedOtherSign }}
-              </p>
-              <p class="card-description">Other traffic sign</p>
-            </div>
+            <ng-container *ngFor="let cardData of cardsData">
+              <app-event-card [CardDataProps]="cardData"></app-event-card>
+            </ng-container>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from './user';
+import { User } from '../models/userLogin';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,7 +14,6 @@ export class UserLoginService {
   private baseUrl = 'http://localhost:8082/api/v1/login';
   constructor(private http: HttpClient) {}
   userLogin(authData: User): Observable<object> {
-    // console.log(authData) ;
     return this.http.post(`${this.baseUrl}`, authData);
   }
 }

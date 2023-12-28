@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Trip } from '../Services/Trip';
+import { Trip } from '../models/Trip';
 import { TripService } from '../Services/user-trip.service';
 
 @Component({
