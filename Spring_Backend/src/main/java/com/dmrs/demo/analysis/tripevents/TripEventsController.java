@@ -12,8 +12,8 @@ public class TripEventsController {
     private final TripEventsService tripEventsService;
 
     @GetMapping
-    public TripEventsDTO getTripEvents(@RequestParam String driverId){
-        return tripEventsService.getTripEventsDTO(driverId);
+    public TripEventsDTO getTripEvents(@RequestParam String tripId){
+        return tripEventsService.getTripEventsDTO(tripId);
     }
 
     @PostMapping
