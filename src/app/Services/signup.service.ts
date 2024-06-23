@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserRegister } from '../sign-up/user-register';
@@ -6,7 +6,7 @@ import { UserRegister } from '../sign-up/user-register';
   providedIn: 'root',
 })
 export class SignupService {
-  baseUrl = 'http://localhost:8082/api/v1/registration';
+  baseUrl = 'http://localhost:8080/auth/register';
   constructor(private httpClient: HttpClient) {}
 
   RegisterUser(userData: UserRegister) {

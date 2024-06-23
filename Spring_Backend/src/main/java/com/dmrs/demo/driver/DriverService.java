@@ -102,7 +102,7 @@ public record DriverService(DriverRepository driverRepo,
             // TODO check of attributes are the same and
             // TODO if email not confirmed send confirmation email.
 
-            throw new ApiRequestException("email already taken", ErrorCode.EMAIL_ALREADY_TAKEN);
+            throw new ApiRequestException("email already taken or Vehicle Serial Number is already taken", ErrorCode.EMAIL_ALREADY_TAKEN);
         }
 
         String encodedPassword = bCryptPasswordEncoder

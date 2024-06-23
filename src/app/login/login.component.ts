@@ -5,6 +5,7 @@ import { User } from '../models/userLogin';
 import { FormsModule } from '@angular/forms';
 import { UserLoginService } from '../Services/user-login.service';
 import { Driver } from '../models/Driver';
+import { AuthService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,34 +18,48 @@ export class LoginComponent implements OnInit {
   user: User = new User();
   isLoading: boolean = false;
   isLoginFailed: boolean = false;
-  constructor(private router: Router, private userService: UserLoginService) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {}
 
   onLogin() {
     this.isLoading = true;
-    this.userService.userLogin(this.user).subscribe(
-      (data: LoginResponse) => {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('driverId', data.driverId);
-        localStorage.setItem('serialNumber', data.vehicleSerialNumber);
+    this.authService.login(this.user).subscribe(
+      (response: LoginResponse) => {
+        this.isLoading = false;
+        this.isLoginFailed = false;
         this.router.navigate(['/dashboard']);
       },
       (error) => {
-        this.isLoginFailed = true;
         this.isLoading = false;
+        this.isLoginFailed = true;
       }
     );
+    
+    
   }
 
   showSignUpHandler() {
     this.router.navigate(['/signUp']);
   }
+
+  
 }
 
 interface LoginResponse {
   token: string;
   driverId: string;
   vehicleSerialNumber: string;
+  // add other properties if needed
+}
+
+interface LoginResponse {
+  code: string;
+  successMessage: string;
+  data: {
+    driverId: string;
+    serialNumber:string;
+    token: string;
+  };
   // add other properties if needed
 }

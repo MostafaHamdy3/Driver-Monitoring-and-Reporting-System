@@ -28,6 +28,7 @@ export class ProfileSettingComponent implements OnInit {
 
   onGetDriverData() {
     this.driverService.getDriver().subscribe((driver: Driver) => {
+      console.log(driver);
       this.driverDetails.id = driver.id;
       this.driverDetails.firstName = driver.firstName;
       this.driverDetails.lastName = driver.lastName;
@@ -41,6 +42,7 @@ export class ProfileSettingComponent implements OnInit {
 
   onGetVehicleData() {
     this.driverService.getVehicle().subscribe((vehicle: Vehicle) => {
+      console.log(vehicle);
       this.vehicleDetails.id = vehicle.id;
       this.vehicleDetails.name = vehicle.name;
       this.vehicleDetails.model = vehicle.model;

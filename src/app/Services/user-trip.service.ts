@@ -1,25 +1,29 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Trip } from '../models/Trip';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TripService {
-  serialNumber: string = localStorage.getItem('serialNumber');
+  serialNumber: string = this.authService.getSerialNumber();
   pageNumber: number = 0;
   pageSize: number = 5;
+  token: string = this.authService.getToken();
+  private tripUrl = `http://localhost:8080/api/v1/trips`;
+  private tripEventsUrl = `http://localhost:8080/api/v1/analysis/tripEvents`;
 
-  private tripUrl = `http://localhost:8082/api/v1/trips`;
-  private tripEventsUrl = `http://localhost:8082/api/v1/analysis/tripEvents`;
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getTrips(): Observable<Trip[]> {
     return this.http
       .get<TripGetResponse>(
-        `${this.tripUrl}?pageNumber=${this.pageNumber}&pageSize=${this.pageSize}&serialNumber=${this.serialNumber}`
+        `${this.tripUrl}?pageNumber=${this.pageNumber}&pageSize=${this.pageSize}&serialNumber=${this.serialNumber}`,
+        {
+          headers: new HttpHeaders({ "Authorization": `Bearer ${this.token}` })
+        }
       )
       .pipe(
         map((data) => {
@@ -29,7 +33,11 @@ export class TripService {
   }
 
   getTripEvents(tripId: number): Observable<object> {
-    return this.http.get(`${this.tripEventsUrl}?tripId=${tripId}`);
+    return this.http.get(`${this.tripEventsUrl}?tripId=${tripId}`,
+      {
+        headers: new HttpHeaders({ "Authorization": `Bearer ${this.token}` })
+      }
+    );
   }
 }
 

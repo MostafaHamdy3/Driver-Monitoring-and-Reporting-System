@@ -93,18 +93,28 @@ export class AggressiveComponent implements OnInit {
         height: '300',
         dataSource: {
           chart: {
-            caption: '',
-            subcaption: '',
+            caption: 'Your Total Score',
             lowerLimit: '0',
-            upperLimit: '180',
-            theme: 'fusion',
+            upperLimit: '100',
+            "showValue": "1",
+            "numberSuffix": "%",
+            "theme": "fusion",
+            "showToolTip": "0"
           },
           colorRange: {
-            color: [
-              { minValue: '0', maxValue: '70', code: '#6baa01' },
-              { minValue: '70', maxValue: '100', code: '#f8bd19' },
-              { minValue: '100', maxValue: '180', code: '#e44a00' },
-            ],
+            color: [{
+              "minValue": "0",
+              "maxValue": "50",
+              "code": "#F2726F"
+          }, {
+              "minValue": "50",
+              "maxValue": "75",
+              "code": "#FFC533"
+          }, {
+              "minValue": "75",
+              "maxValue": "100",
+              "code": "#62B58F"
+          }],
           },
           dials: {
             dial: [{ value: this.totalEvents.totalScore }],

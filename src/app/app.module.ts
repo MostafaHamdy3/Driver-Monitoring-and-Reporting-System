@@ -6,7 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgxChartsModule }from '@swimlane/ngx-charts';  // added
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
-import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -17,6 +16,8 @@ import { UserLoginService } from './Services/user-login.service' ;
 import { SignupService } from './Services/signup.service';
 import { TripsTableComponent } from './trips-table/trips-table.component';
 import { RouterModule } from '@angular/router';
+import { JwtInterceptor } from './Services/jwt.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import { RouterModule } from '@angular/router';
     })
   ],
 
-  providers: [UserLoginService, SignupService, HttpClientModule],
+  providers: [UserLoginService, SignupService, HttpClientModule,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

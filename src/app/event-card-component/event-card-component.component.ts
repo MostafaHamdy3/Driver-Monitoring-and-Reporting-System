@@ -13,7 +13,7 @@ export class EventCardComponent implements OnChanges {
   cardData: CardDetails;
 
   ngOnChanges() {
-    console.log(this.cardDataProps);
+
     this.cardData = this.cardDataProps;
   }
 }

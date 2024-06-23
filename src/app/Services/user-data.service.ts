@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Driver } from '../models/Driver';
 import { Vehicle } from '../models/Vehicle';
 import { TotalEvents } from '../models/TotalEvents';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,21 +13,25 @@ export class DataService {
   driverDetails: Driver = new Driver();
   vehicleDetails: Vehicle = new Vehicle();
   totalEventsDetails: TotalEvents = new TotalEvents();
-  token: string = localStorage.getItem('token');
-  id: string = localStorage.getItem('driverId');
+  id: string = this.authService.getDriverId();
+  token: string = this.authService.getToken();
 
-  private driverUrl = `http://localhost:8082/api/v1/driver`;
-  private vehicleUrl = `http://localhost:8082/api/v1/vehicle`;
-  private totalEventsUrl = `http://localhost:8082/api/v1/analysis/totalEvents`;
+  private driverUrl = `http://localhost:8080/api/v1/driver`;
+  private vehicleUrl = `http://localhost:8080/api/v1/vehicle`;
+  private totalEventsUrl = `http://localhost:8080/api/v1/analysis/totalEvents`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private authService: AuthService) {}
 
   getDriver(): Observable<object> {
-    return this.http.get(`${this.driverUrl}?token=${this.token}`);
+    return this.http.get(`${this.driverUrl}?id=${this.id}`,{
+      headers: new HttpHeaders({ "Authorization": `Bearer ${this.token}` }),
+    });
   }
 
   getVehicle(): Observable<object> {
-    return this.http.get(`${this.vehicleUrl}?id=${this.id}`);
+    return this.http.get(`${this.vehicleUrl}?id=${this.id}`,{
+      headers: new HttpHeaders({ "Authorization": `Bearer ${this.token}` }),
+    });
   }
 
   updateDriverDetails(driver: Driver) {
@@ -38,15 +43,23 @@ export class DataService {
   }
 
   updateDriver(driverData: Driver): Observable<object> {
-    return this.http.put(`${this.driverUrl}`, driverData);
+    return this.http.put(`${this.driverUrl}`, driverData,{
+      headers: new HttpHeaders({ "Authorization": `Bearer ${this.token}` }),
+    });
   }
 
   updateVehicle(vehicleData: Vehicle): Observable<object> {
-    return this.http.put(`${this.vehicleUrl}`, vehicleData);
+    return this.http.put(`${this.vehicleUrl}`, vehicleData,{
+      headers: new HttpHeaders({ "Authorization": `Bearer ${this.token}` }),
+    });
   }
 
   getTotalEvents(): Observable<object> {
-    return this.http.get(`${this.totalEventsUrl}?driverId=${this.id}`);
+    return this.http.get(`${this.totalEventsUrl}?driverId=${this.id}`,
+      {
+        headers: new HttpHeaders({ "Authorization": `Bearer ${this.token}` })
+      }
+    );
   }
 
   updateEvents(totalEvents: TotalEvents) {
