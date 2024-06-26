@@ -5,6 +5,8 @@ import com.dmrs.demo.exception.ApiRequestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.logging.Logger;
+
 @Service
 @RequiredArgsConstructor
 public class TotalEventsService {
@@ -12,19 +14,44 @@ public class TotalEventsService {
 
     public void save(String driverId , TotalEventsDTO totalEventsRequest) {
 
+        TotalEvents oldtotalEvents= totalEventsRepository.findByDriverId(driverId);
 
-        TotalEvents totalEvents = TotalEvents.builder()
-                .driverId(driverId)
-                .suddenBraking(totalEventsRequest.getSuddenBraking())
-                .swerve(totalEventsRequest.getSwerve())
-                .aggTL(totalEventsRequest.getAggTL())
-                .aggTR(totalEventsRequest.getAggTR())
-                .speedLimitViolation(totalEventsRequest.getSpeedLimitViolation())
-                .otherTrafficViolation(totalEventsRequest.getOtherTrafficViolation())
-                .normal(totalEventsRequest.getNormal())
-                .totalScore(totalEventsRequest.getTotalScore())
-                .build();
-        totalEventsRepository.save(totalEvents);
+
+
+        if (oldtotalEvents == null) {
+            oldtotalEvents = TotalEvents.builder()
+                    .driverId(driverId)
+                    .suddenBraking(totalEventsRequest.getSuddenBraking())
+                    .swerve(totalEventsRequest.getSwerve())
+                    .aggTL(totalEventsRequest.getAggTL())
+                    .aggTR(totalEventsRequest.getAggTR())
+                    .speedLimitViolation(totalEventsRequest.getSpeedLimitViolation())
+                    .otherTrafficViolation(totalEventsRequest.getOtherTrafficViolation())
+                    .normal(totalEventsRequest.getNormal())
+                    .totalScore(totalEventsRequest.getTotalScore())
+                    .build();
+
+            totalEventsRepository.save(oldtotalEvents);
+
+        }
+        else {
+
+            TotalEvents totalEvents = TotalEvents.builder()
+                    .id(oldtotalEvents.getId())
+                    .driverId(driverId)
+                    .suddenBraking((totalEventsRequest.getSuddenBraking() + oldtotalEvents.getSuddenBraking()) / 2)
+                    .swerve((totalEventsRequest.getSwerve() + oldtotalEvents.getSwerve()) / 2)
+                    .aggTL((totalEventsRequest.getAggTL() + oldtotalEvents.getAggTL()) / 2)
+                    .aggTR((totalEventsRequest.getAggTR() + oldtotalEvents.getAggTR()) / 2)
+                    .speedLimitViolation((totalEventsRequest.getSpeedLimitViolation() + oldtotalEvents.getSpeedLimitViolation()) / 2)
+                    .otherTrafficViolation((totalEventsRequest.getOtherTrafficViolation() + oldtotalEvents.getOtherTrafficViolation()) / 2)
+                    .normal((totalEventsRequest.getNormal() + oldtotalEvents.getNormal()) / 2)
+                    .totalScore((totalEventsRequest.getTotalScore() + oldtotalEvents.getTotalScore()) / 2)
+                    .build();
+
+            totalEventsRepository.save(totalEvents);
+
+        }
     }
 
     public TotalEventsDTO getTotalEvents(String driverId) {

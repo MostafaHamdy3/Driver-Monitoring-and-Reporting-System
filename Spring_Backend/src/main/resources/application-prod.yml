@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://${PROD_DB_USERNAME}:${PROD_DB_PASSWORD}@gp-testing.bojqtas.mongodb.net/?retryWrites=true&w=majority&appName=${PROD_DB_NAME}
+      database: DMRS
+

@@ -8,7 +8,7 @@ import java.util.Optional;
 @Service
 public record RTVehicleDataService(RTVehicleDataRepository vehicleDataRepo) {
 
-    public Optional<RTVehicleData> getVehicleDataByTimestamp(BSONTimestampCodec timestamp) {
+    public Optional<RTVehicleData> getVehicleDataByTimestamp(String timestamp) {
       return vehicleDataRepo.findVehicleDataByTimestamp(timestamp);
     }
 

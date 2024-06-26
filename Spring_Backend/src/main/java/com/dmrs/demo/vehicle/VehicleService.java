@@ -12,8 +12,8 @@ import java.util.Optional;
 @Service
 public record VehicleService(VehicleRepository vehicleRepo,
                              DriverService driverService) {
-    public void addVehicle(Vehicle vehicle) {
-      vehicleRepo.save(vehicle);
+    public Vehicle addVehicle(Vehicle vehicle) {
+      return vehicleRepo.save(vehicle);
     }
 
   public void deleteVehicle(String serialNumber) {
@@ -33,7 +33,7 @@ public record VehicleService(VehicleRepository vehicleRepo,
     return vehicleRepo.findAll();
   }
 
-  //    public Iterable<Vehicle> getAllVehiclesByDriverEmail(String email){return vehicleRepo.findAllByDriverEmail(email);}
+  //    public Iterable<Vehicle> getAllVehiclesByDriverEmail(String username){return vehicleRepo.findAllByDriverEmail(username);}
     public Optional<Vehicle> getVehicleByDriverId(String driverId) {
       Driver driver = driverService.getDriverById(driverId);
       return vehicleRepo.findByDriver(driver);

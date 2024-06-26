@@ -1,7 +1,6 @@
-package com.dmrs.demo.Auth.registration;
+package com.dmrs.demo.Auth.security.utils;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.function.Predicate;
 import java.util.regex.Pattern;

@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class TripEventsDTO {
   private int suddenBraking;
+  private int aggAcc;
   private int swerve;
   private int aggTL;
   private int aggTR;

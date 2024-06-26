@@ -5,6 +5,8 @@ import com.dmrs.demo.dto.DriverRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("api/v1/driver")
 @AllArgsConstructor
@@ -13,8 +15,9 @@ public class DriverController {
 
 
     @GetMapping
-    public DriverDTO getDriverByToken(@RequestParam String token){
-        return driverService.getDriverByToken(token); // TODO: change the exception and return a proper response
+    public DriverDTO getDriverById(@RequestParam String id){
+        Driver driver = driverService.getDriverById(id);
+        return new DriverDTO(driver.getId(), driver.getFirstName(), driver.getLastName(), driver.getUser().getUsername(), driver.getGender(), driver.getAge(), driver.getPhone(), driver.getJobTitle(), driver.getImgUrl());
     }
 
 

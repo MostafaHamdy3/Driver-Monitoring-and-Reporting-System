@@ -52,7 +52,8 @@ you can then run the Mongo Express on any explorer run:
 ```
 http://localhost:8081
 ```
-username: root 
+>username: admin 
+> 
 >password: pass
 
 

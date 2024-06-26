@@ -8,9 +8,9 @@ import java.util.Optional;
 public interface RTVehicleDataRepository extends MongoRepository<RTVehicleData,String> {
     void deleteVehicleDataBySerialNumber(String serialNumber);
 
-//    Iterable<VehicleData> findAllByDriverEmail(String email);
+//    Iterable<VehicleData> findAllByDriverEmail(String username);
 
-    Optional<RTVehicleData> findVehicleDataByTimestamp(BSONTimestampCodec timestamp);
+    Optional<RTVehicleData> findVehicleDataByTimestamp(String timestamp);
 
 
 }
