@@ -10,7 +10,7 @@ export class ChartsService {
   id: string = this.authService.getDriverId();
   chartCroupDetails: ChartGroup;
   token:string = this.authService.getToken();
-  private chartGroupUrl = `http://localhost:8080/api/v1/analysis/totalHourlyEvents`;
+  private chartGroupUrl = `https://dmrs-c487bb5f6150.herokuapp.com/api/v1/analysis/totalHourlyEvents`;
 
   constructor(private http: HttpClient,private authService: AuthService) {}
 

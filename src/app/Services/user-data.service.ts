@@ -16,9 +16,9 @@ export class DataService {
   id: string = this.authService.getDriverId();
   token: string = this.authService.getToken();
 
-  private driverUrl = `http://localhost:8080/api/v1/driver`;
-  private vehicleUrl = `http://localhost:8080/api/v1/vehicle`;
-  private totalEventsUrl = `http://localhost:8080/api/v1/analysis/totalEvents`;
+  private driverUrl = `https://dmrs-c487bb5f6150.herokuapp.com/api/v1/driver`;
+  private vehicleUrl = `https://dmrs-c487bb5f6150.herokuapp.com/api/v1/vehicle`;
+  private totalEventsUrl = `https://dmrs-c487bb5f6150.herokuapp.com/api/v1/analysis/totalEvents`;
 
   constructor(private http: HttpClient,private authService: AuthService) {}
 
